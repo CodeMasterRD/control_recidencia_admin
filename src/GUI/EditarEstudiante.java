@@ -643,7 +643,7 @@ public class EditarEstudiante extends javax.swing.JFrame {
                 if (!matricula.equals(lastQuery)) {
                     DefaultTableModel modelo = (DefaultTableModel) TablaEstudiantesEditar.getModel();
                     try {
-                        Modelo.BuscarEstudiante(modelo, matricula); 
+                        Modelo.BuscarEstudianteEditar(modelo, matricula); 
                         lastQuery = matricula;
                     } catch (FileNotFoundException ex) {
                         Logger.getLogger(VerEstudiantes.class.getName()).log(Level.SEVERE, null, ex);
@@ -657,7 +657,7 @@ public class EditarEstudiante extends javax.swing.JFrame {
         // Si el campo está vacío, mostrar todos los estudiantes
         DefaultTableModel modelo = (DefaultTableModel) TablaEstudiantesEditar.getModel();
         try {
-            Modelo.BuscarEstudiante(modelo, matricula); 
+            Modelo.BuscarEstudianteEditar(modelo, matricula); 
         } catch (FileNotFoundException ex) {
             Logger.getLogger(VerEstudiantes.class.getName()).log(Level.SEVERE, null, ex);
         }

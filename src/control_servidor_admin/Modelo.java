@@ -68,8 +68,46 @@ public class Modelo {
         }
     }
     
+    public void MostrarEstudianteEditar(DefaultTableModel modelo) {
+        
+        String sql = "call obtenerEstudianteActualizar();";
+
+        try {
+            conet = con1.getConexion();
+            st = conet.createStatement();
+            rs = st.executeQuery(sql);
+
+            modelo.setRowCount(0);
+
+            Object[] Estudiantes = new Object[6];
+
+            while (rs.next()) {
+                Estudiantes[0] = rs.getInt("Matricula");
+                Estudiantes[1] = rs.getString("Nombre"); 
+                Estudiantes[2] = rs.getString("Apellido"); 
+                Estudiantes[3] = rs.getString("Telefono");
+                Estudiantes[4] = rs.getString("Modulo"); 
+                Estudiantes[5] = rs.getString("Habitacion");
+
+                modelo.addRow(Estudiantes);
+            }
+        } catch (SQLException e) {
+            System.err.println("Error al ejecutar la consulta: " + e.getMessage());
+        } catch (Exception e) {
+            System.err.println("Error general: " + e.getMessage());
+        } finally {
+            try {
+                if (rs != null) rs.close();
+                if (st != null) st.close();
+                if (conet != null) conet.close();
+            } catch (SQLException e) {
+                System.err.println("Error al cerrar los recursos: " + e.getMessage());
+            }
+        }
+    }
     
-public void EditarEstudiante(DefaultTableModel modelo, String matricula) throws FileNotFoundException {
+    
+    public void EditarEstudiante(DefaultTableModel modelo, String matricula) throws FileNotFoundException {
     String sql = matricula.isEmpty() 
                  ? "CALL obtenerEstudianteActualizar();" 
                  : "CALL buscarEstudiantesByMatricula('" + matricula + "');";
@@ -107,7 +145,6 @@ public void EditarEstudiante(DefaultTableModel modelo, String matricula) throws 
 }
 
     
-    
     public static void BuscarEstudiante(DefaultTableModel modelo, String matricula) throws FileNotFoundException {
         // Define la consulta SQL para llamar al procedimiento almacenado
         String sql = "CALL buscarEstudiantesByMatricula(?);";  // Usamos parámetros en lugar de concatenar directamente
@@ -138,11 +175,41 @@ public void EditarEstudiante(DefaultTableModel modelo, String matricula) throws 
                 Estudiantes[5] = rs.getString("Habitacion");
                 Estudiantes[6] = rs.getString("Genero del Modulo");
 
-                // Añadir la fila al modelo de la tabla
                 modelo.addRow(Estudiantes);
             }
         } catch (SQLException e) {
-            // Capturar errores relacionados con la base de datos
+            System.err.println("Error al ejecutar la consulta: " + e.getMessage());
+        }
+    }
+    
+    
+    public static void BuscarEstudianteEditar(DefaultTableModel modelo, String matricula) throws FileNotFoundException {
+        // Define la consulta SQL para llamar al procedimiento almacenado
+        String sql = "call obtenerEstudianteActualizarnro2(?);;";
+
+        // Manejo de la conexión y consulta
+        try (Connection conet = con1.getConexion(); 
+             PreparedStatement ps = conet.prepareStatement(sql)) {
+
+            ps.setString(1, matricula); 
+
+            rs = ps.executeQuery();
+
+            modelo.setRowCount(0);
+
+            Object[] Estudiantes = new Object[6];
+
+            while (rs.next()) {
+                Estudiantes[0] = rs.getInt("Matricula");
+                Estudiantes[1] = rs.getString("Nombre");
+                Estudiantes[2] = rs.getString("Apellido");
+                Estudiantes[3] = rs.getString("Telefono");
+                Estudiantes[4] = rs.getString("Modulo");
+                Estudiantes[5] = rs.getString("Habitacion");
+
+                modelo.addRow(Estudiantes);
+            }
+        } catch (SQLException e) {
             System.err.println("Error al ejecutar la consulta: " + e.getMessage());
         }
     }

@@ -105,7 +105,7 @@ public class VerEstudiantes extends javax.swing.JFrame {
                 VerEstudianteBtnActionPerformed(evt);
             }
         });
-        jPanel2.add(VerEstudianteBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 116, 332, 55));
+        jPanel2.add(VerEstudianteBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 332, 55));
 
         HistorialCocinaBnt.setBackground(new java.awt.Color(20, 101, 187));
         HistorialCocinaBnt.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -283,6 +283,7 @@ public class VerEstudiantes extends javax.swing.JFrame {
             TablaEstudiantes.getColumnModel().getColumn(1).setResizable(false);
             TablaEstudiantes.getColumnModel().getColumn(1).setPreferredWidth(180);
             TablaEstudiantes.getColumnModel().getColumn(2).setResizable(false);
+            TablaEstudiantes.getColumnModel().getColumn(2).setPreferredWidth(150);
             TablaEstudiantes.getColumnModel().getColumn(3).setResizable(false);
             TablaEstudiantes.getColumnModel().getColumn(4).setResizable(false);
             TablaEstudiantes.getColumnModel().getColumn(4).setPreferredWidth(50);
@@ -582,14 +583,12 @@ public class VerEstudiantes extends javax.swing.JFrame {
     private void EditarEstudiantebtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditarEstudiantebtnActionPerformed
         EditarEstudiante editarEstudiante = new EditarEstudiante();
         editarEstudiante.setVisible(true);
-        this.dispose(); // Cierra la ventana actual.
+        this.dispose();
 
-    // Centrar la nueva ventana en la pantalla.
         editarEstudiante.setLocationRelativeTo(null);
     
-    // Obtiene el modelo de la tabla en la nueva ventana.
         DefaultTableModel modelo = (DefaultTableModel) editarEstudiante.TablaEstudiantesEditar.getModel();
-        logica.MostrarEstudiante(modelo);
+        logica.MostrarEstudianteEditar(modelo);
 
     }//GEN-LAST:event_EditarEstudiantebtnActionPerformed
 
