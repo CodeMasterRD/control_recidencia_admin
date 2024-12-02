@@ -9,6 +9,7 @@ import control_servidor_admin.ConsultasSQL;
 import java.awt.Color;
 import Controlador.EstudianteControlador;
 import Controlador.EntradaSalidaControlador;
+import Controlador.BotellonesControlador;
 
 
 /**
@@ -25,8 +26,8 @@ public class HistorialBotellones extends javax.swing.JFrame {
     }
     ConsultasSQL logica = new ConsultasSQL();
     EstudianteControlador estudianteControlador = new EstudianteControlador();
-        EntradaSalidaControlador entradaSalidaControlador = new EntradaSalidaControlador();
-
+    EntradaSalidaControlador entradaSalidaControlador = new EntradaSalidaControlador();
+    BotellonesControlador botellonesControlador = new BotellonesControlador();
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -286,6 +287,7 @@ public class HistorialBotellones extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(30, 30, 30));
 
+        HistorialBotetellonesTabla.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         HistorialBotetellonesTabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null},
@@ -296,8 +298,31 @@ public class HistorialBotellones extends javax.swing.JFrame {
             new String [] {
                 "Matricula", "Nombre Completo", "Modulo", "Habitacion", "Fecha de entrega", "Fecha de deposito", "Estado"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        HistorialBotetellonesTabla.setRowHeight(30);
+        HistorialBotetellonesTabla.getTableHeader().setResizingAllowed(false);
+        HistorialBotetellonesTabla.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(HistorialBotetellonesTabla);
+        if (HistorialBotetellonesTabla.getColumnModel().getColumnCount() > 0) {
+            HistorialBotetellonesTabla.getColumnModel().getColumn(0).setResizable(false);
+            HistorialBotetellonesTabla.getColumnModel().getColumn(0).setPreferredWidth(50);
+            HistorialBotetellonesTabla.getColumnModel().getColumn(1).setResizable(false);
+            HistorialBotetellonesTabla.getColumnModel().getColumn(2).setResizable(false);
+            HistorialBotetellonesTabla.getColumnModel().getColumn(2).setPreferredWidth(25);
+            HistorialBotetellonesTabla.getColumnModel().getColumn(3).setResizable(false);
+            HistorialBotetellonesTabla.getColumnModel().getColumn(3).setPreferredWidth(50);
+            HistorialBotetellonesTabla.getColumnModel().getColumn(4).setResizable(false);
+            HistorialBotetellonesTabla.getColumnModel().getColumn(5).setResizable(false);
+            HistorialBotetellonesTabla.getColumnModel().getColumn(6).setResizable(false);
+        }
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -391,7 +416,7 @@ public class HistorialBotellones extends javax.swing.JFrame {
 
     private void HistorialBotellonesbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HistorialBotellonesbtnActionPerformed
         DefaultTableModel modelo = (DefaultTableModel) HistorialBotetellonesTabla.getModel();
-        logica.historialBotellones(modelo);   
+        botellonesControlador.historialBotellones(modelo);   
     }//GEN-LAST:event_HistorialBotellonesbtnActionPerformed
 
     private void RetirarEstudiantesbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RetirarEstudiantesbtnActionPerformed

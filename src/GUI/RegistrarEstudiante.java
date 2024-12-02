@@ -8,28 +8,17 @@ package GUI;
  * @author Erick Tejada
  */
 
-import GUI.VerEstudiantes;
-import java.io.FileNotFoundException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import control_servidor_admin.ConsultasSQL;
 import java.awt.Color;
-import java.awt.Point;
 import javax.swing.JComboBox;
-import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.*;
-import javax.swing.event.*;
-import javax.swing.plaf.basic.BasicComboBoxUI;
-import java.awt.*;
-import java.awt.event.KeyEvent;
-import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import GUI.RegistrarEstudiante;
 import Controlador.EstudianteControlador;
 import Controlador.EntradaSalidaControlador;
+import Controlador.BotellonesControlador;
+
 
 
 
@@ -37,8 +26,10 @@ import Controlador.EntradaSalidaControlador;
 public class RegistrarEstudiante extends javax.swing.JFrame {
     
         ConsultasSQL logica = new ConsultasSQL();
-            EstudianteControlador estudianteControlador = new EstudianteControlador();
-                EntradaSalidaControlador entradaSalidaControlador = new EntradaSalidaControlador();
+        EstudianteControlador estudianteControlador = new EstudianteControlador();
+        EntradaSalidaControlador entradaSalidaControlador = new EntradaSalidaControlador();
+        BotellonesControlador botellonesControlador = new BotellonesControlador();
+
 
 
 
@@ -701,7 +692,7 @@ public class RegistrarEstudiante extends javax.swing.JFrame {
         notificacionesBotellones.setLocationRelativeTo(null);
         
         DefaultTableModel modelo = (DefaultTableModel) notificacionesBotellones.HistorialBotetellonesTabla.getModel(); 
-        logica.historialBotellones(modelo);
+        botellonesControlador.historialBotellones(modelo);
     }//GEN-LAST:event_HistorialBotellonesbtnActionPerformed
 
     private void RetirarEstudiantesbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RetirarEstudiantesbtnActionPerformed
@@ -748,8 +739,7 @@ public class RegistrarEstudiante extends javax.swing.JFrame {
     // Llamar al método GuardarEstudiante y verificar si se guardó correctamente
     boolean guardadoExitosamente = false; // Bandera para indicar si se guardaron los datos correctamente
     try {
-        ConsultasSQL logica = new ConsultasSQL();
-        guardadoExitosamente = logica.GuardarEstudiante(matricula, nombres, apellidos, numero, modulo, habitacion); 
+        guardadoExitosamente = estudianteControlador.GuardarEstudiante(matricula, nombres, apellidos, numero, modulo, habitacion); 
     } catch (NumberFormatException ex) {
         JOptionPane.showMessageDialog(this, "Error en el formato del módulo. Asegúrate de seleccionar un valor válido.");
     } catch (Exception ex) {

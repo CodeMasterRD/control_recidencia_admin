@@ -20,6 +20,8 @@ import javax.swing.table.DefaultTableModel;
 import VentanasEmegentes.IngresarBotellonesConfirmar;
 import Controlador.EstudianteControlador;
 import Controlador.EntradaSalidaControlador;
+import Controlador.BotellonesControlador;
+
 
 /**
  *
@@ -36,7 +38,9 @@ public class InformeDeActividad extends javax.swing.JFrame {
     ConsultasSQL logica = new ConsultasSQL();
     VerEstudiantes verEstudiantes = new VerEstudiantes(); 
     EstudianteControlador estudianteControlador = new EstudianteControlador();
-        EntradaSalidaControlador entradaSalidaControlador = new EntradaSalidaControlador();
+    EntradaSalidaControlador entradaSalidaControlador = new EntradaSalidaControlador();
+    BotellonesControlador botellonesControlador = new BotellonesControlador();
+
 
 
 
@@ -391,7 +395,7 @@ public class InformeDeActividad extends javax.swing.JFrame {
         notificacionesBotellones.setLocationRelativeTo(null);
         
         DefaultTableModel modelo = (DefaultTableModel) notificacionesBotellones.HistorialBotetellonesTabla.getModel(); 
-        logica.historialBotellones(modelo);
+        botellonesControlador.historialBotellones(modelo);
         //DefaultTableModel modelo = (DefaultTableModel) HistorialBotetellonesTabla.getModel();
         //logica.historialBotellones(modelo);
     }//GEN-LAST:event_HistorialBotellonesbtnActionPerformed

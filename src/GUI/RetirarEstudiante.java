@@ -14,6 +14,8 @@ import javax.swing.JOptionPane;
 import javax.swing.Timer;
 import Controlador.EstudianteControlador;
 import Controlador.EntradaSalidaControlador;
+import Controlador.BotellonesControlador;
+
 
 
 
@@ -26,6 +28,8 @@ public class RetirarEstudiante extends javax.swing.JFrame {
     ConsultasSQL modelo = new ConsultasSQL();
     EstudianteControlador estudianteControlador = new EstudianteControlador();
     EntradaSalidaControlador entradaSalidaControlador = new EntradaSalidaControlador();
+    BotellonesControlador botellonesControlador = new BotellonesControlador();
+
 
 
     
@@ -422,9 +426,8 @@ public class RetirarEstudiante extends javax.swing.JFrame {
         notificacionesBotellones.setLocationRelativeTo(null);
         
         DefaultTableModel modelo = (DefaultTableModel) notificacionesBotellones.HistorialBotetellonesTabla.getModel(); 
-        logica.historialBotellones(modelo);
-        //DefaultTableModel modelo = (DefaultTableModel) HistorialBotetellonesTabla.getModel();
-        //logica.historialBotellones(modelo);
+        botellonesControlador.historialBotellones(modelo);
+
     }//GEN-LAST:event_HistorialBotellonesbtnActionPerformed
 
     private void RetirarEstudiantesbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RetirarEstudiantesbtnActionPerformed

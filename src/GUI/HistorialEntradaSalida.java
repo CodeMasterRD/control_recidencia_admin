@@ -11,6 +11,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 import Controlador.EstudianteControlador;
+import Controlador.BotellonesControlador;
 
 
 /**
@@ -20,9 +21,10 @@ import Controlador.EstudianteControlador;
 public class HistorialEntradaSalida extends javax.swing.JFrame {
 
     ConsultasSQL logica = new ConsultasSQL();
-        EstudianteControlador estudianteControlador = new EstudianteControlador();
+    EstudianteControlador estudianteControlador = new EstudianteControlador();
+    BotellonesControlador botellonesControlador = new BotellonesControlador();
 
-
+        
     public HistorialEntradaSalida() {
         initComponents();
     }
@@ -317,7 +319,7 @@ public class HistorialEntradaSalida extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        TablaHitorialEntradaSalida.setRowHeight(40);
+        TablaHitorialEntradaSalida.setRowHeight(30);
         TablaHitorialEntradaSalida.getTableHeader().setResizingAllowed(false);
         TablaHitorialEntradaSalida.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(TablaHitorialEntradaSalida);
@@ -412,7 +414,14 @@ public class HistorialEntradaSalida extends javax.swing.JFrame {
     }//GEN-LAST:event_NotificacionesBotellonesbtnActionPerformed
 
     private void HistorialBotellonesbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HistorialBotellonesbtnActionPerformed
-        // TODO add your handling code here:
+        HistorialBotellones notificacionesBotellones = new HistorialBotellones();
+        
+        notificacionesBotellones.setVisible(true);
+        this.dispose();        
+        notificacionesBotellones.setLocationRelativeTo(null);
+        
+        DefaultTableModel modelo = (DefaultTableModel) notificacionesBotellones.HistorialBotetellonesTabla.getModel(); 
+        botellonesControlador.historialBotellones(modelo);
     }//GEN-LAST:event_HistorialBotellonesbtnActionPerformed
 
     private void RetirarEstudiantesbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RetirarEstudiantesbtnActionPerformed

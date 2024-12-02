@@ -16,13 +16,17 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import Controlador.EstudianteControlador;
 import Controlador.EntradaSalidaControlador;
+import Controlador.BotellonesControlador;
+
 
 
 public class VerEstudiantes extends javax.swing.JFrame {
     
     ConsultasSQL logica = new ConsultasSQL();
     EstudianteControlador estudianteControlador = new EstudianteControlador();
-        EntradaSalidaControlador entradaSalidaControlador = new EntradaSalidaControlador();
+    EntradaSalidaControlador entradaSalidaControlador = new EntradaSalidaControlador();
+    BotellonesControlador botellonesControlador = new BotellonesControlador();
+
 
 
     public VerEstudiantes() {
@@ -434,7 +438,7 @@ public class VerEstudiantes extends javax.swing.JFrame {
         notificacionesBotellones.setLocationRelativeTo(null);
         
         DefaultTableModel modelo = (DefaultTableModel) notificacionesBotellones.HistorialBotetellonesTabla.getModel(); 
-        logica.historialBotellones(modelo);
+        botellonesControlador.historialBotellones(modelo);
 
     }//GEN-LAST:event_HistorialBotellonesbtnActionPerformed
 
