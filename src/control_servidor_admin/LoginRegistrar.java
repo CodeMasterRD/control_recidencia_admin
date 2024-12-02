@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import Controlador.EstudianteControlador;
 
 /**
  *
@@ -22,7 +23,8 @@ public class LoginRegistrar {
     Connection conet;               
     LoginAdmin loginAdmin = new LoginAdmin();
     ConsultasSQL logica = new ConsultasSQL();
-
+    EstudianteControlador estudianteControlador = new EstudianteControlador();
+    
 
 
     public LoginRegistrar(LoginAdmin loginAdmin) {
@@ -53,7 +55,7 @@ public class LoginRegistrar {
                 verEstudiantes.setLocationRelativeTo(null);
                 loginAdmin.dispose();
                 DefaultTableModel modelo = (DefaultTableModel) verEstudiantes.TablaEstudiantes.getModel();
-                logica.MostrarEstudiante(modelo);
+                estudianteControlador.MostrarEstudiante(modelo);
               
             } else {
                 System.out.println("Usuario o contraseña incorrectos.");

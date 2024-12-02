@@ -4,6 +4,7 @@ import control_servidor_admin.ConsultasSQL;
 import java.awt.Color;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import Controlador.EstudianteControlador;
 
 /**
  *
@@ -18,6 +19,7 @@ public class NotificacionesBotellones extends javax.swing.JFrame {
         initComponents();
     }
     ConsultasSQL logica = new ConsultasSQL();
+    EstudianteControlador estudianteControlador = new EstudianteControlador();
 
 
     /**
@@ -307,7 +309,7 @@ public class NotificacionesBotellones extends javax.swing.JFrame {
         verEstudiantes.setLocationRelativeTo(null);
         
         DefaultTableModel modelo = (DefaultTableModel) verEstudiantes.TablaEstudiantes.getModel();
-        logica.MostrarEstudiante(modelo);
+        estudianteControlador.MostrarEstudiante(modelo);
     }//GEN-LAST:event_VerEstudianteBtnActionPerformed
 
     private void HistorialCocinaBntActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HistorialCocinaBntActionPerformed
@@ -358,7 +360,7 @@ public class NotificacionesBotellones extends javax.swing.JFrame {
         retirar.setLocationRelativeTo(null);
 
         DefaultTableModel modelo = (DefaultTableModel) retirar.TablaEstudiantesRetirar.getModel();
-        logica.MostrarEstudiante(modelo);
+        estudianteControlador.MostrarEstudiante(modelo);
     }//GEN-LAST:event_RetirarEstudiantesbtnActionPerformed
 
     private void EditarEstudiantebtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EditarEstudiantebtnMouseEntered

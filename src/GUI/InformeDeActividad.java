@@ -18,6 +18,7 @@ import control_servidor_admin.ConsultasSQL;
 import java.awt.Color;
 import javax.swing.table.DefaultTableModel;
 import VentanasEmegentes.IngresarBotellonesConfirmar;
+import Controlador.EstudianteControlador;
 /**
  *
  * @author Erick Tejada
@@ -32,6 +33,8 @@ public class InformeDeActividad extends javax.swing.JFrame {
     
     ConsultasSQL logica = new ConsultasSQL();
     VerEstudiantes verEstudiantes = new VerEstudiantes(); 
+    EstudianteControlador estudianteControlador = new EstudianteControlador();
+
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -332,7 +335,7 @@ public class InformeDeActividad extends javax.swing.JFrame {
 
         
         DefaultTableModel modelo = (DefaultTableModel) verEstudiantes.TablaEstudiantes.getModel();
-        logica.MostrarEstudiante(modelo);
+        estudianteControlador.MostrarEstudiante(modelo);
         
         
         VerEstudiantes verEstudiantes = new VerEstudiantes();
@@ -496,7 +499,7 @@ public class InformeDeActividad extends javax.swing.JFrame {
         editarEstudiante.setLocationRelativeTo(null);
     
         DefaultTableModel modelo = (DefaultTableModel) editarEstudiante.TablaEstudiantesEditar.getModel();
-        logica.MostrarEstudiante(modelo);
+        estudianteControlador.MostrarEstudiante(modelo);
     }//GEN-LAST:event_EditarEstudiantebtnActionPerformed
 
     private void IngresarBotellonesbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IngresarBotellonesbtnActionPerformed

@@ -14,6 +14,8 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.Timer;
 import javax.swing.table.DefaultTableModel;
+import Controlador.EstudianteControlador;
+
 
 
 public class EditarEstudiante extends javax.swing.JFrame {
@@ -28,6 +30,8 @@ public class EditarEstudiante extends javax.swing.JFrame {
     private Timer timer;
     private String lastQuery = "";
     private int FiaSeleccionada;
+    EstudianteControlador estudianteControlador = new EstudianteControlador();
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -536,7 +540,7 @@ public class EditarEstudiante extends javax.swing.JFrame {
         verEstudiantes.setLocationRelativeTo(null);
 
         DefaultTableModel modelo = (DefaultTableModel) verEstudiantes.TablaEstudiantes.getModel();
-        logica.MostrarEstudiante(modelo);
+        estudianteControlador.MostrarEstudiante(modelo);
     }//GEN-LAST:event_VerEstudianteBtnActionPerformed
 
     private void RetirarEstudiantesbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RetirarEstudiantesbtnActionPerformed
@@ -547,7 +551,7 @@ public class EditarEstudiante extends javax.swing.JFrame {
         retirar.setLocationRelativeTo(null);
 
         DefaultTableModel modelo = (DefaultTableModel) retirar.TablaEstudiantesRetirar.getModel();
-        logica.MostrarEstudiante(modelo);
+        estudianteControlador.MostrarEstudiante(modelo);
     }//GEN-LAST:event_RetirarEstudiantesbtnActionPerformed
 
     private void HistorialBotellonesbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HistorialBotellonesbtnActionPerformed
@@ -766,7 +770,7 @@ public class EditarEstudiante extends javax.swing.JFrame {
 
         // Obtiene el modelo de la tabla en la nueva ventana.
         DefaultTableModel modelo = (DefaultTableModel) editarEstudiante.TablaEstudiantesEditar.getModel();
-        logica.MostrarEstudiante(modelo);
+        estudianteControlador.MostrarEstudiante(modelo);
     }//GEN-LAST:event_EditarEstudiantebtn2ActionPerformed
 
     private void MatriculaRegistroEditarNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MatriculaRegistroEditarNewActionPerformed

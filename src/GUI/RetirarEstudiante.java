@@ -12,6 +12,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.Timer;
+import Controlador.EstudianteControlador;
+
 
 
 
@@ -20,6 +22,8 @@ public class RetirarEstudiante extends javax.swing.JFrame {
     
     ConsultasSQL logica = new ConsultasSQL();
     ConsultasSQL modelo = new ConsultasSQL();
+        EstudianteControlador estudianteControlador = new EstudianteControlador();
+
     
     VerEstudiantes verEstudiantes = new VerEstudiantes();
     private Timer timer;
@@ -349,7 +353,7 @@ public class RetirarEstudiante extends javax.swing.JFrame {
         verEstudiantes.setLocationRelativeTo(null);
 
         DefaultTableModel modelo = (DefaultTableModel) verEstudiantes.TablaEstudiantes.getModel();
-        logica.MostrarEstudiante(modelo);
+        estudianteControlador.MostrarEstudiante(modelo);
     }//GEN-LAST:event_VerEstudianteBtnActionPerformed
 
     private void HistorialCocinaBntActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HistorialCocinaBntActionPerformed
@@ -409,7 +413,7 @@ public class RetirarEstudiante extends javax.swing.JFrame {
         
 
         DefaultTableModel modelo = (DefaultTableModel) TablaEstudiantesRetirar.getModel();
-        logica.MostrarEstudiante(modelo);
+        estudianteControlador.MostrarEstudiante(modelo);
     }//GEN-LAST:event_RetirarEstudiantesbtnActionPerformed
 
     private void BuscarMatriculaRetirarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarMatriculaRetirarActionPerformed

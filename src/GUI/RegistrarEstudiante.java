@@ -28,11 +28,15 @@ import javax.swing.JOptionPane;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import GUI.RegistrarEstudiante;
+import Controlador.EstudianteControlador;
+
 
 
 public class RegistrarEstudiante extends javax.swing.JFrame {
     
         ConsultasSQL logica = new ConsultasSQL();
+            EstudianteControlador estudianteControlador = new EstudianteControlador();
+
 
         public RegistrarEstudiante() {
             initComponents();
@@ -639,7 +643,7 @@ public class RegistrarEstudiante extends javax.swing.JFrame {
         verEstudiantes.setLocationRelativeTo(null);
         
         DefaultTableModel modelo = (DefaultTableModel) verEstudiantes.TablaEstudiantes.getModel();
-        logica.MostrarEstudiante(modelo);
+        estudianteControlador.MostrarEstudiante(modelo);
     }//GEN-LAST:event_VerEstudianteBtnActionPerformed
 
     private void HistorialCocinaBntActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HistorialCocinaBntActionPerformed
@@ -679,7 +683,7 @@ public class RegistrarEstudiante extends javax.swing.JFrame {
         retirar.setLocationRelativeTo(null);
 
         DefaultTableModel modelo = (DefaultTableModel) retirar.TablaEstudiantesRetirar.getModel();
-        logica.MostrarEstudiante(modelo);
+        estudianteControlador.MostrarEstudiante(modelo);
     }//GEN-LAST:event_NotificacionesBotellonesbtnActionPerformed
 
     private void HistorialBotellonesbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HistorialBotellonesbtnActionPerformed
@@ -817,7 +821,7 @@ public class RegistrarEstudiante extends javax.swing.JFrame {
     
     // Obtiene el modelo de la tabla en la nueva ventana.
         DefaultTableModel modelo = (DefaultTableModel) editarEstudiante.TablaEstudiantesEditar.getModel();
-        logica.MostrarEstudiante(modelo);
+        estudianteControlador.MostrarEstudiante(modelo);
     }//GEN-LAST:event_EditarEstudiantebtnActionPerformed
 
     private void NumeroRegistroKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NumeroRegistroKeyReleased

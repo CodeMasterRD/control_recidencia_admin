@@ -7,6 +7,8 @@ package GUI;
 import javax.swing.table.DefaultTableModel;
 import control_servidor_admin.ConsultasSQL;
 import java.awt.Color;
+import Controlador.EstudianteControlador;
+
 /**
  *
  * @author Erick Tejada
@@ -20,6 +22,8 @@ public class HistorialBotellones extends javax.swing.JFrame {
         initComponents();
     }
     ConsultasSQL logica = new ConsultasSQL();
+    EstudianteControlador estudianteControlador = new EstudianteControlador();
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -339,7 +343,7 @@ public class HistorialBotellones extends javax.swing.JFrame {
         verEstudiantes.setLocationRelativeTo(null);
         
         DefaultTableModel modelo = (DefaultTableModel) verEstudiantes.TablaEstudiantes.getModel();
-        logica.MostrarEstudiante(modelo);
+        estudianteControlador.MostrarEstudiante(modelo);
                                        
     }//GEN-LAST:event_VerEstudianteBtnActionPerformed
 
@@ -394,7 +398,7 @@ public class HistorialBotellones extends javax.swing.JFrame {
         retirar.setLocationRelativeTo(null);
 
         DefaultTableModel modelo = (DefaultTableModel) retirar.TablaEstudiantesRetirar.getModel();
-        logica.MostrarEstudiante(modelo);
+        estudianteControlador.MostrarEstudiante(modelo);
     }//GEN-LAST:event_RetirarEstudiantesbtnActionPerformed
 
     private void EditarEstudiantebtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EditarEstudiantebtnMouseEntered
@@ -415,7 +419,7 @@ public class HistorialBotellones extends javax.swing.JFrame {
 
         // Obtiene el modelo de la tabla en la nueva ventana.
         DefaultTableModel modelo = (DefaultTableModel) editarEstudiante.TablaEstudiantesEditar.getModel();
-        logica.MostrarEstudiante(modelo);
+        estudianteControlador.MostrarEstudiante(modelo);
     }//GEN-LAST:event_EditarEstudiantebtnActionPerformed
 
     private void VerEstudianteBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_VerEstudianteBtnMouseEntered

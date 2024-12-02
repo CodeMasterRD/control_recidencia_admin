@@ -10,6 +10,8 @@ import java.io.FileNotFoundException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
+import Controlador.EstudianteControlador;
+
 
 /**
  *
@@ -18,6 +20,8 @@ import javax.swing.table.DefaultTableModel;
 public class HistorialEntradaSalida extends javax.swing.JFrame {
 
     ConsultasSQL logica = new ConsultasSQL();
+        EstudianteControlador estudianteControlador = new EstudianteControlador();
+
 
     public HistorialEntradaSalida() {
         initComponents();
@@ -372,7 +376,7 @@ public class HistorialEntradaSalida extends javax.swing.JFrame {
         verEstudiantes.setLocationRelativeTo(null);
         
         DefaultTableModel modelo = (DefaultTableModel) verEstudiantes.TablaEstudiantes.getModel();
-        logica.MostrarEstudiante(modelo);
+        estudianteControlador.MostrarEstudiante(modelo);
     }//GEN-LAST:event_VerEstudianteBtnActionPerformed
 
     private void HistorialCocinaBntActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HistorialCocinaBntActionPerformed

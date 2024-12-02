@@ -14,10 +14,12 @@ import java.util.logging.Logger;
 import javax.swing.Timer;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import Controlador.EstudianteControlador;
 
 public class VerEstudiantes extends javax.swing.JFrame {
     
     ConsultasSQL logica = new ConsultasSQL();
+    EstudianteControlador estudianteControlador = new EstudianteControlador();
 
     public VerEstudiantes() {
         initComponents(); // Inicializa los componentes gráficos
@@ -370,7 +372,7 @@ public class VerEstudiantes extends javax.swing.JFrame {
 
     private void VerEstudianteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VerEstudianteBtnActionPerformed
         DefaultTableModel modelo = (DefaultTableModel) TablaEstudiantes.getModel();
-        logica.MostrarEstudiante(modelo);
+        estudianteControlador.MostrarEstudiante(modelo);
         
     }//GEN-LAST:event_VerEstudianteBtnActionPerformed
 
@@ -435,7 +437,7 @@ public class VerEstudiantes extends javax.swing.JFrame {
         retirar.setLocationRelativeTo(null);
 
         DefaultTableModel modelo = (DefaultTableModel) retirar.TablaEstudiantesRetirar.getModel();
-        logica.MostrarEstudiante(modelo);
+        estudianteControlador.MostrarEstudiante(modelo);
     }//GEN-LAST:event_RetirarEstudiantesbtnActionPerformed
 
     private void BuscarMatriculaFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarMatriculaFieldActionPerformed

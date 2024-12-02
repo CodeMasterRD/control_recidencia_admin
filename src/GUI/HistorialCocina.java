@@ -10,6 +10,8 @@ import java.io.FileNotFoundException;
 import java.lang.System.Logger;
 import java.lang.System.Logger.Level;
 import javax.swing.table.DefaultTableModel;
+import Controlador.EstudianteControlador;
+
 
 /**
  *
@@ -24,6 +26,8 @@ public class HistorialCocina extends javax.swing.JFrame {
         initComponents();
     }
     ConsultasSQL logica = new ConsultasSQL();
+    EstudianteControlador estudianteControlador = new EstudianteControlador();
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -356,7 +360,7 @@ public class HistorialCocina extends javax.swing.JFrame {
         verEstudiantes.setLocationRelativeTo(null);
         
         DefaultTableModel modelo = (DefaultTableModel) verEstudiantes.TablaEstudiantes.getModel();
-        logica.MostrarEstudiante(modelo);
+        estudianteControlador.MostrarEstudiante(modelo);
                              
         
 

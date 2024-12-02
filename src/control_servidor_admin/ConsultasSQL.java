@@ -16,6 +16,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Arrays;
 import javax.swing.table.DefaultTableModel;
+import Controlador.EstudianteControlador;
 
 public class ConsultasSQL {
     
@@ -27,47 +28,11 @@ public class ConsultasSQL {
     int idc;
     private static VerEstudiantes vista;
     private RetirarEstudiante vista1;
+    EstudianteControlador estudianteControlador = new EstudianteControlador();
     
 
-    public void MostrarEstudiante(DefaultTableModel modelo) {
-        
-        String sql = "call ObtenerEstudiantesActivos();";
 
-        try {
-            conet = con1.getConexion();
-            st = conet.createStatement();
-            rs = st.executeQuery(sql);
 
-            modelo.setRowCount(0);
-
-            Object[] Estudiantes = new Object[7];
-
-            while (rs.next()) {
-                Estudiantes[0] = rs.getInt("Matricula");
-                Estudiantes[1] = rs.getString("Nombre Completo"); 
-                Estudiantes[2] = rs.getString("Telefono"); 
-                Estudiantes[3] = rs.getString("Estado");
-                Estudiantes[4] = rs.getInt("Modulo"); 
-                Estudiantes[5] = rs.getString("Habitacion");
-                Estudiantes[6] = rs.getString("Genero del Modulo");
-
-                modelo.addRow(Estudiantes);
-            }
-        } catch (SQLException e) {
-            System.err.println("Error al ejecutar la consulta: " + e.getMessage());
-        } catch (Exception e) {
-            System.err.println("Error general: " + e.getMessage());
-        } finally {
-            try {
-                if (rs != null) rs.close();
-                if (st != null) st.close();
-                if (conet != null) conet.close();
-            } catch (SQLException e) {
-                System.err.println("Error al cerrar los recursos: " + e.getMessage());
-            }
-        }
-    }
-    
     public void MostrarEstudianteEditar(DefaultTableModel modelo) {
         
         String sql = "call obtenerEstudianteActualizar();";
@@ -460,7 +425,7 @@ public class ConsultasSQL {
             
             ConsultasSQL logica = new ConsultasSQL();
             DefaultTableModel modelo = (DefaultTableModel) retirarEstudiante.TablaEstudiantesRetirar.getModel();
-            logica.MostrarEstudiante(modelo);
+            estudianteControlador.MostrarEstudiante(modelo);
             
         } catch (SQLException e) {
             System.err.println("Error al ejecutar el procedimiento: " + e.getMessage());
