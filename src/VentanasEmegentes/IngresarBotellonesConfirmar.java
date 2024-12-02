@@ -5,7 +5,7 @@
 package VentanasEmegentes;
 
 import javax.swing.JTextField;
-import DAO.BotellonesDAO.LlenarBotellonesDAO;
+import DAO.BotellonesDAO.BotellonesDAO;
 import java.io.FileNotFoundException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -72,7 +72,7 @@ public class IngresarBotellonesConfirmar extends javax.swing.JFrame {
     private void BotelloneIngresadosbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotelloneIngresadosbtnActionPerformed
         String texto = BotelloneIngresadosTextField.getText(); // Obtener el texto ingresado
         int numeroBotellones = Integer.parseInt(texto); 
-        LlenarBotellonesDAO llenarBotellonesDAO = new LlenarBotellonesDAO();
+        BotellonesDAO llenarBotellonesDAO = new BotellonesDAO();
         try {
             llenarBotellonesDAO.llenarBotellones(numeroBotellones);
             this.dispose();

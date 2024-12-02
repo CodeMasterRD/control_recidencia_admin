@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package GUI;
-import DAO.BotellonesDAO.LlenarBotellonesDAO;
+import DAO.BotellonesDAO.BotellonesDAO;
 import Percistencia.DBConexion;
 import control_servidor_admin.EstadisticaBotellones;
 import java.awt.BorderLayout;
@@ -21,6 +21,8 @@ import VentanasEmegentes.IngresarBotellonesConfirmar;
 import Controlador.EstudianteControlador;
 import Controlador.EntradaSalidaControlador;
 import Controlador.BotellonesControlador;
+import Controlador.CocinaControlador;
+
 
 
 /**
@@ -40,8 +42,7 @@ public class InformeDeActividad extends javax.swing.JFrame {
     EstudianteControlador estudianteControlador = new EstudianteControlador();
     EntradaSalidaControlador entradaSalidaControlador = new EntradaSalidaControlador();
     BotellonesControlador botellonesControlador = new BotellonesControlador();
-
-
+    CocinaControlador cocinaControlador = new CocinaControlador();
 
 
     @SuppressWarnings("unchecked")
@@ -90,7 +91,7 @@ public class InformeDeActividad extends javax.swing.JFrame {
         GenerarTablabtn.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         GenerarTablabtn.setForeground(new java.awt.Color(255, 255, 255));
         GenerarTablabtn.setText("Generar Grafica");
-        GenerarTablabtn.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(51, 153, 255)));
+        GenerarTablabtn.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 255, 255)));
         GenerarTablabtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 GenerarTablabtnMouseEntered(evt);
@@ -132,6 +133,11 @@ public class InformeDeActividad extends javax.swing.JFrame {
         IngresarBotellonesbtn.setForeground(new java.awt.Color(255, 255, 255));
         IngresarBotellonesbtn.setText("Ingresar Botellones");
         IngresarBotellonesbtn.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 255, 255)));
+        IngresarBotellonesbtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                IngresarBotellonesbtnMouseEntered(evt);
+            }
+        });
         IngresarBotellonesbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 IngresarBotellonesbtnActionPerformed(evt);
@@ -150,10 +156,12 @@ public class InformeDeActividad extends javax.swing.JFrame {
                 .addGap(59, 59, 59))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(GenerarTablabtn, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(107, 107, 107)
                 .addComponent(IngresarBotellonesbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20))
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(390, 390, 390)
+                .addComponent(GenerarTablabtn, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -163,119 +171,170 @@ public class InformeDeActividad extends javax.swing.JFrame {
                     .addComponent(GraficoInformePastelBotellones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(GraficoInformePastelEstudiante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addComponent(GenerarTablabtn, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(53, 53, 53))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addComponent(IngresarBotellonesbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(15, 15, 15))))
+                .addComponent(GenerarTablabtn, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12)
+                .addComponent(IngresarBotellonesbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(15, 15, 15))
         );
 
         jPanel2.setBackground(new java.awt.Color(0, 55, 133));
         jPanel2.setPreferredSize(new java.awt.Dimension(332, 607));
-        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         RegistrarEstudianteBtn.setBackground(new java.awt.Color(20, 101, 187));
         RegistrarEstudianteBtn.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         RegistrarEstudianteBtn.setForeground(new java.awt.Color(255, 255, 255));
         RegistrarEstudianteBtn.setText("Registrar Estudiante");
         RegistrarEstudianteBtn.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(20, 101, 187)));
+        RegistrarEstudianteBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                RegistrarEstudianteBtnMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                RegistrarEstudianteBtnMouseExited(evt);
+            }
+        });
         RegistrarEstudianteBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 RegistrarEstudianteBtnActionPerformed(evt);
             }
         });
-        jPanel2.add(RegistrarEstudianteBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 125, 332, 55));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 28)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("ControlAdmin");
-        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(65, 18, -1, 28));
 
         VerEstudianteBtn.setBackground(new java.awt.Color(20, 101, 187));
         VerEstudianteBtn.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         VerEstudianteBtn.setForeground(new java.awt.Color(255, 255, 255));
         VerEstudianteBtn.setText("Ver Estudiante");
         VerEstudianteBtn.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(20, 101, 187)));
+        VerEstudianteBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                VerEstudianteBtnMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                VerEstudianteBtnMouseExited(evt);
+            }
+        });
         VerEstudianteBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 VerEstudianteBtnActionPerformed(evt);
             }
         });
-        jPanel2.add(VerEstudianteBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 332, 55));
 
         HistorialCocinaBnt.setBackground(new java.awt.Color(20, 101, 187));
         HistorialCocinaBnt.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         HistorialCocinaBnt.setForeground(new java.awt.Color(255, 255, 255));
         HistorialCocinaBnt.setText("Historial Cocina");
         HistorialCocinaBnt.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(20, 101, 187)));
+        HistorialCocinaBnt.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                HistorialCocinaBntMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                HistorialCocinaBntMouseExited(evt);
+            }
+        });
         HistorialCocinaBnt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 HistorialCocinaBntActionPerformed(evt);
             }
         });
-        jPanel2.add(HistorialCocinaBnt, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 180, 332, 55));
 
         HistorialCocinaBnt1.setBackground(new java.awt.Color(20, 101, 187));
         HistorialCocinaBnt1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         HistorialCocinaBnt1.setForeground(new java.awt.Color(255, 255, 255));
         HistorialCocinaBnt1.setText("Historial Entrada/salida");
         HistorialCocinaBnt1.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(20, 101, 187)));
+        HistorialCocinaBnt1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                HistorialCocinaBnt1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                HistorialCocinaBnt1MouseExited(evt);
+            }
+        });
         HistorialCocinaBnt1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 HistorialCocinaBnt1ActionPerformed(evt);
             }
         });
-        jPanel2.add(HistorialCocinaBnt1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 235, 332, 55));
 
         InformeDeActividadBtn.setBackground(new java.awt.Color(51, 153, 255));
         InformeDeActividadBtn.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         InformeDeActividadBtn.setForeground(new java.awt.Color(255, 255, 255));
         InformeDeActividadBtn.setText("Informe De Actividad");
         InformeDeActividadBtn.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(20, 101, 187)));
+        InformeDeActividadBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                InformeDeActividadBtnMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                InformeDeActividadBtnMouseExited(evt);
+            }
+        });
         InformeDeActividadBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 InformeDeActividadBtnActionPerformed(evt);
             }
         });
-        jPanel2.add(InformeDeActividadBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 290, 332, 55));
 
         NotificacionesBotellonesbtn.setBackground(new java.awt.Color(20, 101, 187));
         NotificacionesBotellonesbtn.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         NotificacionesBotellonesbtn.setForeground(new java.awt.Color(255, 255, 255));
         NotificacionesBotellonesbtn.setText("Notificaciones Botellones");
         NotificacionesBotellonesbtn.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(20, 101, 187)));
+        NotificacionesBotellonesbtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                NotificacionesBotellonesbtnMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                NotificacionesBotellonesbtnMouseExited(evt);
+            }
+        });
         NotificacionesBotellonesbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 NotificacionesBotellonesbtnActionPerformed(evt);
             }
         });
-        jPanel2.add(NotificacionesBotellonesbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 400, 332, 55));
 
         HistorialBotellonesbtn.setBackground(new java.awt.Color(20, 101, 187));
         HistorialBotellonesbtn.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         HistorialBotellonesbtn.setForeground(new java.awt.Color(255, 255, 255));
         HistorialBotellonesbtn.setText("Historial Botellones");
         HistorialBotellonesbtn.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(20, 101, 187)));
+        HistorialBotellonesbtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                HistorialBotellonesbtnMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                HistorialBotellonesbtnMouseExited(evt);
+            }
+        });
         HistorialBotellonesbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 HistorialBotellonesbtnActionPerformed(evt);
             }
         });
-        jPanel2.add(HistorialBotellonesbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 345, 332, 55));
 
         RetirarEstudiantesbtn.setBackground(new java.awt.Color(20, 101, 187));
         RetirarEstudiantesbtn.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         RetirarEstudiantesbtn.setForeground(new java.awt.Color(255, 255, 255));
         RetirarEstudiantesbtn.setText("Retirar Estudiantes");
         RetirarEstudiantesbtn.setBorder(null);
+        RetirarEstudiantesbtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                RetirarEstudiantesbtnMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                RetirarEstudiantesbtnMouseExited(evt);
+            }
+        });
         RetirarEstudiantesbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 RetirarEstudiantesbtnActionPerformed(evt);
             }
         });
-        jPanel2.add(RetirarEstudiantesbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 510, 332, 55));
 
         EditarEstudiantebtn.setBackground(new java.awt.Color(20, 101, 187));
         EditarEstudiantebtn.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -283,6 +342,9 @@ public class InformeDeActividad extends javax.swing.JFrame {
         EditarEstudiantebtn.setText("Editar Estudiante");
         EditarEstudiantebtn.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(20, 101, 187)));
         EditarEstudiantebtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                EditarEstudiantebtnMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 EditarEstudiantebtnMouseEntered(evt);
             }
@@ -295,11 +357,64 @@ public class InformeDeActividad extends javax.swing.JFrame {
                 EditarEstudiantebtnActionPerformed(evt);
             }
         });
-        jPanel2.add(EditarEstudiantebtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 455, 332, 55));
 
         jSeparator1.setBackground(new java.awt.Color(255, 255, 255));
         jSeparator1.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel2.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 52, 197, 12));
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(65, 65, 65)
+                .addComponent(jLabel1))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(60, 60, 60)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(RegistrarEstudianteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(VerEstudianteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(HistorialCocinaBnt, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(HistorialCocinaBnt1, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(HistorialBotellonesbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(InformeDeActividadBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(NotificacionesBotellonesbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(EditarEstudiantebtn, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(RetirarEstudiantesbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(6, 6, 6)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(36, 36, 36)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(50, 50, 50)
+                        .addComponent(RegistrarEstudianteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(VerEstudianteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, 0)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(HistorialCocinaBnt, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(50, 50, 50)
+                        .addComponent(HistorialCocinaBnt1, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 0, 0)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(50, 50, 50)
+                        .addComponent(HistorialBotellonesbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(InformeDeActividadBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, 0)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(NotificacionesBotellonesbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(50, 50, 50)
+                        .addComponent(EditarEstudiantebtn, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 0, 0)
+                .addComponent(RetirarEstudiantesbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -307,12 +422,12 @@ public class InformeDeActividad extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 620, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 656, Short.MAX_VALUE)
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
@@ -355,7 +470,7 @@ public class InformeDeActividad extends javax.swing.JFrame {
     private void HistorialCocinaBntActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HistorialCocinaBntActionPerformed
         HistorialCocina Cocina = new HistorialCocina();
         DefaultTableModel modelo = (DefaultTableModel) Cocina.HistorialCocinaTable.getModel(); 
-        logica.HistorialUsoCocina(modelo);
+        cocinaControlador.HistorialUsoCocina(modelo);
         
         Cocina.setVisible(true);
         this.dispose();
@@ -381,7 +496,7 @@ public class InformeDeActividad extends javax.swing.JFrame {
         NotificacionesBotellones notificacionesBotellones = new NotificacionesBotellones();
 
         DefaultTableModel modelo = (DefaultTableModel) notificacionesBotellones.NotificacionesBotetellonesTabla.getModel(); 
-        logica.NotificaionesBotellones(modelo);
+        botellonesControlador.NotificaionesBotellones(modelo);
         
         notificacionesBotellones.setVisible(true);
         this.dispose();
@@ -518,6 +633,79 @@ public class InformeDeActividad extends javax.swing.JFrame {
         ingresarBotellonesConfirmar.setLocationRelativeTo(null);
         
     }//GEN-LAST:event_IngresarBotellonesbtnActionPerformed
+
+    private void IngresarBotellonesbtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_IngresarBotellonesbtnMouseEntered
+        //EditarEstudiantebtn.setBackground(new Color(0,55,133));
+    }//GEN-LAST:event_IngresarBotellonesbtnMouseEntered
+
+    private void VerEstudianteBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_VerEstudianteBtnMouseEntered
+        VerEstudianteBtn.setBackground(new Color(20,101,187));
+
+    }//GEN-LAST:event_VerEstudianteBtnMouseEntered
+
+    private void RegistrarEstudianteBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RegistrarEstudianteBtnMouseEntered
+        RegistrarEstudianteBtn.setBackground(new Color(0,55,133));
+    }//GEN-LAST:event_RegistrarEstudianteBtnMouseEntered
+
+    private void RegistrarEstudianteBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RegistrarEstudianteBtnMouseExited
+        RegistrarEstudianteBtn.setBackground(new Color(20,101,187));
+    }//GEN-LAST:event_RegistrarEstudianteBtnMouseExited
+
+    private void HistorialCocinaBntMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_HistorialCocinaBntMouseEntered
+        HistorialCocinaBnt.setBackground(new Color(0,55,133));
+    }//GEN-LAST:event_HistorialCocinaBntMouseEntered
+
+    private void HistorialCocinaBntMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_HistorialCocinaBntMouseExited
+        HistorialCocinaBnt.setBackground(new Color(20,101,187));
+    }//GEN-LAST:event_HistorialCocinaBntMouseExited
+
+    private void HistorialCocinaBnt1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_HistorialCocinaBnt1MouseEntered
+        HistorialCocinaBnt1.setBackground(new Color(0,55,133));
+    }//GEN-LAST:event_HistorialCocinaBnt1MouseEntered
+
+    private void HistorialCocinaBnt1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_HistorialCocinaBnt1MouseExited
+        HistorialCocinaBnt1.setBackground(new Color(20,101,187));
+    }//GEN-LAST:event_HistorialCocinaBnt1MouseExited
+
+    private void InformeDeActividadBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_InformeDeActividadBtnMouseEntered
+        InformeDeActividadBtn.setBackground(new Color(0,55,133));
+    }//GEN-LAST:event_InformeDeActividadBtnMouseEntered
+
+    private void InformeDeActividadBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_InformeDeActividadBtnMouseExited
+        InformeDeActividadBtn.setBackground(new Color(20,101,187));
+    }//GEN-LAST:event_InformeDeActividadBtnMouseExited
+
+    private void HistorialBotellonesbtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_HistorialBotellonesbtnMouseEntered
+        HistorialBotellonesbtn.setBackground(new Color(20,101,187));
+    }//GEN-LAST:event_HistorialBotellonesbtnMouseEntered
+
+    private void HistorialBotellonesbtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_HistorialBotellonesbtnMouseExited
+        HistorialBotellonesbtn.setBackground(new Color(20,101,187));
+    }//GEN-LAST:event_HistorialBotellonesbtnMouseExited
+
+    private void NotificacionesBotellonesbtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_NotificacionesBotellonesbtnMouseEntered
+        NotificacionesBotellonesbtn.setBackground(new Color(0,55,133));
+    }//GEN-LAST:event_NotificacionesBotellonesbtnMouseEntered
+
+    private void NotificacionesBotellonesbtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_NotificacionesBotellonesbtnMouseExited
+        NotificacionesBotellonesbtn.setBackground(new Color(20,101,187));
+    }//GEN-LAST:event_NotificacionesBotellonesbtnMouseExited
+
+    private void RetirarEstudiantesbtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RetirarEstudiantesbtnMouseEntered
+        RetirarEstudiantesbtn.setBackground(new Color(0,55,133));
+    }//GEN-LAST:event_RetirarEstudiantesbtnMouseEntered
+
+    private void RetirarEstudiantesbtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RetirarEstudiantesbtnMouseExited
+        RetirarEstudiantesbtn.setBackground(new Color(20,101,187));
+    }//GEN-LAST:event_RetirarEstudiantesbtnMouseExited
+
+    private void VerEstudianteBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_VerEstudianteBtnMouseExited
+        VerEstudianteBtn.setBackground(new Color(20,101,187));
+    }//GEN-LAST:event_VerEstudianteBtnMouseExited
+
+    private void EditarEstudiantebtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EditarEstudiantebtnMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_EditarEstudiantebtnMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton EditarEstudiantebtn;

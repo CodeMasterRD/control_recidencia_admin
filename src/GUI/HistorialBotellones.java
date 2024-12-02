@@ -12,6 +12,7 @@ import Controlador.EntradaSalidaControlador;
 import Controlador.BotellonesControlador;
 
 
+
 /**
  *
  * @author Erick Tejada
@@ -407,7 +408,7 @@ public class HistorialBotellones extends javax.swing.JFrame {
         NotificacionesBotellones notificacionesBotellones = new NotificacionesBotellones();
 
         DefaultTableModel modelo = (DefaultTableModel) notificacionesBotellones.NotificacionesBotetellonesTabla.getModel(); 
-        logica.NotificaionesBotellones(modelo);
+        botellonesControlador.NotificaionesBotellones(modelo);
         
         notificacionesBotellones.setVisible(true);
         this.dispose();

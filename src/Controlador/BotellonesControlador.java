@@ -46,7 +46,7 @@ public class BotellonesControlador {
             Botellones[2] = rs.getString("Modulo");
             Botellones[3] = rs.getString("Habitacion");
             Botellones[4] = rs.getString("Fecha de entrega");
-            Botellones[5] = rs.getInt("Fecha de deposito");
+            Botellones[5] = rs.getString("Fecha de deposito");
             Botellones[6] = rs.getString("estado");
 
             modelo.addRow(Botellones);
@@ -64,4 +64,56 @@ public class BotellonesControlador {
         }
     }
     }
+    
+    
+    public void NotificaionesBotellones(DefaultTableModel modelo) {
+        
+        String sql = "call notificacionBotellones();";
+
+    try {
+        conet = con1.getConexion();
+        st = conet.createStatement();
+        rs = st.executeQuery(sql);
+        
+        modelo.setRowCount(0);
+        
+        Object[] Botellones = new Object[5];  
+        
+        while (rs.next()) {
+            Botellones[0] = rs.getInt("Matricula"); 
+            Botellones[1] = rs.getString("Nombre Completo");
+            Botellones[2] = rs.getString("Tipo Notificacion");
+            Botellones[3] = rs.getString("Fecha de la solicitud");
+            Botellones[4] = rs.getString("Estado");
+
+            modelo.addRow(Botellones);
+        }
+    } catch (SQLException e) {
+        System.err.println("Error al ejecutar la consulta: " + e.getMessage());
+    } catch (Exception e) {
+        System.err.println("Error general: " + e.getMessage());
+    } finally {
+        try {
+            if (rs != null) rs.close();
+            if (st != null) st.close();
+            if (conet != null) conet.close();
+        } catch (SQLException e) {
+            System.err.println("Error al cerrar los recursos: " + e.getMessage());
+        }
+    }
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 }

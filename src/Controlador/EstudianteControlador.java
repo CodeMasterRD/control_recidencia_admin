@@ -229,33 +229,33 @@ public class EstudianteControlador {
         }
     }
     
-        public boolean GuardarEstudiante(String matricula, String nombres, String apellidos, String numero, String modulo, String habitacion) {
-    try {
-        if (matricula.equals("") || nombres.equals("") || apellidos.equals("") || numero.equals("") || habitacion.equals("")){
-            JOptionPane.showMessageDialog(null, "Faltan Datos");
-            
-        } else {
-            String sql = "CALL InsertarEstudiante('"+ matricula +"', '"+ nombres +"', '"+ apellidos +"', '"+ numero +"', '"+ modulo +"', '"+ habitacion +"')";
+    public boolean GuardarEstudiante(String matricula, String nombres, String apellidos, String numero, String modulo, String habitacion) {
+        try {
+            if (matricula.equals("") || nombres.equals("") || apellidos.equals("") || numero.equals("") || habitacion.equals("")){
+                JOptionPane.showMessageDialog(null, "Faltan Datos");
 
-            conet = con1.getConexion();
-            st = conet.createStatement();
-            st.executeUpdate(sql);
-            JOptionPane.showMessageDialog(null, "Estudiante Agregado");
-            System.out.println(matricula + nombres + apellidos + numero + habitacion + modulo);
-        }
-        
-        boolean guardadoExitosamente = false; 
-    } catch (SQLException ex) {
-        int errorCode = ex.getErrorCode();
-        if (errorCode == 1062) {
-            JOptionPane.showMessageDialog(null, "El estudiante con esta matrícula ya existe.");
-        } else {
-            JOptionPane.showMessageDialog(null, "Error SQL (Código " + errorCode + "): " + ex.getMessage());
-        }
-    }   catch (FileNotFoundException ex) {
-            Logger.getLogger(ConsultasSQL.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    return false; 
+            } else {
+                String sql = "CALL InsertarEstudiante('"+ matricula +"', '"+ nombres +"', '"+ apellidos +"', '"+ numero +"', '"+ modulo +"', '"+ habitacion +"')";
+
+                conet = con1.getConexion();
+                st = conet.createStatement();
+                st.executeUpdate(sql);
+                JOptionPane.showMessageDialog(null, "Estudiante Agregado");
+                System.out.println(matricula + nombres + apellidos + numero + habitacion + modulo);
+            }
+
+            boolean guardadoExitosamente = false; 
+        } catch (SQLException ex) {
+            int errorCode = ex.getErrorCode();
+            if (errorCode == 1062) {
+                JOptionPane.showMessageDialog(null, "El estudiante con esta matrícula ya existe.");
+            } else {
+                JOptionPane.showMessageDialog(null, "Error SQL (Código " + errorCode + "): " + ex.getMessage());
+            }
+        }   catch (FileNotFoundException ex) {
+                Logger.getLogger(ConsultasSQL.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        return false; 
 }
         
         

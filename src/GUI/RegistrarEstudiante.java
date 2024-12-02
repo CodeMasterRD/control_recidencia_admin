@@ -18,6 +18,8 @@ import java.util.logging.Logger;
 import Controlador.EstudianteControlador;
 import Controlador.EntradaSalidaControlador;
 import Controlador.BotellonesControlador;
+import Controlador.CocinaControlador;
+
 
 
 
@@ -29,6 +31,8 @@ public class RegistrarEstudiante extends javax.swing.JFrame {
         EstudianteControlador estudianteControlador = new EstudianteControlador();
         EntradaSalidaControlador entradaSalidaControlador = new EntradaSalidaControlador();
         BotellonesControlador botellonesControlador = new BotellonesControlador();
+        CocinaControlador cocinaControlador = new CocinaControlador();
+
 
 
 
@@ -647,7 +651,7 @@ public class RegistrarEstudiante extends javax.swing.JFrame {
     private void HistorialCocinaBntActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HistorialCocinaBntActionPerformed
         HistorialCocina Cocina = new HistorialCocina();
         DefaultTableModel modelo = (DefaultTableModel) Cocina.HistorialCocinaTable.getModel(); 
-        logica.HistorialUsoCocina(modelo);
+        cocinaControlador.HistorialUsoCocina(modelo);
         
         Cocina.setVisible(true);
         this.dispose();

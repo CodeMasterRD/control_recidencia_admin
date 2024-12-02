@@ -17,6 +17,8 @@ import java.awt.event.ActionListener;
 import Controlador.EstudianteControlador;
 import Controlador.EntradaSalidaControlador;
 import Controlador.BotellonesControlador;
+import Controlador.CocinaControlador;
+
 
 
 
@@ -26,6 +28,8 @@ public class VerEstudiantes extends javax.swing.JFrame {
     EstudianteControlador estudianteControlador = new EstudianteControlador();
     EntradaSalidaControlador entradaSalidaControlador = new EntradaSalidaControlador();
     BotellonesControlador botellonesControlador = new BotellonesControlador();
+    CocinaControlador cocinaControlador = new CocinaControlador();
+
 
 
 
@@ -69,7 +73,6 @@ public class VerEstudiantes extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(0, 55, 133));
         jPanel2.setMinimumSize(new java.awt.Dimension(310, 656));
-        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         RegistrarEstudianteBtn.setBackground(new java.awt.Color(20, 101, 187));
         RegistrarEstudianteBtn.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -90,12 +93,10 @@ public class VerEstudiantes extends javax.swing.JFrame {
                 RegistrarEstudianteBtnActionPerformed(evt);
             }
         });
-        jPanel2.add(RegistrarEstudianteBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 171, 332, 55));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 28)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("ControlAdmin");
-        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(65, 18, -1, 28));
 
         VerEstudianteBtn.setBackground(new java.awt.Color(51, 153, 255));
         VerEstudianteBtn.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -115,7 +116,6 @@ public class VerEstudiantes extends javax.swing.JFrame {
                 VerEstudianteBtnActionPerformed(evt);
             }
         });
-        jPanel2.add(VerEstudianteBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 332, 55));
 
         HistorialCocinaBnt.setBackground(new java.awt.Color(20, 101, 187));
         HistorialCocinaBnt.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -135,7 +135,6 @@ public class VerEstudiantes extends javax.swing.JFrame {
                 HistorialCocinaBntActionPerformed(evt);
             }
         });
-        jPanel2.add(HistorialCocinaBnt, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 226, 332, 55));
 
         HistorialEntradaSalida.setBackground(new java.awt.Color(20, 101, 187));
         HistorialEntradaSalida.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -155,7 +154,6 @@ public class VerEstudiantes extends javax.swing.JFrame {
                 HistorialEntradaSalidaActionPerformed(evt);
             }
         });
-        jPanel2.add(HistorialEntradaSalida, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 281, 332, 55));
 
         InformeDeActividadBtn.setBackground(new java.awt.Color(20, 101, 187));
         InformeDeActividadBtn.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -175,7 +173,6 @@ public class VerEstudiantes extends javax.swing.JFrame {
                 InformeDeActividadBtnActionPerformed(evt);
             }
         });
-        jPanel2.add(InformeDeActividadBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 336, 332, 55));
 
         NotificacionesBotellonesbtn.setBackground(new java.awt.Color(20, 101, 187));
         NotificacionesBotellonesbtn.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -195,7 +192,6 @@ public class VerEstudiantes extends javax.swing.JFrame {
                 NotificacionesBotellonesbtnActionPerformed(evt);
             }
         });
-        jPanel2.add(NotificacionesBotellonesbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 446, 332, 55));
 
         HistorialBotellonesbtn.setBackground(new java.awt.Color(20, 101, 187));
         HistorialBotellonesbtn.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -216,7 +212,6 @@ public class VerEstudiantes extends javax.swing.JFrame {
                 HistorialBotellonesbtnActionPerformed(evt);
             }
         });
-        jPanel2.add(HistorialBotellonesbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 391, 332, 55));
 
         RetirarEstudiantesbtn.setBackground(new java.awt.Color(20, 101, 187));
         RetirarEstudiantesbtn.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -236,11 +231,9 @@ public class VerEstudiantes extends javax.swing.JFrame {
                 RetirarEstudiantesbtnActionPerformed(evt);
             }
         });
-        jPanel2.add(RetirarEstudiantesbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 556, 332, 55));
 
         jSeparator1.setBackground(new java.awt.Color(255, 255, 255));
         jSeparator1.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel2.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 52, 197, 12));
 
         EditarEstudiantebtn.setBackground(new java.awt.Color(20, 101, 187));
         EditarEstudiantebtn.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -260,7 +253,62 @@ public class VerEstudiantes extends javax.swing.JFrame {
                 EditarEstudiantebtnActionPerformed(evt);
             }
         });
-        jPanel2.add(EditarEstudiantebtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 501, 332, 55));
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(65, 65, 65)
+                .addComponent(jLabel1))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(60, 60, 60)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(RegistrarEstudianteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(VerEstudianteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(HistorialCocinaBnt, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(InformeDeActividadBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(HistorialEntradaSalida, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(NotificacionesBotellonesbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(HistorialBotellonesbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(EditarEstudiantebtn, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(RetirarEstudiantesbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(6, 6, 6)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(36, 36, 36)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(50, 50, 50)
+                        .addComponent(RegistrarEstudianteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(VerEstudianteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(100, 100, 100)
+                        .addComponent(HistorialCocinaBnt, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 0, 0)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(50, 50, 50)
+                        .addComponent(InformeDeActividadBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(HistorialEntradaSalida, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, 0)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(50, 50, 50)
+                        .addComponent(NotificacionesBotellonesbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(HistorialBotellonesbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, 0)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(EditarEstudiantebtn, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(50, 50, 50)
+                        .addComponent(RetirarEstudiantesbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))))
+        );
 
         TablaEstudiantes.setBackground(new java.awt.Color(255, 255, 255));
         TablaEstudiantes.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 255, 255)));
@@ -344,8 +392,8 @@ public class VerEstudiantes extends javax.swing.JFrame {
                             .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 780, Short.MAX_VALUE)
-                        .addGap(73, 73, 73))))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 781, Short.MAX_VALUE)
+                        .addGap(72, 72, 72))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -359,7 +407,7 @@ public class VerEstudiantes extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 471, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 656, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -393,7 +441,7 @@ public class VerEstudiantes extends javax.swing.JFrame {
         HistorialCocina Cocina = new HistorialCocina();
         
         DefaultTableModel modelo = (DefaultTableModel) Cocina.HistorialCocinaTable.getModel(); 
-        logica.HistorialUsoCocina(modelo);
+        cocinaControlador.HistorialUsoCocina(modelo);
         
         Cocina.setVisible(true);
         this.dispose();
@@ -423,7 +471,7 @@ public class VerEstudiantes extends javax.swing.JFrame {
         NotificacionesBotellones notificacionesBotellones = new NotificacionesBotellones();
 
         DefaultTableModel modelo = (DefaultTableModel) notificacionesBotellones.NotificacionesBotetellonesTabla.getModel(); 
-        logica.NotificaionesBotellones(modelo);
+        botellonesControlador.NotificaionesBotellones(modelo);
         
         notificacionesBotellones.setVisible(true);
         this.dispose();

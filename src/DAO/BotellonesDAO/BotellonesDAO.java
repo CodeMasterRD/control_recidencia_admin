@@ -7,7 +7,7 @@ import java.io.FileNotFoundException;
 import javax.swing.*;
 import java.sql.*;
 
-public class LlenarBotellonesDAO {
+public class BotellonesDAO {
 
     // Asumiendo que ya tienes la clase DBConexion con un método getConexion() para obtener la conexión
 
