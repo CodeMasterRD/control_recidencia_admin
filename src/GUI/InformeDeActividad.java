@@ -19,6 +19,8 @@ import java.awt.Color;
 import javax.swing.table.DefaultTableModel;
 import VentanasEmegentes.IngresarBotellonesConfirmar;
 import Controlador.EstudianteControlador;
+import Controlador.EntradaSalidaControlador;
+
 /**
  *
  * @author Erick Tejada
@@ -34,6 +36,8 @@ public class InformeDeActividad extends javax.swing.JFrame {
     ConsultasSQL logica = new ConsultasSQL();
     VerEstudiantes verEstudiantes = new VerEstudiantes(); 
     EstudianteControlador estudianteControlador = new EstudianteControlador();
+        EntradaSalidaControlador entradaSalidaControlador = new EntradaSalidaControlador();
+
 
 
     @SuppressWarnings("unchecked")
@@ -358,7 +362,7 @@ public class InformeDeActividad extends javax.swing.JFrame {
         HistorialEntradaSalida historialEntradaSalida = new HistorialEntradaSalida();
         
         DefaultTableModel modelo = (DefaultTableModel) historialEntradaSalida.TablaHitorialEntradaSalida.getModel(); 
-        logica.HistorialEntradaSalida(modelo);
+        entradaSalidaControlador.HistorialEntradaSalida(modelo);
         
         historialEntradaSalida.setVisible(true);
         this.dispose();
@@ -399,7 +403,7 @@ public class InformeDeActividad extends javax.swing.JFrame {
     retirar.setLocationRelativeTo(null);
     
     DefaultTableModel modelo = (DefaultTableModel) retirar.TablaEstudiantesRetirar.getModel(); 
-    logica.VerTodosEstudiantes(modelo);
+    estudianteControlador.VerTodosEstudiantes(modelo);
         // TODO add your handling code here:
     }//GEN-LAST:event_RetirarEstudiantesbtnActionPerformed
 

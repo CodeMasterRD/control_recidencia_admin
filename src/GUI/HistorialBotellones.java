@@ -8,6 +8,8 @@ import javax.swing.table.DefaultTableModel;
 import control_servidor_admin.ConsultasSQL;
 import java.awt.Color;
 import Controlador.EstudianteControlador;
+import Controlador.EntradaSalidaControlador;
+
 
 /**
  *
@@ -23,6 +25,8 @@ public class HistorialBotellones extends javax.swing.JFrame {
     }
     ConsultasSQL logica = new ConsultasSQL();
     EstudianteControlador estudianteControlador = new EstudianteControlador();
+        EntradaSalidaControlador entradaSalidaControlador = new EntradaSalidaControlador();
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -358,7 +362,7 @@ public class HistorialBotellones extends javax.swing.JFrame {
         HistorialEntradaSalida historialEntradaSalida = new HistorialEntradaSalida();
         
         DefaultTableModel modelo = (DefaultTableModel) historialEntradaSalida.TablaHitorialEntradaSalida.getModel(); 
-        logica.HistorialEntradaSalida(modelo);
+        entradaSalidaControlador.HistorialEntradaSalida(modelo);
         
         historialEntradaSalida.setVisible(true);
         this.dispose();

@@ -11,6 +11,8 @@ import java.lang.System.Logger;
 import java.lang.System.Logger.Level;
 import javax.swing.table.DefaultTableModel;
 import Controlador.EstudianteControlador;
+import Controlador.EntradaSalidaControlador;
+
 
 
 /**
@@ -27,6 +29,8 @@ public class HistorialCocina extends javax.swing.JFrame {
     }
     ConsultasSQL logica = new ConsultasSQL();
     EstudianteControlador estudianteControlador = new EstudianteControlador();
+        EntradaSalidaControlador entradaSalidaControlador = new EntradaSalidaControlador();
+
 
 
     /**
@@ -59,7 +63,7 @@ public class HistorialCocina extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(30, 30, 30));
 
-        HistorialCocinaTable.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        HistorialCocinaTable.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         HistorialCocinaTable.setForeground(new java.awt.Color(0, 0, 0));
         HistorialCocinaTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -69,27 +73,45 @@ public class HistorialCocina extends javax.swing.JFrame {
                 {null, null, null, null, null}
             },
             new String [] {
-                "Estudiante", "Matricula", "Fecha/Hora Entrada", "Fecha/Hora Salida", "Estado"
+                "Matricula", "Estudiante", "Fecha/Hora Entrada", "Fecha/Hora Salida", "Estado"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         HistorialCocinaTable.setRowHeight(40);
         jScrollPane1.setViewportView(HistorialCocinaTable);
+        if (HistorialCocinaTable.getColumnModel().getColumnCount() > 0) {
+            HistorialCocinaTable.getColumnModel().getColumn(0).setResizable(false);
+            HistorialCocinaTable.getColumnModel().getColumn(0).setPreferredWidth(15);
+            HistorialCocinaTable.getColumnModel().getColumn(1).setResizable(false);
+            HistorialCocinaTable.getColumnModel().getColumn(1).setPreferredWidth(75);
+            HistorialCocinaTable.getColumnModel().getColumn(2).setResizable(false);
+            HistorialCocinaTable.getColumnModel().getColumn(3).setResizable(false);
+            HistorialCocinaTable.getColumnModel().getColumn(4).setResizable(false);
+            HistorialCocinaTable.getColumnModel().getColumn(4).setPreferredWidth(10);
+        }
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(100, Short.MAX_VALUE)
+                .addContainerGap(85, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 763, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(65, 65, 65))
+                .addGap(80, 80, 80))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(68, 68, 68)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 484, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(57, 57, 57))
+                .addContainerGap(68, Short.MAX_VALUE))
         );
 
         jPanel2.setBackground(new java.awt.Color(0, 55, 133));
@@ -380,7 +402,7 @@ public class HistorialCocina extends javax.swing.JFrame {
         HistorialEntradaSalida historialEntradaSalida = new HistorialEntradaSalida();
         
         DefaultTableModel modelo = (DefaultTableModel) historialEntradaSalida.TablaHitorialEntradaSalida.getModel(); 
-        logica.HistorialEntradaSalida(modelo);
+        entradaSalidaControlador.HistorialEntradaSalida(modelo);
         
         historialEntradaSalida.setVisible(true);
         this.dispose();
@@ -423,7 +445,7 @@ public class HistorialCocina extends javax.swing.JFrame {
         retirar.setLocationRelativeTo(null);
 
         DefaultTableModel modelo = (DefaultTableModel) retirar.TablaEstudiantesRetirar.getModel(); 
-        logica.VerTodosEstudiantes(modelo);
+        estudianteControlador.VerTodosEstudiantes(modelo);
     }//GEN-LAST:event_RetirarEstudiantesbtnActionPerformed
 
     private void EditarEstudiantebtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EditarEstudiantebtnMouseEntered
@@ -442,7 +464,7 @@ public class HistorialCocina extends javax.swing.JFrame {
         editarEstudiante.setLocationRelativeTo(null);
     
         DefaultTableModel modelo = (DefaultTableModel) editarEstudiante.TablaEstudiantesEditar.getModel();
-        logica.MostrarEstudianteEditar(modelo);
+        estudianteControlador.MostrarEstudianteEditar(modelo);
     }//GEN-LAST:event_EditarEstudiantebtnActionPerformed
 
     private void VerEstudianteBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_VerEstudianteBtnMouseEntered

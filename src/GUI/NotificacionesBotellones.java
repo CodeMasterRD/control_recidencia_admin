@@ -5,6 +5,8 @@ import java.awt.Color;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import Controlador.EstudianteControlador;
+import Controlador.EntradaSalidaControlador;
+
 
 /**
  *
@@ -20,6 +22,8 @@ public class NotificacionesBotellones extends javax.swing.JFrame {
     }
     ConsultasSQL logica = new ConsultasSQL();
     EstudianteControlador estudianteControlador = new EstudianteControlador();
+        EntradaSalidaControlador entradaSalidaControlador = new EntradaSalidaControlador();
+
 
 
     /**
@@ -323,7 +327,7 @@ public class NotificacionesBotellones extends javax.swing.JFrame {
         HistorialEntradaSalida historialEntradaSalida = new HistorialEntradaSalida();
         
         DefaultTableModel modelo = (DefaultTableModel) historialEntradaSalida.TablaHitorialEntradaSalida.getModel(); 
-        logica.HistorialEntradaSalida(modelo);
+        entradaSalidaControlador.HistorialEntradaSalida(modelo);
         
         historialEntradaSalida.setVisible(true);
         this.dispose();
@@ -379,7 +383,7 @@ public class NotificacionesBotellones extends javax.swing.JFrame {
         editarEstudiante.setLocationRelativeTo(null);
     
         DefaultTableModel modelo = (DefaultTableModel) editarEstudiante.TablaEstudiantesEditar.getModel();
-        logica.MostrarEstudianteEditar(modelo);
+        estudianteControlador.MostrarEstudianteEditar(modelo);
     }//GEN-LAST:event_EditarEstudiantebtnActionPerformed
 
     private void ConfirmarBotellonbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConfirmarBotellonbtnActionPerformed

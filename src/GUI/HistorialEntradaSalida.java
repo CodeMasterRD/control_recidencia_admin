@@ -297,7 +297,7 @@ public class HistorialEntradaSalida extends javax.swing.JFrame {
         jPanel3.setBackground(new java.awt.Color(30, 30, 30));
 
         TablaHitorialEntradaSalida.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        TablaHitorialEntradaSalida.setForeground(new java.awt.Color(255, 255, 255));
+        TablaHitorialEntradaSalida.setForeground(new java.awt.Color(0, 0, 0));
         TablaHitorialEntradaSalida.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -439,7 +439,7 @@ public class HistorialEntradaSalida extends javax.swing.JFrame {
         editarEstudiante.setLocationRelativeTo(null);
     
         DefaultTableModel modelo = (DefaultTableModel) editarEstudiante.TablaEstudiantesEditar.getModel();
-        logica.MostrarEstudianteEditar(modelo);
+        estudianteControlador.MostrarEstudianteEditar(modelo);
     }//GEN-LAST:event_EditarEstudiantebtnActionPerformed
 
     private void VerEstudianteBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_VerEstudianteBtnMouseEntered

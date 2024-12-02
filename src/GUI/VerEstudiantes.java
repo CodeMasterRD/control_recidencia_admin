@@ -15,11 +15,15 @@ import javax.swing.Timer;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import Controlador.EstudianteControlador;
+import Controlador.EntradaSalidaControlador;
+
 
 public class VerEstudiantes extends javax.swing.JFrame {
     
     ConsultasSQL logica = new ConsultasSQL();
     EstudianteControlador estudianteControlador = new EstudianteControlador();
+        EntradaSalidaControlador entradaSalidaControlador = new EntradaSalidaControlador();
+
 
     public VerEstudiantes() {
         initComponents(); // Inicializa los componentes gráficos
@@ -282,6 +286,7 @@ public class VerEstudiantes extends javax.swing.JFrame {
         jScrollPane1.setViewportView(TablaEstudiantes);
         if (TablaEstudiantes.getColumnModel().getColumnCount() > 0) {
             TablaEstudiantes.getColumnModel().getColumn(0).setResizable(false);
+            TablaEstudiantes.getColumnModel().getColumn(0).setPreferredWidth(80);
             TablaEstudiantes.getColumnModel().getColumn(1).setResizable(false);
             TablaEstudiantes.getColumnModel().getColumn(1).setPreferredWidth(180);
             TablaEstudiantes.getColumnModel().getColumn(2).setResizable(false);
@@ -326,25 +331,29 @@ public class VerEstudiantes extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(92, 92, 92)
+                .addGap(75, 75, 75)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(BuscarMatriculaField, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 731, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
-                .addContainerGap(105, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(BuscarMatriculaField, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3)
+                            .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 780, Short.MAX_VALUE)
+                        .addGap(73, 73, 73))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel3)
-                .addGap(12, 12, 12)
-                .addComponent(BuscarMatriculaField, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel3)
+                .addGap(0, 0, 0)
+                .addComponent(BuscarMatriculaField, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(3, 3, 3)
+                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 471, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 656, Short.MAX_VALUE)
         );
@@ -391,7 +400,7 @@ public class VerEstudiantes extends javax.swing.JFrame {
         HistorialEntradaSalida historialEntradaSalida = new HistorialEntradaSalida();
         
         DefaultTableModel modelo = (DefaultTableModel) historialEntradaSalida.TablaHitorialEntradaSalida.getModel(); 
-        logica.HistorialEntradaSalida(modelo);
+        entradaSalidaControlador.HistorialEntradaSalida(modelo);
         
         historialEntradaSalida.setVisible(true);
         this.dispose();
@@ -465,7 +474,7 @@ public class VerEstudiantes extends javax.swing.JFrame {
                 if (!matricula.equals(lastQuery)) {
                     DefaultTableModel modelo = (DefaultTableModel) TablaEstudiantes.getModel();
                     try {
-                        ConsultasSQL.BuscarEstudiante(modelo, matricula); 
+                        estudianteControlador.BuscarEstudiante(modelo, matricula); 
                         lastQuery = matricula;
                     } catch (FileNotFoundException ex) {
                         Logger.getLogger(VerEstudiantes.class.getName()).log(Level.SEVERE, null, ex);
@@ -479,7 +488,7 @@ public class VerEstudiantes extends javax.swing.JFrame {
         // Si el campo está vacío, mostrar todos los estudiantes
         DefaultTableModel modelo = (DefaultTableModel) TablaEstudiantes.getModel();
         try {
-            ConsultasSQL.BuscarEstudiante(modelo, matricula); 
+            estudianteControlador.BuscarEstudiante(modelo, matricula); 
         } catch (FileNotFoundException ex) {
             Logger.getLogger(VerEstudiantes.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -584,7 +593,7 @@ public class VerEstudiantes extends javax.swing.JFrame {
         editarEstudiante.setLocationRelativeTo(null);
     
         DefaultTableModel modelo = (DefaultTableModel) editarEstudiante.TablaEstudiantesEditar.getModel();
-        logica.MostrarEstudianteEditar(modelo);
+        estudianteControlador.MostrarEstudianteEditar(modelo);
 
     }//GEN-LAST:event_EditarEstudiantebtnActionPerformed
 

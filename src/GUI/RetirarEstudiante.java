@@ -13,6 +13,8 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.Timer;
 import Controlador.EstudianteControlador;
+import Controlador.EntradaSalidaControlador;
+
 
 
 
@@ -22,7 +24,9 @@ public class RetirarEstudiante extends javax.swing.JFrame {
     
     ConsultasSQL logica = new ConsultasSQL();
     ConsultasSQL modelo = new ConsultasSQL();
-        EstudianteControlador estudianteControlador = new EstudianteControlador();
+    EstudianteControlador estudianteControlador = new EstudianteControlador();
+    EntradaSalidaControlador entradaSalidaControlador = new EntradaSalidaControlador();
+
 
     
     VerEstudiantes verEstudiantes = new VerEstudiantes();
@@ -65,23 +69,39 @@ public class RetirarEstudiante extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(30, 30, 30));
 
-        TablaEstudiantesRetirar.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        TablaEstudiantesRetirar.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         TablaEstudiantesRetirar.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Matricula", "Nombre", "Apellido", "Numero", "Estado", "Title 6", "Title 7"
+                "Matricula", "Nombre Completo", "Numero", "Estado", "Modulo", "Habitacion", "Genero"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         TablaEstudiantesRetirar.setToolTipText("Listado de contactos");
+        TablaEstudiantesRetirar.setRowHeight(30);
+        TablaEstudiantesRetirar.getTableHeader().setResizingAllowed(false);
+        TablaEstudiantesRetirar.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(TablaEstudiantesRetirar);
         if (TablaEstudiantesRetirar.getColumnModel().getColumnCount() > 0) {
             TablaEstudiantesRetirar.getColumnModel().getColumn(0).setResizable(false);
+            TablaEstudiantesRetirar.getColumnModel().getColumn(0).setPreferredWidth(50);
             TablaEstudiantesRetirar.getColumnModel().getColumn(1).setResizable(false);
+            TablaEstudiantesRetirar.getColumnModel().getColumn(1).setPreferredWidth(150);
             TablaEstudiantesRetirar.getColumnModel().getColumn(2).setResizable(false);
             TablaEstudiantesRetirar.getColumnModel().getColumn(3).setResizable(false);
             TablaEstudiantesRetirar.getColumnModel().getColumn(4).setResizable(false);
+            TablaEstudiantesRetirar.getColumnModel().getColumn(4).setPreferredWidth(42);
+            TablaEstudiantesRetirar.getColumnModel().getColumn(5).setPreferredWidth(42);
+            TablaEstudiantesRetirar.getColumnModel().getColumn(6).setPreferredWidth(42);
         }
 
         jPanel2.setBackground(new java.awt.Color(0, 55, 133));
@@ -285,25 +305,24 @@ public class RetirarEstudiante extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 831, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(34, 34, 34)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(BuscarMatriculaRetirar, javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)))))
-                        .addGap(60, 60, 60))
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(BuscarMatriculaRetirar, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)))
+                        .addGap(615, 615, 615))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(Retirarbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(344, 344, 344))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(377, 377, 377))))
+                        .addGap(377, 377, 377))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 831, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(34, 34, 34))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -315,9 +334,9 @@ public class RetirarEstudiante extends javax.swing.JFrame {
                 .addComponent(BuscarMatriculaRetirar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(59, 59, 59)
+                .addGap(61, 61, 61)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(50, 50, 50)
+                .addGap(48, 48, 48)
                 .addComponent(Retirarbtn)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -371,7 +390,7 @@ public class RetirarEstudiante extends javax.swing.JFrame {
         HistorialEntradaSalida historialEntradaSalida = new HistorialEntradaSalida();
         
         DefaultTableModel modelo = (DefaultTableModel) historialEntradaSalida.TablaHitorialEntradaSalida.getModel(); 
-        logica.HistorialEntradaSalida(modelo);
+        entradaSalidaControlador.HistorialEntradaSalida(modelo);
         
         historialEntradaSalida.setVisible(true);
         this.dispose();
@@ -444,7 +463,7 @@ public class RetirarEstudiante extends javax.swing.JFrame {
                 if (!matricula.equals(lastQuery)) {
                     DefaultTableModel modelo = (DefaultTableModel) TablaEstudiantesRetirar.getModel();
                     try {
-                        ConsultasSQL.BuscarEstudiante(modelo, matricula); 
+                        estudianteControlador.BuscarEstudiante(modelo, matricula); 
                         lastQuery = matricula;
                     } catch (FileNotFoundException ex) {
                         Logger.getLogger(VerEstudiantes.class.getName()).log(Level.SEVERE, null, ex);
@@ -458,7 +477,7 @@ public class RetirarEstudiante extends javax.swing.JFrame {
         // Si el campo está vacío, mostrar todos los estudiantes
         DefaultTableModel modelo = (DefaultTableModel) TablaEstudiantesRetirar.getModel();
         try {
-            ConsultasSQL.BuscarEstudiante(modelo, matricula); // Método para mostrar todos los datos
+            estudianteControlador.BuscarEstudiante(modelo, matricula); // Método para mostrar todos los datos
         } catch (FileNotFoundException ex) {
             Logger.getLogger(VerEstudiantes.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -519,7 +538,7 @@ public class RetirarEstudiante extends javax.swing.JFrame {
         editarEstudiante.setLocationRelativeTo(null);
 
         DefaultTableModel modelo = (DefaultTableModel) editarEstudiante.TablaEstudiantesEditar.getModel();
-        logica.MostrarEstudianteEditar(modelo);
+        estudianteControlador.MostrarEstudianteEditar(modelo);
     }//GEN-LAST:event_EditarEstudiantebtnActionPerformed
 
     

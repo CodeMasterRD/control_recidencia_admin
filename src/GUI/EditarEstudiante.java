@@ -15,6 +15,7 @@ import javax.swing.JOptionPane;
 import javax.swing.Timer;
 import javax.swing.table.DefaultTableModel;
 import Controlador.EstudianteControlador;
+import Controlador.EntradaSalidaControlador;
 
 
 
@@ -31,6 +32,8 @@ public class EditarEstudiante extends javax.swing.JFrame {
     private String lastQuery = "";
     private int FiaSeleccionada;
     EstudianteControlador estudianteControlador = new EstudianteControlador();
+    EntradaSalidaControlador entradaSalidaControlador = new EntradaSalidaControlador();
+    
     
 
     /**
@@ -580,7 +583,7 @@ public class EditarEstudiante extends javax.swing.JFrame {
         HistorialEntradaSalida historialEntradaSalida = new HistorialEntradaSalida();
 
         DefaultTableModel modelo = (DefaultTableModel) historialEntradaSalida.TablaHitorialEntradaSalida.getModel();
-        logica.HistorialEntradaSalida(modelo);
+        entradaSalidaControlador.HistorialEntradaSalida(modelo);
 
         historialEntradaSalida.setVisible(true);
         this.dispose();
