@@ -55,6 +55,8 @@ public class HistorialCocina extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(30, 30, 30));
 
+        HistorialCocinaTable.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        HistorialCocinaTable.setForeground(new java.awt.Color(0, 0, 0));
         HistorialCocinaTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
@@ -66,6 +68,7 @@ public class HistorialCocina extends javax.swing.JFrame {
                 "Estudiante", "Matricula", "Fecha/Hora Entrada", "Fecha/Hora Salida", "Estado"
             }
         ));
+        HistorialCocinaTable.setRowHeight(40);
         jScrollPane1.setViewportView(HistorialCocinaTable);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -93,6 +96,14 @@ public class HistorialCocina extends javax.swing.JFrame {
         RegistrarEstudianteBtn.setForeground(new java.awt.Color(255, 255, 255));
         RegistrarEstudianteBtn.setText("Registrar Estudiante");
         RegistrarEstudianteBtn.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(20, 101, 187)));
+        RegistrarEstudianteBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                RegistrarEstudianteBtnMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                RegistrarEstudianteBtnMouseExited(evt);
+            }
+        });
         RegistrarEstudianteBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 RegistrarEstudianteBtnActionPerformed(evt);
@@ -104,6 +115,14 @@ public class HistorialCocina extends javax.swing.JFrame {
         VerEstudianteBtn.setForeground(new java.awt.Color(255, 255, 255));
         VerEstudianteBtn.setText("Ver Estudiante");
         VerEstudianteBtn.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(20, 101, 187)));
+        VerEstudianteBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                VerEstudianteBtnMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                VerEstudianteBtnMouseExited(evt);
+            }
+        });
         VerEstudianteBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 VerEstudianteBtnActionPerformed(evt);
@@ -115,6 +134,14 @@ public class HistorialCocina extends javax.swing.JFrame {
         HistorialCocinaBnt.setForeground(new java.awt.Color(255, 255, 255));
         HistorialCocinaBnt.setText("Historial Cocina");
         HistorialCocinaBnt.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(20, 101, 187)));
+        HistorialCocinaBnt.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                HistorialCocinaBntMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                HistorialCocinaBntMouseExited(evt);
+            }
+        });
         HistorialCocinaBnt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 HistorialCocinaBntActionPerformed(evt);
@@ -126,6 +153,14 @@ public class HistorialCocina extends javax.swing.JFrame {
         HistorialCocinaBnt1.setForeground(new java.awt.Color(255, 255, 255));
         HistorialCocinaBnt1.setText("Historial Entrada/salida");
         HistorialCocinaBnt1.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(20, 101, 187)));
+        HistorialCocinaBnt1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                HistorialCocinaBnt1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                HistorialCocinaBnt1MouseExited(evt);
+            }
+        });
         HistorialCocinaBnt1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 HistorialCocinaBnt1ActionPerformed(evt);
@@ -137,6 +172,14 @@ public class HistorialCocina extends javax.swing.JFrame {
         InformeDeActividadBtn.setForeground(new java.awt.Color(255, 255, 255));
         InformeDeActividadBtn.setText("Informe De Actividad");
         InformeDeActividadBtn.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(20, 101, 187)));
+        InformeDeActividadBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                InformeDeActividadBtnMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                InformeDeActividadBtnMouseExited(evt);
+            }
+        });
         InformeDeActividadBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 InformeDeActividadBtnActionPerformed(evt);
@@ -148,6 +191,14 @@ public class HistorialCocina extends javax.swing.JFrame {
         NotificacionesBotellonesbtn.setForeground(new java.awt.Color(255, 255, 255));
         NotificacionesBotellonesbtn.setText("Notificaciones Botellones");
         NotificacionesBotellonesbtn.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(20, 101, 187)));
+        NotificacionesBotellonesbtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                NotificacionesBotellonesbtnMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                NotificacionesBotellonesbtnMouseExited(evt);
+            }
+        });
         NotificacionesBotellonesbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 NotificacionesBotellonesbtnActionPerformed(evt);
@@ -159,6 +210,14 @@ public class HistorialCocina extends javax.swing.JFrame {
         HistorialBotellonesbtn.setForeground(new java.awt.Color(255, 255, 255));
         HistorialBotellonesbtn.setText("Historial Botellones");
         HistorialBotellonesbtn.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(20, 101, 187)));
+        HistorialBotellonesbtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                HistorialBotellonesbtnMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                HistorialBotellonesbtnMouseExited(evt);
+            }
+        });
         HistorialBotellonesbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 HistorialBotellonesbtnActionPerformed(evt);
@@ -170,6 +229,14 @@ public class HistorialCocina extends javax.swing.JFrame {
         RetirarEstudiantesbtn.setForeground(new java.awt.Color(255, 255, 255));
         RetirarEstudiantesbtn.setText("Retirar Estudiantes");
         RetirarEstudiantesbtn.setBorder(null);
+        RetirarEstudiantesbtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                RetirarEstudiantesbtnMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                RetirarEstudiantesbtnMouseExited(evt);
+            }
+        });
         RetirarEstudiantesbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 RetirarEstudiantesbtnActionPerformed(evt);
@@ -373,6 +440,70 @@ public class HistorialCocina extends javax.swing.JFrame {
         DefaultTableModel modelo = (DefaultTableModel) editarEstudiante.TablaEstudiantesEditar.getModel();
         logica.MostrarEstudianteEditar(modelo);
     }//GEN-LAST:event_EditarEstudiantebtnActionPerformed
+
+    private void VerEstudianteBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_VerEstudianteBtnMouseEntered
+        VerEstudianteBtn.setBackground(new Color(0,55,133));
+    }//GEN-LAST:event_VerEstudianteBtnMouseEntered
+
+    private void VerEstudianteBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_VerEstudianteBtnMouseExited
+        VerEstudianteBtn.setBackground(new Color(20,101,187));
+    }//GEN-LAST:event_VerEstudianteBtnMouseExited
+
+    private void RegistrarEstudianteBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RegistrarEstudianteBtnMouseEntered
+        RegistrarEstudianteBtn.setBackground(new Color(0,55,133));
+    }//GEN-LAST:event_RegistrarEstudianteBtnMouseEntered
+
+    private void RegistrarEstudianteBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RegistrarEstudianteBtnMouseExited
+        RegistrarEstudianteBtn.setBackground(new Color(20,101,187));
+    }//GEN-LAST:event_RegistrarEstudianteBtnMouseExited
+
+    private void HistorialCocinaBntMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_HistorialCocinaBntMouseEntered
+        HistorialCocinaBnt.setBackground(new Color(0,55,133));
+    }//GEN-LAST:event_HistorialCocinaBntMouseEntered
+
+    private void HistorialCocinaBntMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_HistorialCocinaBntMouseExited
+        HistorialCocinaBnt.setBackground(new Color(51,153,255));
+    }//GEN-LAST:event_HistorialCocinaBntMouseExited
+
+    private void HistorialCocinaBnt1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_HistorialCocinaBnt1MouseEntered
+        HistorialCocinaBnt1.setBackground(new Color(0,55,133));
+    }//GEN-LAST:event_HistorialCocinaBnt1MouseEntered
+
+    private void HistorialCocinaBnt1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_HistorialCocinaBnt1MouseExited
+        HistorialCocinaBnt1.setBackground(new Color(20,101,187));
+    }//GEN-LAST:event_HistorialCocinaBnt1MouseExited
+
+    private void InformeDeActividadBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_InformeDeActividadBtnMouseEntered
+        InformeDeActividadBtn.setBackground(new Color(0,55,133));
+    }//GEN-LAST:event_InformeDeActividadBtnMouseEntered
+
+    private void InformeDeActividadBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_InformeDeActividadBtnMouseExited
+        InformeDeActividadBtn.setBackground(new Color(20,101,187));
+    }//GEN-LAST:event_InformeDeActividadBtnMouseExited
+
+    private void HistorialBotellonesbtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_HistorialBotellonesbtnMouseEntered
+        HistorialBotellonesbtn.setBackground(new Color(0,55,133));
+    }//GEN-LAST:event_HistorialBotellonesbtnMouseEntered
+
+    private void HistorialBotellonesbtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_HistorialBotellonesbtnMouseExited
+        HistorialBotellonesbtn.setBackground(new Color(20,101,187));
+    }//GEN-LAST:event_HistorialBotellonesbtnMouseExited
+
+    private void NotificacionesBotellonesbtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_NotificacionesBotellonesbtnMouseEntered
+        NotificacionesBotellonesbtn.setBackground(new Color(0,55,133));
+    }//GEN-LAST:event_NotificacionesBotellonesbtnMouseEntered
+
+    private void NotificacionesBotellonesbtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_NotificacionesBotellonesbtnMouseExited
+        NotificacionesBotellonesbtn.setBackground(new Color(20,101,187));
+    }//GEN-LAST:event_NotificacionesBotellonesbtnMouseExited
+
+    private void RetirarEstudiantesbtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RetirarEstudiantesbtnMouseEntered
+        RetirarEstudiantesbtn.setBackground(new Color(0,55,133));
+    }//GEN-LAST:event_RetirarEstudiantesbtnMouseEntered
+
+    private void RetirarEstudiantesbtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RetirarEstudiantesbtnMouseExited
+        RetirarEstudiantesbtn.setBackground(new Color(20,101,187));
+    }//GEN-LAST:event_RetirarEstudiantesbtnMouseExited
 
    public DefaultTableModel getModel() {
     return (DefaultTableModel) HistorialCocinaTable.getModel();

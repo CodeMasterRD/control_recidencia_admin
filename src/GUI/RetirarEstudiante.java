@@ -163,7 +163,7 @@ public class RetirarEstudiante extends javax.swing.JFrame {
             }
         });
 
-        RetirarEstudiantesbtn.setBackground(new java.awt.Color(20, 101, 187));
+        RetirarEstudiantesbtn.setBackground(new java.awt.Color(51, 153, 255));
         RetirarEstudiantesbtn.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         RetirarEstudiantesbtn.setForeground(new java.awt.Color(255, 255, 255));
         RetirarEstudiantesbtn.setText("Retirar Estudiantes");

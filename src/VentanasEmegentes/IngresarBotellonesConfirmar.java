@@ -10,20 +10,14 @@ import java.io.FileNotFoundException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- *
- * @author Erick Tejada
- */
+
 public class IngresarBotellonesConfirmar extends javax.swing.JFrame {
 
 
-    /**
-     * Creates new form IngresarBotellonesConfirmar
-     */
+   
     public IngresarBotellonesConfirmar() {
         initComponents();
     }
-
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -81,6 +75,7 @@ public class IngresarBotellonesConfirmar extends javax.swing.JFrame {
         LlenarBotellonesDAO llenarBotellonesDAO = new LlenarBotellonesDAO();
         try {
             llenarBotellonesDAO.llenarBotellones(numeroBotellones);
+            this.dispose();
         } catch (FileNotFoundException ex) {
             Logger.getLogger(IngresarBotellonesConfirmar.class.getName()).log(Level.SEVERE, null, ex);
         }

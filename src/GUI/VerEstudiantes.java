@@ -501,7 +501,7 @@ public class VerEstudiantes extends javax.swing.JFrame {
     }//GEN-LAST:event_BuscarMatriculaFieldKeyTyped
 
     private void RegistrarEstudianteBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RegistrarEstudianteBtnMouseEntered
-        RegistrarEstudianteBtn.setBackground(new Color(0,55,133));//
+        RegistrarEstudianteBtn.setBackground(new Color(0,55,133));
     }//GEN-LAST:event_RegistrarEstudianteBtnMouseEntered
 
     private void RegistrarEstudianteBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RegistrarEstudianteBtnMouseExited

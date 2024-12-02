@@ -264,6 +264,8 @@ public class EditarEstudiante extends javax.swing.JFrame {
         MatriculaRegistroEditar.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         MatriculaRegistroEditar.setForeground(new java.awt.Color(255, 255, 255));
         MatriculaRegistroEditar.setBorder(null);
+        MatriculaRegistroEditar.setEnabled(false);
+        MatriculaRegistroEditar.setSelectionColor(new java.awt.Color(20, 101, 187));
         MatriculaRegistroEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MatriculaRegistroEditarActionPerformed(evt);

@@ -49,8 +49,10 @@ public class NotificacionesBotellones extends javax.swing.JFrame {
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(30, 30, 30));
+        jPanel1.setForeground(new java.awt.Color(255, 255, 255));
 
         NotificacionesBotetellonesTabla.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        NotificacionesBotetellonesTabla.setForeground(new java.awt.Color(0, 0, 0));
         NotificacionesBotetellonesTabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
@@ -350,13 +352,13 @@ public class NotificacionesBotellones extends javax.swing.JFrame {
 
     private void RetirarEstudiantesbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RetirarEstudiantesbtnActionPerformed
         RetirarEstudiante retirar = new RetirarEstudiante();
+        
         retirar.setVisible(true);
         this.dispose();
         retirar.setLocationRelativeTo(null);
 
-        DefaultTableModel modelo = (DefaultTableModel) retirar.TablaEstudiantesRetirar.getModel(); 
-        logica.VerTodosEstudiantes(modelo);
-        // TODO add your handling code here:
+        DefaultTableModel modelo = (DefaultTableModel) retirar.TablaEstudiantesRetirar.getModel();
+        logica.MostrarEstudiante(modelo);
     }//GEN-LAST:event_RetirarEstudiantesbtnActionPerformed
 
     private void EditarEstudiantebtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EditarEstudiantebtnMouseEntered
@@ -370,14 +372,12 @@ public class NotificacionesBotellones extends javax.swing.JFrame {
     private void EditarEstudiantebtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditarEstudiantebtnActionPerformed
         EditarEstudiante editarEstudiante = new EditarEstudiante();
         editarEstudiante.setVisible(true);
-        this.dispose(); // Cierra la ventana actual.
+        this.dispose();
 
-        // Centrar la nueva ventana en la pantalla.
         editarEstudiante.setLocationRelativeTo(null);
-
-        // Obtiene el modelo de la tabla en la nueva ventana.
+    
         DefaultTableModel modelo = (DefaultTableModel) editarEstudiante.TablaEstudiantesEditar.getModel();
-        logica.MostrarEstudiante(modelo);
+        logica.MostrarEstudianteEditar(modelo);
     }//GEN-LAST:event_EditarEstudiantebtnActionPerformed
 
     private void ConfirmarBotellonbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConfirmarBotellonbtnActionPerformed

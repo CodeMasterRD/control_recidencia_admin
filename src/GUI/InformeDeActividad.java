@@ -473,7 +473,7 @@ public class InformeDeActividad extends javax.swing.JFrame {
     }//GEN-LAST:event_GenerarTablabtnMouseEntered
 
     private void GenerarTablabtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_GenerarTablabtnMouseExited
-        GenerarTablabtn.setBackground(new Color(255,255,255));
+        GenerarTablabtn.setBackground(new Color(30,30,30));
     }//GEN-LAST:event_GenerarTablabtnMouseExited
 
     private void GenerarTablabtnMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_GenerarTablabtnMousePressed

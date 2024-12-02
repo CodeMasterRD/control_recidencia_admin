@@ -547,8 +547,6 @@ public void ejecutarDepositarBotellon(String matricula) {
     }
 }
 
-    
-
 public void actualizarEstudiante(
         int matricula, 
         String nombres, 
@@ -557,7 +555,7 @@ public void actualizarEstudiante(
         String modulo, 
         String habitacion
     ) throws FileNotFoundException {
-    String sql = "{CALL ActualizarEstudiante2(?, ?, ?, ?, ?, ?, ?)}";
+    String sql = "{CALL ActualizarEstudiante(?, ?, ?, ?, ?, ?, ?)}";
     Connection con = null;
     CallableStatement cs = null;
 
@@ -567,12 +565,12 @@ public void actualizarEstudiante(
         cs = (CallableStatement) con.prepareCall(sql);
 
         cs.setInt(1, matricula);
-        cs.setInt(2, matricula);  // Si el segundo parámetro es otra matrícula
+        cs.setInt(2, matricula);
         cs.setString(3, nombres);
         cs.setString(4, apellidos);
         cs.setString(5, telefono);
         cs.setString(6, modulo);
-        cs.setString(7, habitacion); // Este faltaba
+        cs.setString(7, habitacion);
 
         // Ejecutar el procedimiento almacenado.
         cs.execute();
