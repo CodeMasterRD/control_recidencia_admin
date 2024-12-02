@@ -442,12 +442,10 @@ public class HistorialBotellones extends javax.swing.JFrame {
     private void EditarEstudiantebtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditarEstudiantebtnActionPerformed
         EditarEstudiante editarEstudiante = new EditarEstudiante();
         editarEstudiante.setVisible(true);
-        this.dispose(); // Cierra la ventana actual.
+        this.dispose();
 
-        // Centrar la nueva ventana en la pantalla.
         editarEstudiante.setLocationRelativeTo(null);
 
-        // Obtiene el modelo de la tabla en la nueva ventana.
         DefaultTableModel modelo = (DefaultTableModel) editarEstudiante.TablaEstudiantesEditar.getModel();
         estudianteControlador.MostrarEstudiante(modelo);
     }//GEN-LAST:event_EditarEstudiantebtnActionPerformed

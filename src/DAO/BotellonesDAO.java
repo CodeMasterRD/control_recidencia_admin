@@ -1,4 +1,4 @@
-package DAO.BotellonesDAO;
+package DAO;
 
 import Percistencia.DBConexion;
 import VentanasEmegentes.IngresarBotellonesConfirmar;
@@ -9,7 +9,6 @@ import java.sql.*;
 
 public class BotellonesDAO {
 
-    // Asumiendo que ya tienes la clase DBConexion con un método getConexion() para obtener la conexión
 
     public void llenarBotellones(int numeroBotellones) throws FileNotFoundException {
     // Procedimiento almacenado
@@ -32,7 +31,6 @@ public class BotellonesDAO {
 
                     stmt.execute(); // Ejecutamos el procedimiento
 
-                    // Mensaje de éxito
                     JOptionPane.showMessageDialog(null, "Procedimiento ejecutado con éxito. Botellones asignados: " + numeroBotellones);
                     
                     // Cerrar la ventana de IngresarBotellonesConfirmar
@@ -40,19 +38,15 @@ public class BotellonesDAO {
                     ingresarBotellonesConfirmar.dispose(); // Cierra la ventana
 
                 } catch (SQLException ex) {
-                    // Mensaje de error si falla el procedimiento
-                    JOptionPane.showMessageDialog(null, "Error al ejecutar el procedimiento almacenado: " + ex.getMessage());
+                    JOptionPane.showMessageDialog(null, "Error al ejecutar el procedimiento almacenado");
                 }
             } else {
-                // Mensaje si no se pudo obtener la conexión
                 JOptionPane.showMessageDialog(null, "Error: No se pudo obtener la conexión a la base de datos.");
             }
         } catch (SQLException ex) {
-            // Error al obtener la conexión
-            JOptionPane.showMessageDialog(null, "Error al obtener la conexión: " + ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Error al obtener la conexión");
         }
     } else {
-        // Mensaje si el usuario cancela la operación
         JOptionPane.showMessageDialog(null, "Operación cancelada.");
     }
 }

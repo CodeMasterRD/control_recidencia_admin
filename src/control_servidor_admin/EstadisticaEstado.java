@@ -31,7 +31,6 @@ public class EstadisticaEstado {
      */
     
       public void ConsultarEstadoEstudiante() {
-        //SQL para contar estudiantes en cada estado
         String sql = "SELECT Estado_estudiante, COUNT(*) AS Cantidad FROM Estudiantes GROUP BY Estado_estudiante";
 
         try {
@@ -43,12 +42,10 @@ public class EstadisticaEstado {
             n2 = 0;
             n3 = 0;
 
-            // procesando datos de la consulta
             while (rs.next()) {
                 String estado = rs.getString("Estado_estudiante");
                 int cantidad = rs.getInt("Cantidad");
 
-                // asignar valores segun su estado
                 if (estado.equals("Dentro")) {
                     n1 = cantidad;
                 } else if (estado.equals("Fuera")) {
@@ -57,11 +54,10 @@ public class EstadisticaEstado {
                     n3 = cantidad;
                 }
             }
-                //mostrando en sonsola
                 mostrarResultadosEnConsola();
 
         } catch (Exception e) {
-            e.printStackTrace(); // mostrar error si entra
+            e.printStackTrace(); 
         }
     } 
       

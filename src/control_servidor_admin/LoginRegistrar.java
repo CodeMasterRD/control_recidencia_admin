@@ -49,7 +49,7 @@ public class LoginRegistrar {
             if ("Acceso concedido".equals(mensaje)) {
 
                 System.out.println("Bienvenido, " + usuario);
-                JOptionPane.showMessageDialog(null, "Todo bien crack", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+                //JOptionPane.showMessageDialog(null, "Todo bien crack", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
                 VerEstudiantes verEstudiantes = new VerEstudiantes();
                 verEstudiantes.setVisible(true);
                 verEstudiantes.setLocationRelativeTo(null);

@@ -7,6 +7,7 @@ import javax.swing.table.DefaultTableModel;
 import Controlador.EstudianteControlador;
 import Controlador.EntradaSalidaControlador;
 import Controlador.BotellonesControlador;
+import DAO.EstudiantesDAO;
 
 
 /**
@@ -25,6 +26,7 @@ public class NotificacionesBotellones extends javax.swing.JFrame {
     EstudianteControlador estudianteControlador = new EstudianteControlador();
     EntradaSalidaControlador entradaSalidaControlador = new EntradaSalidaControlador();
     BotellonesControlador botellonesControlador = new BotellonesControlador();
+    EstudiantesDAO estudiantesDAO = new EstudiantesDAO();
 
 
 
@@ -53,12 +55,14 @@ public class NotificacionesBotellones extends javax.swing.JFrame {
         HistorialBotellonesbtn = new javax.swing.JButton();
         RetirarEstudiantesbtn = new javax.swing.JButton();
         EditarEstudiantebtn = new javax.swing.JButton();
+        jSeparator1 = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(30, 30, 30));
         jPanel1.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel1.setEnabled(false);
 
         NotificacionesBotetellonesTabla.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         NotificacionesBotetellonesTabla.setForeground(new java.awt.Color(0, 0, 0));
@@ -106,7 +110,7 @@ public class NotificacionesBotellones extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(73, Short.MAX_VALUE)
+                .addContainerGap(78, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 808, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -122,7 +126,7 @@ public class NotificacionesBotellones extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 479, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(39, 39, 39)
                 .addComponent(ConfirmarBotellonbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(44, Short.MAX_VALUE))
         );
 
         jPanel2.setBackground(new java.awt.Color(0, 55, 133));
@@ -147,7 +151,7 @@ public class NotificacionesBotellones extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 28)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("ControlAdmin");
 
@@ -303,6 +307,9 @@ public class NotificacionesBotellones extends javax.swing.JFrame {
             }
         });
 
+        jSeparator1.setBackground(new java.awt.Color(255, 255, 255));
+        jSeparator1.setForeground(new java.awt.Color(255, 255, 255));
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -315,20 +322,24 @@ public class NotificacionesBotellones extends javax.swing.JFrame {
             .addComponent(HistorialBotellonesbtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(NotificacionesBotellonesbtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(RetirarEstudiantesbtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(57, 57, 57))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(EditarEstudiantebtn, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(51, 51, 51)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(26, 26, 26)
+                .addGap(28, 28, 28)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28)
                 .addComponent(VerEstudianteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(RegistrarEstudianteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -346,7 +357,7 @@ public class NotificacionesBotellones extends javax.swing.JFrame {
                 .addComponent(EditarEstudiantebtn, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(RetirarEstudiantesbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(54, 54, 54))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -355,8 +366,8 @@ public class NotificacionesBotellones extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(1, 1, 1)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -461,7 +472,7 @@ public class NotificacionesBotellones extends javax.swing.JFrame {
 
     if (selectedRow != -1) {
         String matricula = NotificacionesBotetellonesTabla.getValueAt(selectedRow, 0).toString();
-        String tipoSolicitud = NotificacionesBotetellonesTabla.getValueAt(selectedRow, 2).toString(); // Obtiene el valor de la columna "Tipo de solicitud"
+        String tipoSolicitud = NotificacionesBotetellonesTabla.getValueAt(selectedRow, 2).toString();
 
         System.out.println("Matrícula seleccionada: " + matricula);
         System.out.println("Tipo de solicitud: " + tipoSolicitud);
@@ -469,9 +480,9 @@ public class NotificacionesBotellones extends javax.swing.JFrame {
         ConsultasSQL consultasSQL = new ConsultasSQL();
 
         if ("Solicitar Botellon".equalsIgnoreCase(tipoSolicitud)) {
-            consultasSQL.ejecutarInsertarAsignacionBotellon(matricula); // Ejecuta la función correspondiente
+            estudiantesDAO.ejecutarInsertarAsignacionBotellon(matricula);
         } else if ("Depositar Botellon".equalsIgnoreCase(tipoSolicitud)) {
-            consultasSQL.ejecutarDepositarBotellon(matricula); // Asegúrate de implementar esta función
+            consultasSQL.ejecutarDepositarBotellon(matricula);
         } else {
             JOptionPane.showMessageDialog(null, "Tipo de solicitud desconocido.", "Error", JOptionPane.ERROR_MESSAGE);
         }
@@ -534,7 +545,7 @@ public class NotificacionesBotellones extends javax.swing.JFrame {
     }//GEN-LAST:event_NotificacionesBotellonesbtnMouseEntered
 
     private void NotificacionesBotellonesbtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_NotificacionesBotellonesbtnMouseExited
-        NotificacionesBotellonesbtn.setBackground(new Color(20,101,187));
+        NotificacionesBotellonesbtn.setBackground(new Color(51,153,255));
     }//GEN-LAST:event_NotificacionesBotellonesbtnMouseExited
 
     private void RetirarEstudiantesbtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RetirarEstudiantesbtnMouseEntered
@@ -566,5 +577,6 @@ public class NotificacionesBotellones extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JSeparator jSeparator1;
     // End of variables declaration//GEN-END:variables
 }

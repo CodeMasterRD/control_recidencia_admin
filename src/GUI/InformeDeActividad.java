@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package GUI;
-import DAO.BotellonesDAO.BotellonesDAO;
+import DAO.BotellonesDAO;
 import Percistencia.DBConexion;
 import control_servidor_admin.EstadisticaBotellones;
 import java.awt.BorderLayout;
@@ -22,6 +22,8 @@ import Controlador.EstudianteControlador;
 import Controlador.EntradaSalidaControlador;
 import Controlador.BotellonesControlador;
 import Controlador.CocinaControlador;
+import org.jfree.chart.labels.StandardPieSectionLabelGenerator;
+import org.jfree.chart.plot.PiePlot;
 
 
 
@@ -50,11 +52,6 @@ public class InformeDeActividad extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jPanel3 = new javax.swing.JPanel();
-        GraficoInformePastelEstudiante = new javax.swing.JPanel();
-        GenerarTablabtn = new javax.swing.JButton();
-        GraficoInformePastelBotellones = new javax.swing.JPanel();
-        IngresarBotellonesbtn = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         RegistrarEstudianteBtn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -67,115 +64,16 @@ public class InformeDeActividad extends javax.swing.JFrame {
         RetirarEstudiantesbtn = new javax.swing.JButton();
         EditarEstudiantebtn = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
+        jPanel3 = new javax.swing.JPanel();
+        GraficoInformePastelEstudiante = new javax.swing.JPanel();
+        GraficoInformePastelBotellones = new javax.swing.JPanel();
+        GenerarTablabtn = new javax.swing.JButton();
+        IngresarBotellonesbtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
-        jPanel3.setBackground(new java.awt.Color(30, 30, 30));
-
-        GraficoInformePastelEstudiante.setForeground(new java.awt.Color(255, 255, 255));
-        GraficoInformePastelEstudiante.setPreferredSize(new java.awt.Dimension(400, 350));
-
-        javax.swing.GroupLayout GraficoInformePastelEstudianteLayout = new javax.swing.GroupLayout(GraficoInformePastelEstudiante);
-        GraficoInformePastelEstudiante.setLayout(GraficoInformePastelEstudianteLayout);
-        GraficoInformePastelEstudianteLayout.setHorizontalGroup(
-            GraficoInformePastelEstudianteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        GraficoInformePastelEstudianteLayout.setVerticalGroup(
-            GraficoInformePastelEstudianteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 350, Short.MAX_VALUE)
-        );
-
-        GenerarTablabtn.setBackground(new java.awt.Color(30, 30, 30));
-        GenerarTablabtn.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        GenerarTablabtn.setForeground(new java.awt.Color(255, 255, 255));
-        GenerarTablabtn.setText("Generar Grafica");
-        GenerarTablabtn.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 255, 255)));
-        GenerarTablabtn.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                GenerarTablabtnMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                GenerarTablabtnMouseExited(evt);
-            }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                GenerarTablabtnMousePressed(evt);
-            }
-        });
-        GenerarTablabtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                GenerarTablabtnActionPerformed(evt);
-            }
-        });
-        GenerarTablabtn.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                GenerarTablabtnKeyPressed(evt);
-            }
-        });
-
-        GraficoInformePastelBotellones.setForeground(new java.awt.Color(255, 255, 255));
-        GraficoInformePastelBotellones.setPreferredSize(new java.awt.Dimension(400, 350));
-
-        javax.swing.GroupLayout GraficoInformePastelBotellonesLayout = new javax.swing.GroupLayout(GraficoInformePastelBotellones);
-        GraficoInformePastelBotellones.setLayout(GraficoInformePastelBotellonesLayout);
-        GraficoInformePastelBotellonesLayout.setHorizontalGroup(
-            GraficoInformePastelBotellonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        GraficoInformePastelBotellonesLayout.setVerticalGroup(
-            GraficoInformePastelBotellonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 350, Short.MAX_VALUE)
-        );
-
-        IngresarBotellonesbtn.setBackground(new java.awt.Color(30, 30, 30));
-        IngresarBotellonesbtn.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        IngresarBotellonesbtn.setForeground(new java.awt.Color(255, 255, 255));
-        IngresarBotellonesbtn.setText("Ingresar Botellones");
-        IngresarBotellonesbtn.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 255, 255)));
-        IngresarBotellonesbtn.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                IngresarBotellonesbtnMouseEntered(evt);
-            }
-        });
-        IngresarBotellonesbtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                IngresarBotellonesbtnActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(53, 53, 53)
-                .addComponent(GraficoInformePastelEstudiante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
-                .addComponent(GraficoInformePastelBotellones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(59, 59, 59))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(IngresarBotellonesbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20))
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(390, 390, 390)
-                .addComponent(GenerarTablabtn, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(106, 106, 106)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(GraficoInformePastelBotellones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(GraficoInformePastelEstudiante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(GenerarTablabtn, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(12, 12, 12)
-                .addComponent(IngresarBotellonesbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(15, 15, 15))
-        );
+        jPanel1.setBackground(new java.awt.Color(30, 30, 30));
 
         jPanel2.setBackground(new java.awt.Color(0, 55, 133));
         jPanel2.setPreferredSize(new java.awt.Dimension(332, 607));
@@ -361,25 +259,46 @@ public class InformeDeActividad extends javax.swing.JFrame {
         jSeparator1.setBackground(new java.awt.Color(255, 255, 255));
         jSeparator1.setForeground(new java.awt.Color(255, 255, 255));
 
+        jPanel3.setBackground(new java.awt.Color(30, 30, 30));
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 898, Short.MAX_VALUE)
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 111, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(65, 65, 65)
-                .addComponent(jLabel1))
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(60, 60, 60)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addComponent(RegistrarEstudianteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(VerEstudianteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(HistorialCocinaBnt, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(HistorialCocinaBnt1, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(HistorialBotellonesbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(InformeDeActividadBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(NotificacionesBotellonesbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(EditarEstudiantebtn, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(RetirarEstudiantesbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(65, 65, 65)
+                        .addComponent(jLabel1))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(60, 60, 60)
+                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(VerEstudianteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(HistorialCocinaBnt1, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(RegistrarEstudianteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(HistorialCocinaBnt, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(InformeDeActividadBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(NotificacionesBotellonesbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(EditarEstudiantebtn, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(HistorialBotellonesbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(RetirarEstudiantesbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel2Layout.createSequentialGroup()
+                    .addGap(374, 374, 374)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -388,47 +307,141 @@ public class InformeDeActividad extends javax.swing.JFrame {
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(6, 6, 6)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(50, 50, 50)
-                        .addComponent(RegistrarEstudianteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(VerEstudianteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(56, 56, 56)
+                .addComponent(VerEstudianteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(HistorialCocinaBnt, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(50, 50, 50)
-                        .addComponent(HistorialCocinaBnt1, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addComponent(RegistrarEstudianteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(50, 50, 50)
-                        .addComponent(HistorialBotellonesbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(InformeDeActividadBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(HistorialCocinaBnt, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(NotificacionesBotellonesbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(50, 50, 50)
-                        .addComponent(EditarEstudiantebtn, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addComponent(HistorialCocinaBnt1, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(RetirarEstudiantesbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(InformeDeActividadBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(HistorialBotellonesbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(NotificacionesBotellonesbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(EditarEstudiantebtn, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(RetirarEstudiantesbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 41, Short.MAX_VALUE))
+            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel2Layout.createSequentialGroup()
+                    .addGap(272, 272, 272)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGap(273, 273, 273)))
         );
+
+        GraficoInformePastelEstudiante.setForeground(new java.awt.Color(255, 255, 255));
+        GraficoInformePastelEstudiante.setPreferredSize(new java.awt.Dimension(400, 350));
+
+        javax.swing.GroupLayout GraficoInformePastelEstudianteLayout = new javax.swing.GroupLayout(GraficoInformePastelEstudiante);
+        GraficoInformePastelEstudiante.setLayout(GraficoInformePastelEstudianteLayout);
+        GraficoInformePastelEstudianteLayout.setHorizontalGroup(
+            GraficoInformePastelEstudianteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 402, Short.MAX_VALUE)
+        );
+        GraficoInformePastelEstudianteLayout.setVerticalGroup(
+            GraficoInformePastelEstudianteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 350, Short.MAX_VALUE)
+        );
+
+        GraficoInformePastelBotellones.setForeground(new java.awt.Color(255, 255, 255));
+        GraficoInformePastelBotellones.setPreferredSize(new java.awt.Dimension(400, 350));
+
+        javax.swing.GroupLayout GraficoInformePastelBotellonesLayout = new javax.swing.GroupLayout(GraficoInformePastelBotellones);
+        GraficoInformePastelBotellones.setLayout(GraficoInformePastelBotellonesLayout);
+        GraficoInformePastelBotellonesLayout.setHorizontalGroup(
+            GraficoInformePastelBotellonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        GraficoInformePastelBotellonesLayout.setVerticalGroup(
+            GraficoInformePastelBotellonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 350, Short.MAX_VALUE)
+        );
+
+        GenerarTablabtn.setBackground(new java.awt.Color(30, 30, 30));
+        GenerarTablabtn.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        GenerarTablabtn.setForeground(new java.awt.Color(255, 255, 255));
+        GenerarTablabtn.setText("Generar Grafica");
+        GenerarTablabtn.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 255, 255)));
+        GenerarTablabtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                GenerarTablabtnMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                GenerarTablabtnMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                GenerarTablabtnMousePressed(evt);
+            }
+        });
+        GenerarTablabtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                GenerarTablabtnActionPerformed(evt);
+            }
+        });
+        GenerarTablabtn.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                GenerarTablabtnKeyPressed(evt);
+            }
+        });
+
+        IngresarBotellonesbtn.setBackground(new java.awt.Color(30, 30, 30));
+        IngresarBotellonesbtn.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        IngresarBotellonesbtn.setForeground(new java.awt.Color(255, 255, 255));
+        IngresarBotellonesbtn.setText("Ingresar Botellones");
+        IngresarBotellonesbtn.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 255, 255)));
+        IngresarBotellonesbtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                IngresarBotellonesbtnMouseEntered(evt);
+            }
+        });
+        IngresarBotellonesbtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                IngresarBotellonesbtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(32, 32, 32)
+                        .addComponent(GraficoInformePastelEstudiante, javax.swing.GroupLayout.PREFERRED_SIZE, 402, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
+                        .addComponent(GraficoInformePastelBotellones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(23, 23, 23))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(IngresarBotellonesbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap())
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(GenerarTablabtn, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(347, 347, 347))))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 656, Short.MAX_VALUE)
-            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 656, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(108, 108, 108)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(GraficoInformePastelEstudiante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(GraficoInformePastelBotellones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(GenerarTablabtn, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(49, 49, 49)
+                .addComponent(IngresarBotellonesbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -436,8 +449,8 @@ public class InformeDeActividad extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 0, 0)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -527,71 +540,78 @@ public class InformeDeActividad extends javax.swing.JFrame {
     }//GEN-LAST:event_RetirarEstudiantesbtnActionPerformed
 
     private void GenerarTablabtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GenerarTablabtnActionPerformed
-        EstadisticaEstado estadisticas = new EstadisticaEstado(0, 0, 0);
-    
-        // Llamar al método para obtener los conteos
-        estadisticas.ConsultarEstadoEstudiante();
+         EstadisticaEstado estadisticas = new EstadisticaEstado(0, 0, 0);
 
-        // Crear el dataset para el gráfico de pastel
-        DefaultPieDataset datos = new DefaultPieDataset();
-        datos.setValue("Dentro", estadisticas.n1);
-        datos.setValue("Fuera", estadisticas.n2);
-        datos.setValue("En Cocina", estadisticas.n3);
+    estadisticas.ConsultarEstadoEstudiante();
 
-        // Crear el gráfico de pastel usando el dataset
-        JFreeChart grafico_pastel = ChartFactory.createPieChart(
-            "Informe de Actividad Estudiantes", // Título del gráfico
-            datos,                // Dataset
-            true,                   // Incluir leyenda
-            true,                   // Incluir tooltips
-            false                   // No incluir URLs
-        );
+    // crear el dataset para el gráfico de pastel
+    DefaultPieDataset datos = new DefaultPieDataset();
+    datos.setValue("Dentro", estadisticas.n1);
+    datos.setValue("Fuera", estadisticas.n2);
+    datos.setValue("En Cocina", estadisticas.n3);
 
-        ChartPanel panel = new ChartPanel(grafico_pastel);
-        panel.setMouseWheelEnabled(true);
-        panel.setPreferredSize(new Dimension(400, 350));
+    // Crear el gráfico de pastel usando el dataset
+    JFreeChart grafico_pastel = ChartFactory.createPieChart(
+        "Informe de Actividad Estudiantes", // Título del gráfico
+        datos,                // dataset
+        true,                   // incluir leyenda
+        false,                   // incluir tooltips(pasael el mouse)
+        false                   // no incluir URLs
+    );
+
+    // acceder al gráfico de pastel y personalizar la leyenda
+    PiePlot plot = (PiePlot) grafico_pastel.getPlot();
+
+    // crear una función para generar la leyenda personalizada con el número
+    plot.setLegendLabelGenerator(new StandardPieSectionLabelGenerator("{0} = {1}"));
+
+    // crear el panel con el gráfico de pastel
+    ChartPanel panel = new ChartPanel(grafico_pastel);
+    panel.setMouseWheelEnabled(true);
+    panel.setPreferredSize(new Dimension(400, 350));
+
+    // configurar el panel dentro del contenedor
+    GraficoInformePastelEstudiante.setLayout(new BorderLayout());
+    GraficoInformePastelEstudiante.add(panel, BorderLayout.NORTH);
+
+    pack();
+    repaint();
+        
         
         
 
-        GraficoInformePastelEstudiante.setLayout(new BorderLayout());
-        GraficoInformePastelEstudiante.add(panel,BorderLayout.NORTH);
-        
-        pack();
-        repaint();
-        
-        
-        
-        
-        EstadisticaBotellones estadisticaBotellones = new EstadisticaBotellones(0,0,0);
-        estadisticaBotellones.ConsultarEstadoEstudiante();
-        
-        DefaultPieDataset botellones = new DefaultPieDataset();
-        botellones.setValue("llenos", estadisticaBotellones.n1);
-        botellones.setValue("Vacios", estadisticaBotellones.n2);
-        botellones.setValue("En uso", estadisticaBotellones.n3);
-        
-        JFreeChart grafico_pastel_botellones = ChartFactory.createPieChart(
-            "Informer de botellones", // Título del gráfico
-            botellones,                // Dataset
-            true,                   // Incluir leyenda
-            true, 
-            false
-        );
-        
-        ChartPanel panel_Estudiante = new ChartPanel(grafico_pastel_botellones);
-        panel_Estudiante.setMouseWheelEnabled(true);
-        panel_Estudiante.setPreferredSize(new Dimension(400, 350));
-        
-        GraficoInformePastelBotellones.setLayout(new BorderLayout());
-        GraficoInformePastelBotellones.add(panel_Estudiante,BorderLayout.NORTH);
-        
-        pack();
-        repaint();
+    EstadisticaBotellones estadisticaBotellones = new EstadisticaBotellones(0, 0, 0);
+    estadisticaBotellones.ConsultarEstadoEstudiante();
+
+    DefaultPieDataset botellones = new DefaultPieDataset();
+    botellones.setValue("Llenos", estadisticaBotellones.n1);
+    botellones.setValue("Vacios", estadisticaBotellones.n2);
+    botellones.setValue("En uso", estadisticaBotellones.n3);
+
+    JFreeChart grafico_pastel_botellones = ChartFactory.createPieChart(
+        "Informe de Botellones",
+        botellones,              
+        true,                    
+        false,                    
+        false                    
+    );
+
+    PiePlot plotE = (PiePlot) grafico_pastel_botellones.getPlot();
+    plotE.setLegendLabelGenerator(new StandardPieSectionLabelGenerator("{0} = {1}"));
+
+    ChartPanel panel_Estudiante = new ChartPanel(grafico_pastel_botellones);
+    panel_Estudiante.setMouseWheelEnabled(true);
+    panel_Estudiante.setPreferredSize(new Dimension(400, 350));
+
+    GraficoInformePastelBotellones.setLayout(new BorderLayout());
+    GraficoInformePastelBotellones.add(panel_Estudiante, BorderLayout.NORTH);
+
+    pack();
+    repaint();
         
     }//GEN-LAST:event_GenerarTablabtnActionPerformed
 
     private void GenerarTablabtnKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_GenerarTablabtnKeyPressed
-        // TODO add your handling code here:
     }//GEN-LAST:event_GenerarTablabtnKeyPressed
 
     private void GenerarTablabtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_GenerarTablabtnMouseEntered
@@ -617,7 +637,7 @@ public class InformeDeActividad extends javax.swing.JFrame {
     private void EditarEstudiantebtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditarEstudiantebtnActionPerformed
         EditarEstudiante editarEstudiante = new EditarEstudiante();
         editarEstudiante.setVisible(true);
-        this.dispose(); // Cierra la ventana actual.
+        this.dispose(); 
 
         editarEstudiante.setLocationRelativeTo(null);
     
@@ -635,7 +655,6 @@ public class InformeDeActividad extends javax.swing.JFrame {
     }//GEN-LAST:event_IngresarBotellonesbtnActionPerformed
 
     private void IngresarBotellonesbtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_IngresarBotellonesbtnMouseEntered
-        //EditarEstudiantebtn.setBackground(new Color(0,55,133));
     }//GEN-LAST:event_IngresarBotellonesbtnMouseEntered
 
     private void VerEstudianteBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_VerEstudianteBtnMouseEntered

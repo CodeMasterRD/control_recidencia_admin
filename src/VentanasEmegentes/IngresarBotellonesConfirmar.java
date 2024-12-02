@@ -5,7 +5,7 @@
 package VentanasEmegentes;
 
 import javax.swing.JTextField;
-import DAO.BotellonesDAO.BotellonesDAO;
+import DAO.BotellonesDAO;
 import java.io.FileNotFoundException;
 import java.util.logging.Level;
 import java.util.logging.Logger;

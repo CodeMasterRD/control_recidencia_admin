@@ -16,6 +16,7 @@ import Controlador.EstudianteControlador;
 import Controlador.EntradaSalidaControlador;
 import Controlador.BotellonesControlador;
 import Controlador.CocinaControlador;
+import DAO.EstudiantesDAO;
 
 
 
@@ -32,6 +33,7 @@ public class RetirarEstudiante extends javax.swing.JFrame {
     EntradaSalidaControlador entradaSalidaControlador = new EntradaSalidaControlador();
     BotellonesControlador botellonesControlador = new BotellonesControlador();
     CocinaControlador cocinaControlador = new CocinaControlador();
+    EstudiantesDAO estudiantesDAO = new EstudiantesDAO();
 
 
 
@@ -65,6 +67,7 @@ public class RetirarEstudiante extends javax.swing.JFrame {
         HistorialBotellonesbtn = new javax.swing.JButton();
         RetirarEstudiantesbtn = new javax.swing.JButton();
         EditarEstudiantebtn = new javax.swing.JButton();
+        jSeparator3 = new javax.swing.JSeparator();
         Retirarbtn = new javax.swing.JButton();
         BuscarMatriculaRetirar = new javax.swing.JTextField();
         jSeparator2 = new javax.swing.JSeparator();
@@ -118,6 +121,14 @@ public class RetirarEstudiante extends javax.swing.JFrame {
         RegistrarEstudianteBtn.setForeground(new java.awt.Color(255, 255, 255));
         RegistrarEstudianteBtn.setText("Registrar Estudiante");
         RegistrarEstudianteBtn.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(20, 101, 187)));
+        RegistrarEstudianteBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                RegistrarEstudianteBtnMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                RegistrarEstudianteBtnMouseExited(evt);
+            }
+        });
         RegistrarEstudianteBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 RegistrarEstudianteBtnActionPerformed(evt);
@@ -133,6 +144,14 @@ public class RetirarEstudiante extends javax.swing.JFrame {
         VerEstudianteBtn.setForeground(new java.awt.Color(255, 255, 255));
         VerEstudianteBtn.setText("Ver Estudiante");
         VerEstudianteBtn.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(20, 101, 187)));
+        VerEstudianteBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                VerEstudianteBtnMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                VerEstudianteBtnMouseExited(evt);
+            }
+        });
         VerEstudianteBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 VerEstudianteBtnActionPerformed(evt);
@@ -144,6 +163,14 @@ public class RetirarEstudiante extends javax.swing.JFrame {
         HistorialCocinaBnt.setForeground(new java.awt.Color(255, 255, 255));
         HistorialCocinaBnt.setText("Historial Cocina");
         HistorialCocinaBnt.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(20, 101, 187)));
+        HistorialCocinaBnt.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                HistorialCocinaBntMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                HistorialCocinaBntMouseExited(evt);
+            }
+        });
         HistorialCocinaBnt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 HistorialCocinaBntActionPerformed(evt);
@@ -155,6 +182,14 @@ public class RetirarEstudiante extends javax.swing.JFrame {
         HistorialEntradaSalida.setForeground(new java.awt.Color(255, 255, 255));
         HistorialEntradaSalida.setText("Historial Entrada/salida");
         HistorialEntradaSalida.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(20, 101, 187)));
+        HistorialEntradaSalida.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                HistorialEntradaSalidaMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                HistorialEntradaSalidaMouseExited(evt);
+            }
+        });
         HistorialEntradaSalida.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 HistorialEntradaSalidaActionPerformed(evt);
@@ -166,6 +201,14 @@ public class RetirarEstudiante extends javax.swing.JFrame {
         InformeDeActividadBtn.setForeground(new java.awt.Color(255, 255, 255));
         InformeDeActividadBtn.setText("Informe De Actividad");
         InformeDeActividadBtn.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(20, 101, 187)));
+        InformeDeActividadBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                InformeDeActividadBtnMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                InformeDeActividadBtnMouseExited(evt);
+            }
+        });
         InformeDeActividadBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 InformeDeActividadBtnActionPerformed(evt);
@@ -177,6 +220,14 @@ public class RetirarEstudiante extends javax.swing.JFrame {
         NotificacionesBotellonesbtn.setForeground(new java.awt.Color(255, 255, 255));
         NotificacionesBotellonesbtn.setText("Notificaciones Botellones");
         NotificacionesBotellonesbtn.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(20, 101, 187)));
+        NotificacionesBotellonesbtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                NotificacionesBotellonesbtnMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                NotificacionesBotellonesbtnMouseExited(evt);
+            }
+        });
         NotificacionesBotellonesbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 NotificacionesBotellonesbtnActionPerformed(evt);
@@ -188,6 +239,14 @@ public class RetirarEstudiante extends javax.swing.JFrame {
         HistorialBotellonesbtn.setForeground(new java.awt.Color(255, 255, 255));
         HistorialBotellonesbtn.setText("Historial Botellones");
         HistorialBotellonesbtn.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(20, 101, 187)));
+        HistorialBotellonesbtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                HistorialBotellonesbtnMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                HistorialBotellonesbtnMouseExited(evt);
+            }
+        });
         HistorialBotellonesbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 HistorialBotellonesbtnActionPerformed(evt);
@@ -199,6 +258,14 @@ public class RetirarEstudiante extends javax.swing.JFrame {
         RetirarEstudiantesbtn.setForeground(new java.awt.Color(255, 255, 255));
         RetirarEstudiantesbtn.setText("Retirar Estudiantes");
         RetirarEstudiantesbtn.setBorder(null);
+        RetirarEstudiantesbtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                RetirarEstudiantesbtnMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                RetirarEstudiantesbtnMouseExited(evt);
+            }
+        });
         RetirarEstudiantesbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 RetirarEstudiantesbtnActionPerformed(evt);
@@ -224,6 +291,9 @@ public class RetirarEstudiante extends javax.swing.JFrame {
             }
         });
 
+        jSeparator3.setBackground(new java.awt.Color(255, 255, 255));
+        jSeparator3.setForeground(new java.awt.Color(255, 255, 255));
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -241,31 +311,41 @@ public class RetirarEstudiante extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(72, 72, 72))
+            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel2Layout.createSequentialGroup()
+                    .addGap(73, 73, 73)
+                    .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(74, Short.MAX_VALUE)))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
-                .addComponent(VerEstudianteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(VerEstudianteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(RegistrarEstudianteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(RegistrarEstudianteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(HistorialCocinaBnt, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(HistorialCocinaBnt, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(HistorialEntradaSalida, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(HistorialEntradaSalida, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(InformeDeActividadBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(InformeDeActividadBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(HistorialBotellonesbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(HistorialBotellonesbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(NotificacionesBotellonesbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(NotificacionesBotellonesbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(EditarEstudiantebtn, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(RetirarEstudiantesbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(RetirarEstudiantesbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(47, 47, 47))
+            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel2Layout.createSequentialGroup()
+                    .addGap(59, 59, 59)
+                    .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(577, Short.MAX_VALUE)))
         );
 
         Retirarbtn.setBackground(new java.awt.Color(30, 30, 30));
@@ -455,17 +535,17 @@ public class RetirarEstudiante extends javax.swing.JFrame {
     private void BuscarMatriculaRetirarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BuscarMatriculaRetirarKeyReleased
 
     String matricula = BuscarMatriculaRetirar.getText().trim();  // Obtener la matrícula
-    // Cancelar cualquier temporizador anterior
+    // cancelar cualquier temporizador anterior
     if (timer != null) {
         timer.stop();
     }
-    // Si la búsqueda es significativa (no vacía)
+    // si la búsqueda es significativa (no vacía)
     if (!matricula.isEmpty()) {
-        // Crear un nuevo temporizador que espera 500 ms antes de ejecutar la búsqueda
+        // crear un nuevo temporizador que espera 400 ms antes de ejecutar la búsqueda
         timer = new Timer(400, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Solo ejecutamos la búsqueda si la consulta es diferente de la última
+                // solo ejecutamos la búsqueda si la consulta es diferente de la última
                 if (!matricula.equals(lastQuery)) {
                     DefaultTableModel modelo = (DefaultTableModel) TablaEstudiantesRetirar.getModel();
                     try {
@@ -480,7 +560,7 @@ public class RetirarEstudiante extends javax.swing.JFrame {
         timer.setRepeats(false);
         timer.start();
     } else {
-        // Si el campo está vacío, mostrar todos los estudiantes
+        // si el campo está vacío, mostrar todos los estudiantes
         DefaultTableModel modelo = (DefaultTableModel) TablaEstudiantesRetirar.getModel();
         try {
             estudianteControlador.BuscarEstudiante(modelo, matricula); // Método para mostrar todos los datos
@@ -516,7 +596,7 @@ public class RetirarEstudiante extends javax.swing.JFrame {
         try {
             int matricula = Integer.parseInt(matriculaStr);
 
-            modelo.RetirarMatricula(matricula);
+            estudiantesDAO.RetirarMatricula(matricula);
 
         } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(null, "Por favor, ingrese una matrícula válida.", "Error", JOptionPane.ERROR_MESSAGE);
@@ -547,6 +627,72 @@ public class RetirarEstudiante extends javax.swing.JFrame {
         estudianteControlador.MostrarEstudianteEditar(modelo);
     }//GEN-LAST:event_EditarEstudiantebtnActionPerformed
 
+    private void RetirarEstudiantesbtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RetirarEstudiantesbtnMouseEntered
+        RetirarEstudiantesbtn.setBackground(new Color(0,55,133));
+
+    }//GEN-LAST:event_RetirarEstudiantesbtnMouseEntered
+
+    private void VerEstudianteBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_VerEstudianteBtnMouseEntered
+        VerEstudianteBtn.setBackground(new Color(0,55,133));
+
+    }//GEN-LAST:event_VerEstudianteBtnMouseEntered
+
+    private void VerEstudianteBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_VerEstudianteBtnMouseExited
+        VerEstudianteBtn.setBackground(new Color(20,101,187));
+    }//GEN-LAST:event_VerEstudianteBtnMouseExited
+
+    private void RegistrarEstudianteBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RegistrarEstudianteBtnMouseEntered
+        RegistrarEstudianteBtn.setBackground(new Color(0,55,133));
+    }//GEN-LAST:event_RegistrarEstudianteBtnMouseEntered
+
+    private void RegistrarEstudianteBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RegistrarEstudianteBtnMouseExited
+        RegistrarEstudianteBtn.setBackground(new Color(20,101,187));
+    }//GEN-LAST:event_RegistrarEstudianteBtnMouseExited
+
+    private void HistorialCocinaBntMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_HistorialCocinaBntMouseEntered
+        HistorialCocinaBnt.setBackground(new Color(0,55,133));
+    }//GEN-LAST:event_HistorialCocinaBntMouseEntered
+
+    private void HistorialCocinaBntMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_HistorialCocinaBntMouseExited
+        HistorialCocinaBnt.setBackground(new Color(20,101,187));
+    }//GEN-LAST:event_HistorialCocinaBntMouseExited
+
+    private void HistorialEntradaSalidaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_HistorialEntradaSalidaMouseEntered
+        HistorialEntradaSalida.setBackground(new Color(0,55,133));
+    }//GEN-LAST:event_HistorialEntradaSalidaMouseEntered
+
+    private void HistorialEntradaSalidaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_HistorialEntradaSalidaMouseExited
+        HistorialEntradaSalida.setBackground(new Color(20,101,187));
+    }//GEN-LAST:event_HistorialEntradaSalidaMouseExited
+
+    private void InformeDeActividadBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_InformeDeActividadBtnMouseEntered
+        InformeDeActividadBtn.setBackground(new Color(0,55,133));
+    }//GEN-LAST:event_InformeDeActividadBtnMouseEntered
+
+    private void InformeDeActividadBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_InformeDeActividadBtnMouseExited
+        InformeDeActividadBtn.setBackground(new Color(20,101,187));
+    }//GEN-LAST:event_InformeDeActividadBtnMouseExited
+
+    private void HistorialBotellonesbtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_HistorialBotellonesbtnMouseEntered
+        HistorialBotellonesbtn.setBackground(new Color(0,55,133));
+    }//GEN-LAST:event_HistorialBotellonesbtnMouseEntered
+
+    private void HistorialBotellonesbtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_HistorialBotellonesbtnMouseExited
+        HistorialBotellonesbtn.setBackground(new Color(20,101,187));
+    }//GEN-LAST:event_HistorialBotellonesbtnMouseExited
+
+    private void NotificacionesBotellonesbtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_NotificacionesBotellonesbtnMouseEntered
+        NotificacionesBotellonesbtn.setBackground(new Color(0,55,133));
+    }//GEN-LAST:event_NotificacionesBotellonesbtnMouseEntered
+
+    private void NotificacionesBotellonesbtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_NotificacionesBotellonesbtnMouseExited
+        NotificacionesBotellonesbtn.setBackground(new Color(20,101,187));
+    }//GEN-LAST:event_NotificacionesBotellonesbtnMouseExited
+
+    private void RetirarEstudiantesbtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RetirarEstudiantesbtnMouseExited
+        RetirarEstudiantesbtn.setBackground(new Color(51,153,255));
+    }//GEN-LAST:event_RetirarEstudiantesbtnMouseExited
+
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -569,5 +715,6 @@ public class RetirarEstudiante extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSeparator jSeparator3;
     // End of variables declaration//GEN-END:variables
 }

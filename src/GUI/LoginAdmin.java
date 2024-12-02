@@ -147,13 +147,13 @@ public class LoginAdmin extends javax.swing.JFrame {
         String usuario = UsuarioSesion.getText();
         String contraseña = ContraseñaSesion.getText();
         
-        LoginRegistrar logincontroller = new LoginRegistrar(this); 
-        
-        VerEstudiantes verEstudiantes = new VerEstudiantes();
-        verEstudiantes.setVisible(true);
-        verEstudiantes.setLocationRelativeTo(null);
+         LoginRegistrar logincontroller = new LoginRegistrar(this); 
+//        
+//        VerEstudiantes verEstudiantes = new VerEstudiantes();
+//        verEstudiantes.setVisible(true);
+//        verEstudiantes.setLocationRelativeTo(null);
 
-        //logincontroller.IniciarSesion(usuario, contraseña);
+        logincontroller.IniciarSesion(usuario, contraseña);
        
     }//GEN-LAST:event_EntrarbtnActionPerformed
 

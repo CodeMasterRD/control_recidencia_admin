@@ -515,9 +515,6 @@ public class RegistrarEstudiante extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(330, 330, 330)
-                        .addComponent(jLabel3))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(80, 80, 80)
                         .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(80, 80, 80)
@@ -525,10 +522,6 @@ public class RegistrarEstudiante extends javax.swing.JFrame {
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(380, 380, 380)
                         .addComponent(GuardarEstudiante, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(291, 291, 291))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(80, 80, 80)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -561,15 +554,21 @@ public class RegistrarEstudiante extends javax.swing.JFrame {
                             .addGroup(jPanel4Layout.createSequentialGroup()
                                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(80, 80, 80)
-                                .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addGap(47, 47, 47))
+                                .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(294, 294, 294)
+                        .addComponent(jLabel3)))
+                .addGap(84, 84, 84))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(374, 374, 374))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(30, 30, 30)
+                .addGap(32, 32, 32)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
+                .addGap(27, 27, 27)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
@@ -608,7 +607,7 @@ public class RegistrarEstudiante extends javax.swing.JFrame {
                 .addComponent(GuardarEstudiante, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addContainerGap(65, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -626,7 +625,7 @@ public class RegistrarEstudiante extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(0, 0, 0)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 619, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 656, Short.MAX_VALUE)
                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
@@ -701,13 +700,13 @@ public class RegistrarEstudiante extends javax.swing.JFrame {
 
     private void RetirarEstudiantesbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RetirarEstudiantesbtnActionPerformed
         RetirarEstudiante retirar = new RetirarEstudiante();
+        
         retirar.setVisible(true);
         this.dispose();
         retirar.setLocationRelativeTo(null);
 
-        DefaultTableModel modelo = (DefaultTableModel) retirar.TablaEstudiantesRetirar.getModel(); 
-        estudianteControlador.VerTodosEstudiantes(modelo);
-        // TODO add your handling code here:
+        DefaultTableModel modelo = (DefaultTableModel) retirar.TablaEstudiantesRetirar.getModel();
+        estudianteControlador.MostrarEstudiante(modelo);
     }//GEN-LAST:event_RetirarEstudiantesbtnActionPerformed
 
     private void RegistrarEstudianteBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RegistrarEstudianteBtnMouseExited
@@ -733,15 +732,15 @@ public class RegistrarEstudiante extends javax.swing.JFrame {
 
     System.out.println(" " + matricula + " " + nombres + " " + apellidos + " " + numero + " " + modulo + " " + habitacion);
 
-    // Verificar si hay datos faltantes antes de intentar guardar
+    // verificar si hay datos faltantes antes de intentar guardar
     if (matricula.equals("") || nombres.equals("") || apellidos.equals("") || numero.equals("") || 
         habitacion.equals("") || modulo.equals("Seleccionar") || habitacion.equals("Seleccionar")) {
         JOptionPane.showMessageDialog(this, "Faltan datos. Por favor, complete todos los campos.");
-        return; // Salir del método si faltan datos
+        return; // alir del método si faltan datos
     }
 
-    // Llamar al método GuardarEstudiante y verificar si se guardó correctamente
-    boolean guardadoExitosamente = false; // Bandera para indicar si se guardaron los datos correctamente
+    // llamar al método GuardarEstudiante y verificar si se guardó correctamente
+    boolean guardadoExitosamente = false;
     try {
         guardadoExitosamente = estudianteControlador.GuardarEstudiante(matricula, nombres, apellidos, numero, modulo, habitacion); 
     } catch (NumberFormatException ex) {
@@ -815,12 +814,10 @@ public class RegistrarEstudiante extends javax.swing.JFrame {
     private void EditarEstudiantebtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditarEstudiantebtnActionPerformed
         EditarEstudiante editarEstudiante = new EditarEstudiante();
         editarEstudiante.setVisible(true);
-        this.dispose(); // Cierra la ventana actual.
+        this.dispose();
 
-    // Centrar la nueva ventana en la pantalla.
         editarEstudiante.setLocationRelativeTo(null);
     
-    // Obtiene el modelo de la tabla en la nueva ventana.
         DefaultTableModel modelo = (DefaultTableModel) editarEstudiante.TablaEstudiantesEditar.getModel();
         estudianteControlador.MostrarEstudiante(modelo);
     }//GEN-LAST:event_EditarEstudiantebtnActionPerformed

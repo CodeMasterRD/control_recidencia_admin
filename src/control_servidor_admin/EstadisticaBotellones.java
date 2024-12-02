@@ -21,13 +21,8 @@ public class EstadisticaBotellones {
     Statement st;
     ResultSet rs;
 
-    
-    /**
-     * Creates new form InformeDeActividad
-     */
-    
+   
       public void ConsultarEstadoEstudiante() {
-        //SQL para contar estudiantes en cada estado
         String sql = "SELECT Estado, SUM(Cantidad) AS Cantidad_Total FROM InventarioBotellones GROUP BY Estado";
 
         try {
@@ -39,7 +34,6 @@ public class EstadisticaBotellones {
             n2 = 0;
             n3 = 0;
 
-            // procesando datos de la consulta
             while (rs.next()) {
                 String estado = rs.getString("Estado");
                 int cantidad = rs.getInt("Cantidad_Total");

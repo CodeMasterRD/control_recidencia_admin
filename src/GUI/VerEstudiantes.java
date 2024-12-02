@@ -34,8 +34,8 @@ public class VerEstudiantes extends javax.swing.JFrame {
 
 
     public VerEstudiantes() {
-        initComponents(); // Inicializa los componentes gráficos
-        setLocationRelativeTo(null); // Centra la ventana en la pantalla
+        initComponents(); 
+        setLocationRelativeTo(null); 
     }
     
     ConsultasSQL modelo = new ConsultasSQL();
@@ -406,7 +406,7 @@ public class VerEstudiantes extends javax.swing.JFrame {
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 471, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(78, Short.MAX_VALUE))
             .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
@@ -537,7 +537,6 @@ public class VerEstudiantes extends javax.swing.JFrame {
         timer.setRepeats(false);
         timer.start();
     } else {
-        // Si el campo está vacío, mostrar todos los estudiantes
         DefaultTableModel modelo = (DefaultTableModel) TablaEstudiantes.getModel();
         try {
             estudianteControlador.BuscarEstudiante(modelo, matricula); 

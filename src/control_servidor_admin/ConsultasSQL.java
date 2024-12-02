@@ -8,19 +8,16 @@ import java.io.FileNotFoundException;
 import javax.swing.JOptionPane;
 import GUI.RetirarEstudiante;
 import com.mysql.cj.jdbc.CallableStatement;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Arrays;
 import javax.swing.table.DefaultTableModel;
 import Controlador.EstudianteControlador;
 
 public class ConsultasSQL {
     
-    private static DBConexion con1 = new DBConexion();  // Hacer con1 estática
+    private static DBConexion con1 = new DBConexion();
     private static Connection conet;
     DefaultTableModel modelo;
     private static Statement st;
@@ -28,86 +25,14 @@ public class ConsultasSQL {
     int idc;
     private static VerEstudiantes vista;
     private RetirarEstudiante vista1;
-    EstudianteControlador estudianteControlador = new EstudianteControlador();
-
     
-    
-      
-    public void RetirarMatricula(int matricula) throws FileNotFoundException {
-        String sql = "CALL EliminarEstudiante(?);";
-
-        try (Connection conet = con1.getConexion();
-             PreparedStatement ps = conet.prepareStatement(sql)) {
-
-            // Establecer el parámetro del procedimiento
-            ps.setInt(1, matricula);
-
-            // Ejecutar el procedimiento almacenado
-            ps.executeUpdate();
-
-            // Mostrar un mensaje de éxito
-            JOptionPane.showMessageDialog(null, "Estudiante retirado exitosamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
-            
-            RetirarEstudiante retirarEstudiante = new RetirarEstudiante();
-            retirarEstudiante.BuscarMatriculaRetirar.setText("");
-            
-            System.out.println(retirarEstudiante.BuscarMatriculaRetirar.getText());
-            
-            ConsultasSQL logica = new ConsultasSQL();
-            DefaultTableModel modelo = (DefaultTableModel) retirarEstudiante.TablaEstudiantesRetirar.getModel();
-            estudianteControlador.MostrarEstudiante(modelo);
-            
-        } catch (SQLException e) {
-            System.err.println("Error al ejecutar el procedimiento: " + e.getMessage());
-            JOptionPane.showMessageDialog(null, "Error al retirar el estudiante.", "Error", JOptionPane.ERROR_MESSAGE);
-        }
-}
          
     
-public void ejecutarInsertarAsignacionBotellon(String matricula) {
-    String procedimiento = "{CALL InsertarAsignacionBotellon(?)}"; // Procedimiento almacenado
-
-    // Confirmación antes de ejecutar la operación
-    int respuesta = JOptionPane.showConfirmDialog(null, 
-        "¿Estás seguro de que deseas asignar el botellón para la matrícula: " + matricula + "?", 
-        "Confirmar operación", 
-        JOptionPane.YES_NO_OPTION, 
-        JOptionPane.QUESTION_MESSAGE);
-
-    if (respuesta == JOptionPane.YES_OPTION) {
-        try {
-            Connection conexion = DBConexion.getConexion();
-
-            if (conexion != null) {
-                try (CallableStatement stmt = (CallableStatement) conexion.prepareCall(procedimiento)) {
-                    stmt.setString(1, matricula);
-
-                    stmt.execute();
-
-                    // Mensaje de éxito
-                    JOptionPane.showMessageDialog(null, "Procedimiento ejecutado con éxito para matrícula: " + matricula);
-                } catch (SQLException ex) {
-                    // Mensaje de error si falla el procedimiento
-                    JOptionPane.showMessageDialog(null, "Error al ejecutar el procedimiento almacenado: " + ex.getMessage());
-                }
-            } else {
-                // Mensaje si no se pudo obtener la conexión
-                JOptionPane.showMessageDialog(null, "Error: No se pudo obtener la conexión a la base de datos.");
-            }
-        } catch (SQLException | FileNotFoundException ex) {
-            // Mensaje en caso de error al obtener la conexión
-            JOptionPane.showMessageDialog(null, "Error al obtener la conexión: " + ex.getMessage());
-        }
-    } else {
-        // Mensaje si el usuario cancela la operación
-        JOptionPane.showMessageDialog(null, "Operación cancelada.");
-    }
-}
 
 public void ejecutarDepositarBotellon(String matricula) {
     String procedimiento = "{call confirmacionDepositoBotellon(?)};"; 
 
-    // Confirmación antes de ejecutar la operación
+    // confirmación antes de ejecutar la operación
     int respuesta = JOptionPane.showConfirmDialog(null, 
         "¿Estás seguro de que deseas registrar el depósito del botellón para la matrícula: " + matricula + "?", 
         "Confirmar operación", 
@@ -167,7 +92,7 @@ public void actualizarEstudiante(
         cs.setString(6, modulo);
         cs.setString(7, habitacion);
 
-        // Ejecutar el procedimiento almacenado.
+        // ejecutar el procedimiento almacenado.
         cs.execute();
         System.out.println("Estudiante actualizado exitosamente.");
         JOptionPane.showMessageDialog(null, "Estudiante actualizado exitosamente.");
