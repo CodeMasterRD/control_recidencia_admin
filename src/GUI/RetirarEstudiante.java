@@ -1,10 +1,10 @@
 
 package GUI;
 
-import control_servidor_admin.Modelo;
+import control_servidor_admin.ConsultasSQL;
 import java.awt.Color;
 import javax.swing.table.DefaultTableModel;
-import control_servidor_admin.Modelo;
+import control_servidor_admin.ConsultasSQL;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
@@ -18,8 +18,8 @@ import javax.swing.Timer;
 public class RetirarEstudiante extends javax.swing.JFrame {
 
     
-    Modelo logica = new Modelo();
-    Modelo modelo = new Modelo();
+    ConsultasSQL logica = new ConsultasSQL();
+    ConsultasSQL modelo = new ConsultasSQL();
     
     VerEstudiantes verEstudiantes = new VerEstudiantes();
     private Timer timer;
@@ -49,6 +49,7 @@ public class RetirarEstudiante extends javax.swing.JFrame {
         NotificacionesBotellonesbtn = new javax.swing.JButton();
         HistorialBotellonesbtn = new javax.swing.JButton();
         RetirarEstudiantesbtn = new javax.swing.JButton();
+        EditarEstudiantebtn = new javax.swing.JButton();
         Retirarbtn = new javax.swing.JButton();
         BuscarMatriculaRetirar = new javax.swing.JTextField();
         jSeparator2 = new javax.swing.JSeparator();
@@ -173,6 +174,25 @@ public class RetirarEstudiante extends javax.swing.JFrame {
             }
         });
 
+        EditarEstudiantebtn.setBackground(new java.awt.Color(20, 101, 187));
+        EditarEstudiantebtn.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        EditarEstudiantebtn.setForeground(new java.awt.Color(255, 255, 255));
+        EditarEstudiantebtn.setText("Editar Estudiante");
+        EditarEstudiantebtn.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(20, 101, 187)));
+        EditarEstudiantebtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                EditarEstudiantebtnMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                EditarEstudiantebtnMouseExited(evt);
+            }
+        });
+        EditarEstudiantebtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EditarEstudiantebtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -183,19 +203,20 @@ public class RetirarEstudiante extends javax.swing.JFrame {
             .addComponent(HistorialEntradaSalida, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(InformeDeActividadBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(HistorialBotellonesbtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(NotificacionesBotellonesbtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(NotificacionesBotellonesbtn, javax.swing.GroupLayout.DEFAULT_SIZE, 344, Short.MAX_VALUE)
             .addComponent(RetirarEstudiantesbtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(EditarEstudiantebtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(78, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(57, 57, 57))
+                .addGap(72, 72, 72))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(26, 26, 26)
+                .addGap(24, 24, 24)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
+                .addGap(27, 27, 27)
                 .addComponent(VerEstudianteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(RegistrarEstudianteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -210,8 +231,10 @@ public class RetirarEstudiante extends javax.swing.JFrame {
                 .addGap(0, 0, 0)
                 .addComponent(NotificacionesBotellonesbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
+                .addComponent(EditarEstudiantebtn, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
                 .addComponent(RetirarEstudiantesbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(58, 58, 58))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         Retirarbtn.setBackground(new java.awt.Color(30, 30, 30));
@@ -258,7 +281,7 @@ public class RetirarEstudiante extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -282,13 +305,13 @@ public class RetirarEstudiante extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(43, Short.MAX_VALUE)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(BuscarMatriculaRetirar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(58, 58, 58)
+                .addGap(59, 59, 59)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(50, 50, 50)
                 .addComponent(Retirarbtn)
@@ -417,7 +440,7 @@ public class RetirarEstudiante extends javax.swing.JFrame {
                 if (!matricula.equals(lastQuery)) {
                     DefaultTableModel modelo = (DefaultTableModel) TablaEstudiantesRetirar.getModel();
                     try {
-                        Modelo.BuscarEstudiante(modelo, matricula); 
+                        ConsultasSQL.BuscarEstudiante(modelo, matricula); 
                         lastQuery = matricula;
                     } catch (FileNotFoundException ex) {
                         Logger.getLogger(VerEstudiantes.class.getName()).log(Level.SEVERE, null, ex);
@@ -431,7 +454,7 @@ public class RetirarEstudiante extends javax.swing.JFrame {
         // Si el campo está vacío, mostrar todos los estudiantes
         DefaultTableModel modelo = (DefaultTableModel) TablaEstudiantesRetirar.getModel();
         try {
-            Modelo.BuscarEstudiante(modelo, matricula); // Método para mostrar todos los datos
+            ConsultasSQL.BuscarEstudiante(modelo, matricula); // Método para mostrar todos los datos
         } catch (FileNotFoundException ex) {
             Logger.getLogger(VerEstudiantes.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -476,10 +499,30 @@ public class RetirarEstudiante extends javax.swing.JFrame {
     }
     }//GEN-LAST:event_RetirarbtnActionPerformed
 
+    private void EditarEstudiantebtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EditarEstudiantebtnMouseEntered
+        EditarEstudiantebtn.setBackground(new Color(0,55,133));
+    }//GEN-LAST:event_EditarEstudiantebtnMouseEntered
+
+    private void EditarEstudiantebtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EditarEstudiantebtnMouseExited
+        EditarEstudiantebtn.setBackground(new Color(20,101,187));
+    }//GEN-LAST:event_EditarEstudiantebtnMouseExited
+
+    private void EditarEstudiantebtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditarEstudiantebtnActionPerformed
+        EditarEstudiante editarEstudiante = new EditarEstudiante();
+        editarEstudiante.setVisible(true);
+        this.dispose();
+
+        editarEstudiante.setLocationRelativeTo(null);
+
+        DefaultTableModel modelo = (DefaultTableModel) editarEstudiante.TablaEstudiantesEditar.getModel();
+        logica.MostrarEstudianteEditar(modelo);
+    }//GEN-LAST:event_EditarEstudiantebtnActionPerformed
+
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JTextField BuscarMatriculaRetirar;
+    private javax.swing.JButton EditarEstudiantebtn;
     private javax.swing.JButton HistorialBotellonesbtn;
     private javax.swing.JButton HistorialCocinaBnt;
     private javax.swing.JButton HistorialEntradaSalida;

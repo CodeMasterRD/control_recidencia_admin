@@ -4,28 +4,18 @@
  */
 package GUI;
 import control_servidor_admin.LoginRegistrar;
-
 import javax.swing.table.DefaultTableModel;
-import control_servidor_admin.Modelo;
-
-
-
+import control_servidor_admin.ConsultasSQL;
 
 public class LoginAdmin extends javax.swing.JFrame {
 
-    /**
-     * Creates new form LoginAdmin
-     */
     public LoginAdmin() {
         initComponents();
     }
-    
-   
 
     VerEstudiantes verEstudiantes = new VerEstudiantes(); 
-    Modelo logica = new Modelo();
+    ConsultasSQL logica = new ConsultasSQL();
 
-    
     public javax.swing.JTextField getUsuarioSesion() {
         return UsuarioSesion;
     }
@@ -157,21 +147,14 @@ public class LoginAdmin extends javax.swing.JFrame {
         String usuario = UsuarioSesion.getText();
         String contraseña = ContraseñaSesion.getText();
         
-
         LoginRegistrar logincontroller = new LoginRegistrar(this); 
         
         VerEstudiantes verEstudiantes = new VerEstudiantes();
         verEstudiantes.setVisible(true);
-        this.dispose();
         verEstudiantes.setLocationRelativeTo(null);
-        //***************************************************************************
+
         //logincontroller.IniciarSesion(usuario, contraseña);
-
-
-        DefaultTableModel modelo = (DefaultTableModel) verEstudiantes.TablaEstudiantes.getModel();
-        logica.MostrarEstudiante(modelo);
-        
-
+       
     }//GEN-LAST:event_EntrarbtnActionPerformed
 
     private void UsuarioSesionFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_UsuarioSesionFocusGained

@@ -7,7 +7,7 @@ package GUI;
 import GUI.HistorialBotellones;
 import javax.swing.table.DefaultTableModel;
 import java.awt.Color;
-import control_servidor_admin.Modelo;
+import control_servidor_admin.ConsultasSQL;
 import java.io.FileNotFoundException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -17,14 +17,14 @@ import java.awt.event.ActionListener;
 
 public class VerEstudiantes extends javax.swing.JFrame {
     
-    Modelo logica = new Modelo();
+    ConsultasSQL logica = new ConsultasSQL();
 
     public VerEstudiantes() {
         initComponents(); // Inicializa los componentes gráficos
         setLocationRelativeTo(null); // Centra la ventana en la pantalla
     }
     
-    Modelo modelo = new Modelo();
+    ConsultasSQL modelo = new ConsultasSQL();
 
     private Timer timer;
     private String lastQuery = ""; 
@@ -324,22 +324,18 @@ public class VerEstudiantes extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(92, 92, 92)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(62, 62, 62)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(BuscarMatriculaField, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(92, 92, 92)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 731, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(BuscarMatriculaField, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 731, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
                 .addContainerGap(105, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(6, 6, 6)
+                .addContainerGap()
                 .addComponent(jLabel3)
                 .addGap(12, 12, 12)
                 .addComponent(BuscarMatriculaField, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -447,13 +443,11 @@ public class VerEstudiantes extends javax.swing.JFrame {
         System.out.println("Texto ingresado en BuscarMatriculaField: " + texto);
     }//GEN-LAST:event_BuscarMatriculaFieldActionPerformed
 
-      public String getBuscarMatriculaText() {
+    public String getBuscarMatriculaText() {
         return BuscarMatriculaField.getText();
     }
 
-    public void setBuscarMatriculaText(String text) {
-        BuscarMatriculaField.setText(text);
-    }
+   
 
     private void BuscarMatriculaFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BuscarMatriculaFieldKeyReleased
 
@@ -469,7 +463,7 @@ public class VerEstudiantes extends javax.swing.JFrame {
                 if (!matricula.equals(lastQuery)) {
                     DefaultTableModel modelo = (DefaultTableModel) TablaEstudiantes.getModel();
                     try {
-                        Modelo.BuscarEstudiante(modelo, matricula); 
+                        ConsultasSQL.BuscarEstudiante(modelo, matricula); 
                         lastQuery = matricula;
                     } catch (FileNotFoundException ex) {
                         Logger.getLogger(VerEstudiantes.class.getName()).log(Level.SEVERE, null, ex);
@@ -483,7 +477,7 @@ public class VerEstudiantes extends javax.swing.JFrame {
         // Si el campo está vacío, mostrar todos los estudiantes
         DefaultTableModel modelo = (DefaultTableModel) TablaEstudiantes.getModel();
         try {
-            Modelo.BuscarEstudiante(modelo, matricula); 
+            ConsultasSQL.BuscarEstudiante(modelo, matricula); 
         } catch (FileNotFoundException ex) {
             Logger.getLogger(VerEstudiantes.class.getName()).log(Level.SEVERE, null, ex);
         }

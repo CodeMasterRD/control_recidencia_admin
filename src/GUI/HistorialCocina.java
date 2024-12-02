@@ -4,7 +4,7 @@
  */
 package GUI;
 
-import control_servidor_admin.Modelo;
+import control_servidor_admin.ConsultasSQL;
 import java.awt.Color;
 import java.io.FileNotFoundException;
 import java.lang.System.Logger;
@@ -23,7 +23,7 @@ public class HistorialCocina extends javax.swing.JFrame {
     public HistorialCocina() {
         initComponents();
     }
-    Modelo logica = new Modelo();
+    ConsultasSQL logica = new ConsultasSQL();
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -364,16 +364,14 @@ public class HistorialCocina extends javax.swing.JFrame {
     }//GEN-LAST:event_EditarEstudiantebtnMouseExited
 
     private void EditarEstudiantebtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditarEstudiantebtnActionPerformed
-       EditarEstudiante editarEstudiante = new EditarEstudiante();
+        EditarEstudiante editarEstudiante = new EditarEstudiante();
         editarEstudiante.setVisible(true);
-        this.dispose(); // Cierra la ventana actual.
+        this.dispose();
 
-    // Centrar la nueva ventana en la pantalla.
         editarEstudiante.setLocationRelativeTo(null);
     
-    // Obtiene el modelo de la tabla en la nueva ventana.
         DefaultTableModel modelo = (DefaultTableModel) editarEstudiante.TablaEstudiantesEditar.getModel();
-        logica.MostrarEstudiante(modelo);
+        logica.MostrarEstudianteEditar(modelo);
     }//GEN-LAST:event_EditarEstudiantebtnActionPerformed
 
    public DefaultTableModel getModel() {

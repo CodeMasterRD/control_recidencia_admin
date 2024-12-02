@@ -5,7 +5,7 @@
 package GUI;
 
 import javax.swing.table.DefaultTableModel;
-import control_servidor_admin.Modelo;
+import control_servidor_admin.ConsultasSQL;
 import java.awt.Color;
 /**
  *
@@ -19,7 +19,7 @@ public class HistorialBotellones extends javax.swing.JFrame {
     public HistorialBotellones() {
         initComponents();
     }
-    Modelo logica = new Modelo();
+    ConsultasSQL logica = new ConsultasSQL();
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

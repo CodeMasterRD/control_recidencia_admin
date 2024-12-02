@@ -17,7 +17,7 @@ import java.sql.SQLException;
 import java.util.Arrays;
 import javax.swing.table.DefaultTableModel;
 
-public class Modelo {
+public class ConsultasSQL {
     
     private static DBConexion con1 = new DBConexion();  // Hacer con1 estática
     private static Connection conet;
@@ -239,7 +239,7 @@ public class Modelo {
             JOptionPane.showMessageDialog(null, "Error SQL (Código " + errorCode + "): " + ex.getMessage());
         }
     }   catch (FileNotFoundException ex) {
-            Logger.getLogger(Modelo.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ConsultasSQL.class.getName()).log(Level.SEVERE, null, ex);
         }
     return false; 
 }
@@ -295,13 +295,14 @@ public class Modelo {
         
         modelo.setRowCount(0);
         
-        Object[] Botellones = new Object[4];  
+        Object[] Botellones = new Object[5];  
         
         while (rs.next()) {
             Botellones[0] = rs.getInt("Matricula"); 
             Botellones[1] = rs.getString("Nombre Completo");
-            Botellones[2] = rs.getString("Fecha de la solicitud");
-            Botellones[3] = rs.getString("Estado");
+            Botellones[2] = rs.getString("Tipo Notificacion");
+            Botellones[3] = rs.getString("Fecha de la solicitud");
+            Botellones[4] = rs.getString("Estado");
 
             modelo.addRow(Botellones);
         }
@@ -436,7 +437,7 @@ public class Modelo {
         }
     }
      
-     
+    
     public void RetirarMatricula(int matricula) throws FileNotFoundException {
         String sql = "CALL EliminarEstudiante(?);";
 
@@ -457,7 +458,7 @@ public class Modelo {
             
             System.out.println(retirarEstudiante.BuscarMatriculaRetirar.getText());
             
-            Modelo logica = new Modelo();
+            ConsultasSQL logica = new ConsultasSQL();
             DefaultTableModel modelo = (DefaultTableModel) retirarEstudiante.TablaEstudiantesRetirar.getModel();
             logica.MostrarEstudiante(modelo);
             
@@ -468,7 +469,87 @@ public class Modelo {
 }
          
     
-    public void actualizarEstudiante(
+public void ejecutarInsertarAsignacionBotellon(String matricula) {
+    String procedimiento = "{CALL InsertarAsignacionBotellon(?)}"; // Procedimiento almacenado
+
+    // Confirmación antes de ejecutar la operación
+    int respuesta = JOptionPane.showConfirmDialog(null, 
+        "¿Estás seguro de que deseas asignar el botellón para la matrícula: " + matricula + "?", 
+        "Confirmar operación", 
+        JOptionPane.YES_NO_OPTION, 
+        JOptionPane.QUESTION_MESSAGE);
+
+    if (respuesta == JOptionPane.YES_OPTION) {
+        try {
+            Connection conexion = DBConexion.getConexion();
+
+            if (conexion != null) {
+                try (CallableStatement stmt = (CallableStatement) conexion.prepareCall(procedimiento)) {
+                    stmt.setString(1, matricula);
+
+                    stmt.execute();
+
+                    // Mensaje de éxito
+                    JOptionPane.showMessageDialog(null, "Procedimiento ejecutado con éxito para matrícula: " + matricula);
+                } catch (SQLException ex) {
+                    // Mensaje de error si falla el procedimiento
+                    JOptionPane.showMessageDialog(null, "Error al ejecutar el procedimiento almacenado: " + ex.getMessage());
+                }
+            } else {
+                // Mensaje si no se pudo obtener la conexión
+                JOptionPane.showMessageDialog(null, "Error: No se pudo obtener la conexión a la base de datos.");
+            }
+        } catch (SQLException | FileNotFoundException ex) {
+            // Mensaje en caso de error al obtener la conexión
+            JOptionPane.showMessageDialog(null, "Error al obtener la conexión: " + ex.getMessage());
+        }
+    } else {
+        // Mensaje si el usuario cancela la operación
+        JOptionPane.showMessageDialog(null, "Operación cancelada.");
+    }
+}
+
+public void ejecutarDepositarBotellon(String matricula) {
+    String procedimiento = "{call confirmacionDepositoBotellon(?)};"; 
+
+    // Confirmación antes de ejecutar la operación
+    int respuesta = JOptionPane.showConfirmDialog(null, 
+        "¿Estás seguro de que deseas registrar el depósito del botellón para la matrícula: " + matricula + "?", 
+        "Confirmar operación", 
+        JOptionPane.YES_NO_OPTION, 
+        JOptionPane.QUESTION_MESSAGE);
+
+    if (respuesta == JOptionPane.YES_OPTION) {
+        try {
+            Connection conexion = DBConexion.getConexion();
+
+            if (conexion != null) {
+                try (CallableStatement stmt = (CallableStatement) conexion.prepareCall(procedimiento)) {
+                    stmt.setString(1, matricula);
+
+                    stmt.execute();
+
+                    JOptionPane.showMessageDialog(null, "Depósito registrado con éxito para matrícula: " + matricula);
+                } catch (SQLException ex) {
+                    JOptionPane.showMessageDialog(null, "Error al ejecutar el procedimiento almacenado: " + ex.getMessage());
+                }
+            } else {
+                // mensaje si no se pudo obtener la conexión
+                JOptionPane.showMessageDialog(null, "Error: No se pudo obtener la conexión a la base de datos.");
+            }
+        } catch (SQLException | FileNotFoundException ex) {
+            // mensaje en caso de error al obtener la conexión
+            JOptionPane.showMessageDialog(null, "Error al obtener la conexión: " + ex.getMessage());
+        }
+    } else {
+        // mensaje si el usuario cancela la operación
+        JOptionPane.showMessageDialog(null, "Operación cancelada.");
+    }
+}
+
+    
+
+public void actualizarEstudiante(
         int matricula, 
         String nombres, 
         String apellidos, 
@@ -476,27 +557,30 @@ public class Modelo {
         String modulo, 
         String habitacion
     ) throws FileNotFoundException {
-    String sql = "{CALL ActualizarEstudiante(?, ?, ?, ?, ?, ?, ?)}";
+    String sql = "{CALL ActualizarEstudiante2(?, ?, ?, ?, ?, ?, ?)}";
     Connection con = null;
     CallableStatement cs = null;
 
     try {
-        // Establecer conexión con la base de datos.
-        con = con1.getConexion(); // Cambia `con1` por tu método de conexión.
+
+        con = con1.getConexion();
         cs = (CallableStatement) con.prepareCall(sql);
 
-        // Configurar los parámetros del procedimiento almacenado.
         cs.setInt(1, matricula);
-        cs.setInt(2, matricula);
+        cs.setInt(2, matricula);  // Si el segundo parámetro es otra matrícula
         cs.setString(3, nombres);
         cs.setString(4, apellidos);
         cs.setString(5, telefono);
         cs.setString(6, modulo);
-        cs.setString(7, habitacion);
+        cs.setString(7, habitacion); // Este faltaba
 
         // Ejecutar el procedimiento almacenado.
         cs.execute();
         System.out.println("Estudiante actualizado exitosamente.");
+        JOptionPane.showMessageDialog(null, "Estudiante actualizado exitosamente.");
+
+
+        
     } catch (SQLException e) {
         System.err.println("Error al actualizar el estudiante: " + e.getMessage());
     } finally {
@@ -508,10 +592,6 @@ public class Modelo {
         }
     }
 }
-    
-    
-    
-    
     
     
     

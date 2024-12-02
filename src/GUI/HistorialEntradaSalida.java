@@ -4,7 +4,7 @@
  */
 package GUI;
 
-import control_servidor_admin.Modelo;
+import control_servidor_admin.ConsultasSQL;
 import java.awt.Color;
 import java.io.FileNotFoundException;
 import java.util.logging.Level;
@@ -17,7 +17,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class HistorialEntradaSalida extends javax.swing.JFrame {
 
-    Modelo logica = new Modelo();
+    ConsultasSQL logica = new ConsultasSQL();
 
     public HistorialEntradaSalida() {
         initComponents();
@@ -238,8 +238,24 @@ public class HistorialEntradaSalida extends javax.swing.JFrame {
             new String [] {
                 "Matricula", "Nombre Completo", "Entrada", "Salida"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        TablaHitorialEntradaSalida.getTableHeader().setResizingAllowed(false);
+        TablaHitorialEntradaSalida.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(TablaHitorialEntradaSalida);
+        if (TablaHitorialEntradaSalida.getColumnModel().getColumnCount() > 0) {
+            TablaHitorialEntradaSalida.getColumnModel().getColumn(0).setResizable(false);
+            TablaHitorialEntradaSalida.getColumnModel().getColumn(1).setResizable(false);
+            TablaHitorialEntradaSalida.getColumnModel().getColumn(2).setResizable(false);
+            TablaHitorialEntradaSalida.getColumnModel().getColumn(3).setResizable(false);
+        }
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -347,14 +363,12 @@ public class HistorialEntradaSalida extends javax.swing.JFrame {
     private void EditarEstudiantebtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditarEstudiantebtnActionPerformed
         EditarEstudiante editarEstudiante = new EditarEstudiante();
         editarEstudiante.setVisible(true);
-        this.dispose(); // Cierra la ventana actual.
+        this.dispose();
 
-    // Centrar la nueva ventana en la pantalla.
         editarEstudiante.setLocationRelativeTo(null);
     
-    // Obtiene el modelo de la tabla en la nueva ventana.
         DefaultTableModel modelo = (DefaultTableModel) editarEstudiante.TablaEstudiantesEditar.getModel();
-        logica.MostrarEstudiante(modelo);
+        logica.MostrarEstudianteEditar(modelo);
     }//GEN-LAST:event_EditarEstudiantebtnActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

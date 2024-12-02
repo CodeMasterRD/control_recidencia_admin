@@ -1,11 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package GUI;
 
-import control_servidor_admin.Modelo;
+import control_servidor_admin.ConsultasSQL;
 import java.awt.Color;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -20,7 +17,7 @@ public class NotificacionesBotellones extends javax.swing.JFrame {
     public NotificacionesBotellones() {
         initComponents();
     }
-    Modelo logica = new Modelo();
+    ConsultasSQL logica = new ConsultasSQL();
 
 
     /**
@@ -35,6 +32,7 @@ public class NotificacionesBotellones extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         NotificacionesBotetellonesTabla = new javax.swing.JTable();
+        ConfirmarBotellonbtn = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         RegistrarEstudianteBtn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -52,6 +50,7 @@ public class NotificacionesBotellones extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(30, 30, 30));
 
+        NotificacionesBotetellonesTabla.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         NotificacionesBotetellonesTabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
@@ -60,38 +59,57 @@ public class NotificacionesBotellones extends javax.swing.JFrame {
                 {null, null, null, null, null}
             },
             new String [] {
-                "Matricula", "Nombre Completo", "Fecha de Solicitud", "Estado", "Verificar"
+                "Matricula", "Nombre Completo", "Tipo de solicitud", "Fecha de Solicitud", "Estado"
             }
         ) {
-            Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class
+            boolean[] canEdit = new boolean [] {
+                false, false, true, true, true
             };
 
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
+        NotificacionesBotetellonesTabla.setRowHeight(40);
+        NotificacionesBotetellonesTabla.getTableHeader().setResizingAllowed(false);
+        NotificacionesBotetellonesTabla.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(NotificacionesBotetellonesTabla);
         if (NotificacionesBotetellonesTabla.getColumnModel().getColumnCount() > 0) {
             NotificacionesBotetellonesTabla.getColumnModel().getColumn(2).setResizable(false);
             NotificacionesBotetellonesTabla.getColumnModel().getColumn(3).setResizable(false);
         }
 
+        ConfirmarBotellonbtn.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        ConfirmarBotellonbtn.setText("Confirmar");
+        ConfirmarBotellonbtn.setBorder(null);
+        ConfirmarBotellonbtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ConfirmarBotellonbtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap(73, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 808, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(46, 46, 46))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 808, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(46, 46, 46))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(ConfirmarBotellonbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(364, 364, 364))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(54, 54, 54)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 556, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(50, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 479, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(39, 39, 39)
+                .addComponent(ConfirmarBotellonbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel2.setBackground(new java.awt.Color(0, 55, 133));
@@ -233,7 +251,7 @@ public class NotificacionesBotellones extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(26, 26, 26)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
                 .addComponent(VerEstudianteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(RegistrarEstudianteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -362,11 +380,38 @@ public class NotificacionesBotellones extends javax.swing.JFrame {
         logica.MostrarEstudiante(modelo);
     }//GEN-LAST:event_EditarEstudiantebtnActionPerformed
 
+    private void ConfirmarBotellonbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConfirmarBotellonbtnActionPerformed
+        
+        int selectedRow = NotificacionesBotetellonesTabla.getSelectedRow();
+
+    if (selectedRow != -1) {
+        String matricula = NotificacionesBotetellonesTabla.getValueAt(selectedRow, 0).toString();
+        String tipoSolicitud = NotificacionesBotetellonesTabla.getValueAt(selectedRow, 2).toString(); // Obtiene el valor de la columna "Tipo de solicitud"
+
+        System.out.println("Matrícula seleccionada: " + matricula);
+        System.out.println("Tipo de solicitud: " + tipoSolicitud);
+
+        ConsultasSQL consultasSQL = new ConsultasSQL();
+
+        if ("Solicitar Botellon".equalsIgnoreCase(tipoSolicitud)) {
+            consultasSQL.ejecutarInsertarAsignacionBotellon(matricula); // Ejecuta la función correspondiente
+        } else if ("Depositar Botellon".equalsIgnoreCase(tipoSolicitud)) {
+            consultasSQL.ejecutarDepositarBotellon(matricula); // Asegúrate de implementar esta función
+        } else {
+            JOptionPane.showMessageDialog(null, "Tipo de solicitud desconocido.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    } else {
+        JOptionPane.showMessageDialog(null, "Por favor, selecciona una fila de la tabla.", "Advertencia", JOptionPane.WARNING_MESSAGE);
+    }
+    
+    }//GEN-LAST:event_ConfirmarBotellonbtnActionPerformed
+
    public DefaultTableModel getModel() {
     return (DefaultTableModel) NotificacionesBotetellonesTabla.getModel();
 }
-
+   
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton ConfirmarBotellonbtn;
     private javax.swing.JButton EditarEstudiantebtn;
     private javax.swing.JButton HistorialBotellonesbtn;
     private javax.swing.JButton HistorialCocinaBnt;

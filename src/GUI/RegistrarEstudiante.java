@@ -12,7 +12,7 @@ import GUI.VerEstudiantes;
 import java.io.FileNotFoundException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import control_servidor_admin.Modelo;
+import control_servidor_admin.ConsultasSQL;
 import java.awt.Color;
 import java.awt.Point;
 import javax.swing.JComboBox;
@@ -32,7 +32,7 @@ import GUI.RegistrarEstudiante;
 
 public class RegistrarEstudiante extends javax.swing.JFrame {
     
-        Modelo logica = new Modelo();
+        ConsultasSQL logica = new ConsultasSQL();
 
         public RegistrarEstudiante() {
             initComponents();
@@ -354,6 +354,14 @@ public class RegistrarEstudiante extends javax.swing.JFrame {
                 NumeroRegistroActionPerformed(evt);
             }
         });
+        NumeroRegistro.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                NumeroRegistroKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                NumeroRegistroKeyTyped(evt);
+            }
+        });
 
         ApellidosRegistro.setBackground(new java.awt.Color(30, 30, 30));
         ApellidosRegistro.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
@@ -449,29 +457,9 @@ public class RegistrarEstudiante extends javax.swing.JFrame {
                         .addComponent(jLabel3))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(80, 80, 80)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(274, 274, 274)
-                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(80, 80, 80)
-                        .addComponent(MatriculaRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(80, 80, 80)
-                        .addComponent(NombresRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(80, 80, 80)
                         .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(80, 80, 80)
                         .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(90, 90, 90)
-                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(299, 299, 299)
-                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(80, 80, 80)
-                        .addComponent(ApellidosRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(80, 80, 80)
-                        .addComponent(NumeroRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(80, 80, 80)
                         .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -493,7 +481,25 @@ public class RegistrarEstudiante extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(291, 291, 291)))
+                        .addGap(291, 291, 291))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(80, 80, 80)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(MatriculaRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(80, 80, 80)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(NombresRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(80, 80, 80)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(ApellidosRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(80, 80, 80)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(NumeroRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(47, 47, 47))
         );
         jPanel4Layout.setVerticalGroup(
@@ -502,7 +508,7 @@ public class RegistrarEstudiante extends javax.swing.JFrame {
                 .addGap(30, 30, 30)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
                 .addGap(3, 3, 3)
@@ -514,7 +520,7 @@ public class RegistrarEstudiante extends javax.swing.JFrame {
                     .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(67, 67, 67)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(jLabel7))
                 .addGap(16, 16, 16)
@@ -607,11 +613,25 @@ public class RegistrarEstudiante extends javax.swing.JFrame {
     }//GEN-LAST:event_InformeDeActividadBtnActionPerformed
 
     private void NotificacionesBotellonesbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NotificacionesBotellonesbtnActionPerformed
-        // TODO add your handling code here:
+        RetirarEstudiante retirar = new RetirarEstudiante();
+        
+        retirar.setVisible(true);
+        this.dispose();
+        retirar.setLocationRelativeTo(null);
+
+        DefaultTableModel modelo = (DefaultTableModel) retirar.TablaEstudiantesRetirar.getModel();
+        logica.MostrarEstudiante(modelo);
     }//GEN-LAST:event_NotificacionesBotellonesbtnActionPerformed
 
     private void HistorialBotellonesbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HistorialBotellonesbtnActionPerformed
-        // TODO add your handling code here:
+        HistorialBotellones notificacionesBotellones = new HistorialBotellones();
+        
+        notificacionesBotellones.setVisible(true);
+        this.dispose();        
+        notificacionesBotellones.setLocationRelativeTo(null);
+        
+        DefaultTableModel modelo = (DefaultTableModel) notificacionesBotellones.HistorialBotetellonesTabla.getModel(); 
+        logica.historialBotellones(modelo);
     }//GEN-LAST:event_HistorialBotellonesbtnActionPerformed
 
     private void RetirarEstudiantesbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RetirarEstudiantesbtnActionPerformed
@@ -658,7 +678,7 @@ public class RegistrarEstudiante extends javax.swing.JFrame {
     // Llamar al método GuardarEstudiante y verificar si se guardó correctamente
     boolean guardadoExitosamente = false; // Bandera para indicar si se guardaron los datos correctamente
     try {
-        Modelo logica = new Modelo();
+        ConsultasSQL logica = new ConsultasSQL();
         guardadoExitosamente = logica.GuardarEstudiante(matricula, nombres, apellidos, numero, modulo, habitacion); 
     } catch (NumberFormatException ex) {
         JOptionPane.showMessageDialog(this, "Error en el formato del módulo. Asegúrate de seleccionar un valor válido.");
@@ -740,6 +760,22 @@ public class RegistrarEstudiante extends javax.swing.JFrame {
         DefaultTableModel modelo = (DefaultTableModel) editarEstudiante.TablaEstudiantesEditar.getModel();
         logica.MostrarEstudiante(modelo);
     }//GEN-LAST:event_EditarEstudiantebtnActionPerformed
+
+    private void NumeroRegistroKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NumeroRegistroKeyReleased
+        
+    }//GEN-LAST:event_NumeroRegistroKeyReleased
+
+    private void NumeroRegistroKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NumeroRegistroKeyTyped
+        if(NumeroRegistro.getText().length() >=10){
+            evt.consume();
+        }
+
+        char key = evt.getKeyChar();
+        if(!Character.isDigit(key)) {
+            evt.consume();
+       
+        }
+    }//GEN-LAST:event_NumeroRegistroKeyTyped
    
  
     // Variables declaration - do not modify//GEN-BEGIN:variables

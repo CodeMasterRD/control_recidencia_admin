@@ -4,13 +4,14 @@
  */
 package GUI;
 
-import control_servidor_admin.Modelo;
+import control_servidor_admin.ConsultasSQL;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.Timer;
 import javax.swing.table.DefaultTableModel;
 
@@ -23,7 +24,7 @@ public class EditarEstudiante extends javax.swing.JFrame {
     public EditarEstudiante() {
         initComponents();
     }
-    Modelo logica = new Modelo();
+    ConsultasSQL logica = new ConsultasSQL();
     private Timer timer;
     private String lastQuery = "";
     private int FiaSeleccionada;
@@ -74,7 +75,8 @@ public class EditarEstudiante extends javax.swing.JFrame {
         jSeparator6 = new javax.swing.JSeparator();
         jLabel8 = new javax.swing.JLabel();
         jSeparator5 = new javax.swing.JSeparator();
-        EditarEstudiantebtn1 = new javax.swing.JButton();
+        GuardarEstudiantebtn = new javax.swing.JButton();
+        MatriculaRegistroEditarNew = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -272,7 +274,7 @@ public class EditarEstudiante extends javax.swing.JFrame {
                 MatriculaRegistroEditarKeyTyped(evt);
             }
         });
-        jPanel4.add(MatriculaRegistroEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 134, 330, 30));
+        jPanel4.add(MatriculaRegistroEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 140, 330, 30));
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
@@ -424,7 +426,7 @@ public class EditarEstudiante extends javax.swing.JFrame {
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, true
+                false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -437,6 +439,14 @@ public class EditarEstudiante extends javax.swing.JFrame {
         TablaEstudiantesEditar.getTableHeader().setResizingAllowed(false);
         TablaEstudiantesEditar.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(TablaEstudiantesEditar);
+        if (TablaEstudiantesEditar.getColumnModel().getColumnCount() > 0) {
+            TablaEstudiantesEditar.getColumnModel().getColumn(0).setResizable(false);
+            TablaEstudiantesEditar.getColumnModel().getColumn(1).setResizable(false);
+            TablaEstudiantesEditar.getColumnModel().getColumn(2).setResizable(false);
+            TablaEstudiantesEditar.getColumnModel().getColumn(3).setResizable(false);
+            TablaEstudiantesEditar.getColumnModel().getColumn(4).setResizable(false);
+            TablaEstudiantesEditar.getColumnModel().getColumn(5).setResizable(false);
+        }
 
         jPanel4.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(97, 525, 800, 110));
 
@@ -472,17 +482,33 @@ public class EditarEstudiante extends javax.swing.JFrame {
         jSeparator5.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 255, 255)));
         jPanel4.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 393, 790, -1));
 
-        EditarEstudiantebtn1.setBackground(new java.awt.Color(30, 30, 30));
-        EditarEstudiantebtn1.setFont(new java.awt.Font("Segoe UI", 1, 30)); // NOI18N
-        EditarEstudiantebtn1.setForeground(new java.awt.Color(255, 255, 255));
-        EditarEstudiantebtn1.setText("Guardar");
-        EditarEstudiantebtn1.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 255, 255)));
-        EditarEstudiantebtn1.addActionListener(new java.awt.event.ActionListener() {
+        GuardarEstudiantebtn.setBackground(new java.awt.Color(30, 30, 30));
+        GuardarEstudiantebtn.setFont(new java.awt.Font("Segoe UI", 1, 30)); // NOI18N
+        GuardarEstudiantebtn.setForeground(new java.awt.Color(255, 255, 255));
+        GuardarEstudiantebtn.setText("Guardar");
+        GuardarEstudiantebtn.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 255, 255)));
+        GuardarEstudiantebtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                EditarEstudiantebtn1ActionPerformed(evt);
+                GuardarEstudiantebtnActionPerformed(evt);
             }
         });
-        jPanel4.add(EditarEstudiantebtn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 420, 150, 50));
+        jPanel4.add(GuardarEstudiantebtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 420, 150, 50));
+
+        MatriculaRegistroEditarNew.setBackground(new java.awt.Color(30, 30, 30));
+        MatriculaRegistroEditarNew.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
+        MatriculaRegistroEditarNew.setForeground(new java.awt.Color(255, 255, 255));
+        MatriculaRegistroEditarNew.setBorder(null);
+        MatriculaRegistroEditarNew.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MatriculaRegistroEditarNewActionPerformed(evt);
+            }
+        });
+        MatriculaRegistroEditarNew.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                MatriculaRegistroEditarNewKeyTyped(evt);
+            }
+        });
+        jPanel4.add(MatriculaRegistroEditarNew, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 60, 50, 30));
 
         jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(341, 0, 940, 660));
 
@@ -513,13 +539,13 @@ public class EditarEstudiante extends javax.swing.JFrame {
 
     private void RetirarEstudiantesbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RetirarEstudiantesbtnActionPerformed
         RetirarEstudiante retirar = new RetirarEstudiante();
+        
         retirar.setVisible(true);
         this.dispose();
         retirar.setLocationRelativeTo(null);
 
         DefaultTableModel modelo = (DefaultTableModel) retirar.TablaEstudiantesRetirar.getModel();
-        logica.VerTodosEstudiantes(modelo);
-        // TODO add your handling code here:
+        logica.MostrarEstudiante(modelo);
     }//GEN-LAST:event_RetirarEstudiantesbtnActionPerformed
 
     private void HistorialBotellonesbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HistorialBotellonesbtnActionPerformed
@@ -527,7 +553,14 @@ public class EditarEstudiante extends javax.swing.JFrame {
     }//GEN-LAST:event_HistorialBotellonesbtnActionPerformed
 
     private void NotificacionesBotellonesbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NotificacionesBotellonesbtnActionPerformed
-        // TODO add your handling code here:
+        NotificacionesBotellones notificacionesBotellones = new NotificacionesBotellones();
+
+        DefaultTableModel modelo = (DefaultTableModel) notificacionesBotellones.NotificacionesBotetellonesTabla.getModel(); 
+        logica.NotificaionesBotellones(modelo);
+        
+        notificacionesBotellones.setVisible(true);
+        this.dispose();
+        notificacionesBotellones.setLocationRelativeTo(null);
     }//GEN-LAST:event_NotificacionesBotellonesbtnActionPerformed
 
     private void InformeDeActividadBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InformeDeActividadBtnActionPerformed
@@ -585,15 +618,19 @@ public class EditarEstudiante extends javax.swing.JFrame {
     private void EditarEstudiantebtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditarEstudiantebtnActionPerformed
         
         FiaSeleccionada = TablaEstudiantesEditar.getSelectedRow();
-        
-        MatriculaRegistroEditar.setText(TablaEstudiantesEditar.getValueAt(TablaEstudiantesEditar.getSelectedRow(), 0).toString());
-        NombresRegistroEditar.setText(TablaEstudiantesEditar.getValueAt(TablaEstudiantesEditar.getSelectedRow(), 1).toString());
-        ApellidosRegistroEditar.setText(TablaEstudiantesEditar.getValueAt(TablaEstudiantesEditar.getSelectedRow(), 2).toString());
-        NumeroRegistroEditar.setText(TablaEstudiantesEditar.getValueAt(TablaEstudiantesEditar.getSelectedRow(), 3).toString());
-        ModuloRegistroEditar.setSelectedItem(TablaEstudiantesEditar.getValueAt(TablaEstudiantesEditar.getSelectedRow(), 4).toString());
-        HabitacionRegistroEditar.setSelectedItem(TablaEstudiantesEditar.getValueAt(TablaEstudiantesEditar.getSelectedRow(), 5).toString());
-        
 
+        if (FiaSeleccionada == -1) {
+            // Mostrar un mensaje de advertencia si no hay una fila seleccionada
+            JOptionPane.showMessageDialog(null, "Por favor, selecciona un estudiante de la tabla.", "Advertencia", JOptionPane.WARNING_MESSAGE);
+            return; // Salir del método
+        }
+
+        MatriculaRegistroEditar.setText(TablaEstudiantesEditar.getValueAt(FiaSeleccionada, 0).toString());
+        NombresRegistroEditar.setText(TablaEstudiantesEditar.getValueAt(FiaSeleccionada, 1).toString());
+        ApellidosRegistroEditar.setText(TablaEstudiantesEditar.getValueAt(FiaSeleccionada, 2).toString());
+        NumeroRegistroEditar.setText(TablaEstudiantesEditar.getValueAt(FiaSeleccionada, 3).toString());
+        ModuloRegistroEditar.setSelectedItem(TablaEstudiantesEditar.getValueAt(FiaSeleccionada, 4).toString());
+        HabitacionRegistroEditar.setSelectedItem(TablaEstudiantesEditar.getValueAt(FiaSeleccionada, 5));
     }//GEN-LAST:event_EditarEstudiantebtnActionPerformed
 
     private void NumeroRegistroEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NumeroRegistroEditarActionPerformed
@@ -643,7 +680,7 @@ public class EditarEstudiante extends javax.swing.JFrame {
                 if (!matricula.equals(lastQuery)) {
                     DefaultTableModel modelo = (DefaultTableModel) TablaEstudiantesEditar.getModel();
                     try {
-                        Modelo.BuscarEstudianteEditar(modelo, matricula); 
+                        ConsultasSQL.BuscarEstudianteEditar(modelo, matricula); 
                         lastQuery = matricula;
                     } catch (FileNotFoundException ex) {
                         Logger.getLogger(VerEstudiantes.class.getName()).log(Level.SEVERE, null, ex);
@@ -657,7 +694,7 @@ public class EditarEstudiante extends javax.swing.JFrame {
         // Si el campo está vacío, mostrar todos los estudiantes
         DefaultTableModel modelo = (DefaultTableModel) TablaEstudiantesEditar.getModel();
         try {
-            Modelo.BuscarEstudianteEditar(modelo, matricula); 
+            ConsultasSQL.BuscarEstudianteEditar(modelo, matricula); 
         } catch (FileNotFoundException ex) {
             Logger.getLogger(VerEstudiantes.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -680,13 +717,26 @@ public class EditarEstudiante extends javax.swing.JFrame {
 
     }//GEN-LAST:event_BuscarMatriculaFieldEditarKeyTyped
 
-    private void EditarEstudiantebtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditarEstudiantebtn1ActionPerformed
-    int matricula = Integer.parseInt(MatriculaRegistroEditar.getText().trim());
-    String nombres = NombresRegistroEditar.getText().trim();
-    String apellidos = ApellidosRegistroEditar.getText().trim();
-    String telefono = NumeroRegistroEditar.getText().trim();
-    String modulo = ModuloRegistroEditar.getSelectedItem().toString().trim();
-    String habitacion = HabitacionRegistroEditar.getSelectedItem().toString().trim();
+    private void GuardarEstudiantebtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GuardarEstudiantebtnActionPerformed
+        
+        // Validar los campos
+        if (MatriculaRegistroEditar.getText().trim().isEmpty() || 
+            NombresRegistroEditar.getText().trim().isEmpty() || 
+            ApellidosRegistroEditar.getText().trim().isEmpty() || 
+            NumeroRegistroEditar.getText().trim().isEmpty() || 
+            ModuloRegistroEditar.getSelectedItem() == null || 
+            HabitacionRegistroEditar.getSelectedItem() == null) {
+            
+            JOptionPane.showMessageDialog(this, "Por favor, todos los campos.", "Advertencia", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        int matricula = Integer.parseInt(MatriculaRegistroEditar.getText().trim());
+        String nombres = NombresRegistroEditar.getText().trim();
+        String apellidos = ApellidosRegistroEditar.getText().trim();
+        String telefono = NumeroRegistroEditar.getText().trim();
+        String modulo = ModuloRegistroEditar.getSelectedItem().toString().trim();
+        String habitacion = HabitacionRegistroEditar.getSelectedItem().toString().trim();
 
         try {
             logica.actualizarEstudiante(matricula, nombres, apellidos, telefono, modulo, habitacion);
@@ -694,7 +744,7 @@ public class EditarEstudiante extends javax.swing.JFrame {
             Logger.getLogger(EditarEstudiante.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-    }//GEN-LAST:event_EditarEstudiantebtn1ActionPerformed
+    }//GEN-LAST:event_GuardarEstudiantebtnActionPerformed
 
     private void EditarEstudiantebtn2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EditarEstudiantebtn2MouseEntered
         EditarEstudiantebtn.setBackground(new Color(0,55,133));
@@ -717,19 +767,28 @@ public class EditarEstudiante extends javax.swing.JFrame {
         logica.MostrarEstudiante(modelo);
     }//GEN-LAST:event_EditarEstudiantebtn2ActionPerformed
 
+    private void MatriculaRegistroEditarNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MatriculaRegistroEditarNewActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_MatriculaRegistroEditarNewActionPerformed
+
+    private void MatriculaRegistroEditarNewKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_MatriculaRegistroEditarNewKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_MatriculaRegistroEditarNewKeyTyped
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField ApellidosRegistroEditar;
     private javax.swing.JTextField BuscarMatriculaFieldEditar;
     private javax.swing.JButton EditarEstudiantebtn;
-    private javax.swing.JButton EditarEstudiantebtn1;
     private javax.swing.JButton EditarEstudiantebtn2;
+    private javax.swing.JButton GuardarEstudiantebtn;
     private javax.swing.JComboBox<String> HabitacionRegistroEditar;
     private javax.swing.JButton HistorialBotellonesbtn;
     private javax.swing.JButton HistorialCocinaBnt;
     private javax.swing.JButton HistorialEntradaSalida;
     private javax.swing.JButton InformeDeActividadBtn;
     private javax.swing.JTextField MatriculaRegistroEditar;
+    private javax.swing.JTextField MatriculaRegistroEditarNew;
     private javax.swing.JComboBox<String> ModuloRegistroEditar;
     private javax.swing.JTextField NombresRegistroEditar;
     private javax.swing.JButton NotificacionesBotellonesbtn;

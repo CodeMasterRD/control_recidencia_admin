@@ -1,8 +1,6 @@
 package control_servidor_admin;
 
 
-
-import Percistencia.DBConexion;
 import GUI.LoginAdmin;
 import GUI.VerEstudiantes;
 import Percistencia.DBConexion;
@@ -11,6 +9,8 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 
 import java.sql.SQLException;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -21,6 +21,8 @@ public class LoginRegistrar {
     DBConexion con1 = new DBConexion(); 
     Connection conet;               
     LoginAdmin loginAdmin = new LoginAdmin();
+    ConsultasSQL logica = new ConsultasSQL();
+
 
 
     public LoginRegistrar(LoginAdmin loginAdmin) {
@@ -34,7 +36,6 @@ public class LoginRegistrar {
         String query = "{CALL VerificarContrasena(?, ?)}";
         CallableStatement stmt = (CallableStatement) conet.prepareCall(query);
         
-
         stmt.setString(1, usuario);
         stmt.setString(2, contraseña);
 
@@ -46,15 +47,18 @@ public class LoginRegistrar {
             if ("Acceso concedido".equals(mensaje)) {
 
                 System.out.println("Bienvenido, " + usuario);
+                JOptionPane.showMessageDialog(null, "Todo bien crack", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
                 VerEstudiantes verEstudiantes = new VerEstudiantes();
                 verEstudiantes.setVisible(true);
                 verEstudiantes.setLocationRelativeTo(null);
                 loginAdmin.dispose();
+                DefaultTableModel modelo = (DefaultTableModel) verEstudiantes.TablaEstudiantes.getModel();
+                logica.MostrarEstudiante(modelo);
               
             } else {
                 System.out.println("Usuario o contraseña incorrectos.");
-                
-                throw new Exception("Usuario o contraseña incorrectos");
+                JOptionPane.showMessageDialog(null, "Usuario o contraseña incorrectos.");
+
             }
         }
         result.close();
