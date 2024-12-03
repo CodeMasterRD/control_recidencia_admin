@@ -5,7 +5,6 @@
 package GUI;
 
 import javax.swing.table.DefaultTableModel;
-import control_servidor_admin.ConsultasSQL;
 import java.awt.Color;
 import Controlador.EstudianteControlador;
 import Controlador.EntradaSalidaControlador;
@@ -25,7 +24,6 @@ public class HistorialBotellones extends javax.swing.JFrame {
     public HistorialBotellones() {
         initComponents();
     }
-    ConsultasSQL logica = new ConsultasSQL();
     EstudianteControlador estudianteControlador = new EstudianteControlador();
     EntradaSalidaControlador entradaSalidaControlador = new EntradaSalidaControlador();
     BotellonesControlador botellonesControlador = new BotellonesControlador();

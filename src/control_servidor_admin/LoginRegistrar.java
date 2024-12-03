@@ -22,7 +22,6 @@ public class LoginRegistrar {
     DBConexion con1 = new DBConexion(); 
     Connection conet;               
     LoginAdmin loginAdmin = new LoginAdmin();
-    ConsultasSQL logica = new ConsultasSQL();
     EstudianteControlador estudianteControlador = new EstudianteControlador();
     
 
@@ -49,13 +48,12 @@ public class LoginRegistrar {
             if ("Acceso concedido".equals(mensaje)) {
 
                 System.out.println("Bienvenido, " + usuario);
-                //JOptionPane.showMessageDialog(null, "Todo bien crack", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
                 VerEstudiantes verEstudiantes = new VerEstudiantes();
-                verEstudiantes.setVisible(true);
-                verEstudiantes.setLocationRelativeTo(null);
+                verEstudiantes.setVisible(true); //mostrar ventana
+                verEstudiantes.setLocationRelativeTo(null); //ponerla en el medio
                 loginAdmin.dispose();
-                DefaultTableModel modelo = (DefaultTableModel) verEstudiantes.TablaEstudiantes.getModel();
-                estudianteControlador.MostrarEstudiante(modelo);
+                DefaultTableModel modelo = (DefaultTableModel) verEstudiantes.TablaEstudiantes.getModel(); //optenemos la tabla 
+                estudianteControlador.MostrarEstudiante(modelo);//llamando funcion
               
             } else {
                 System.out.println("Usuario o contraseña incorrectos.");
@@ -65,7 +63,7 @@ public class LoginRegistrar {
         }
         result.close();
         stmt.close();
-        conet.close();
+        conet.close();//cerrando conexiones 
         
     } catch (SQLException e) {
         System.out.println("Error de base de datos: " + e.getMessage());

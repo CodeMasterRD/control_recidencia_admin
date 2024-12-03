@@ -11,10 +11,10 @@ public class BotellonesDAO {
 
 
     public void llenarBotellones(int numeroBotellones) throws FileNotFoundException {
-    // Procedimiento almacenado
+    // procedimiento almacenado
     String procedimiento = "{CALL convertirBotellonesVaciosALlenos(?)}"; // Cambia esto si es otro procedimiento
 
-    // Confirmación antes de ejecutar la operación
+    // confirmación antes de ejecutar la operación
     int respuesta = JOptionPane.showConfirmDialog(null, 
         "¿Estás seguro de que deseas asignar " + numeroBotellones + " botellones?", 
         "Confirmar operación", 
@@ -23,7 +23,7 @@ public class BotellonesDAO {
 
     if (respuesta == JOptionPane.YES_OPTION) {
         try {
-            Connection conexion = DBConexion.getConexion(); // Obtener la conexión desde tu clase DBConexion
+            Connection conexion = DBConexion.getConexion(); // obtener la conexión desde tu clase DBConexion
 
             if (conexion != null) {
                 try (CallableStatement stmt = (CallableStatement) conexion.prepareCall(procedimiento)) {

@@ -8,7 +8,6 @@ package GUI;
  * @author Erick Tejada
  */
 
-import control_servidor_admin.ConsultasSQL;
 import java.awt.Color;
 import javax.swing.JComboBox;
 import javax.swing.table.DefaultTableModel;
@@ -27,7 +26,6 @@ import Controlador.CocinaControlador;
 
 public class RegistrarEstudiante extends javax.swing.JFrame {
     
-        ConsultasSQL logica = new ConsultasSQL();
         EstudianteControlador estudianteControlador = new EstudianteControlador();
         EntradaSalidaControlador entradaSalidaControlador = new EntradaSalidaControlador();
         BotellonesControlador botellonesControlador = new BotellonesControlador();

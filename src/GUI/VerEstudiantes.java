@@ -7,7 +7,6 @@ package GUI;
 import GUI.HistorialBotellones;
 import javax.swing.table.DefaultTableModel;
 import java.awt.Color;
-import control_servidor_admin.ConsultasSQL;
 import java.io.FileNotFoundException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -24,7 +23,6 @@ import Controlador.CocinaControlador;
 
 public class VerEstudiantes extends javax.swing.JFrame {
     
-    ConsultasSQL logica = new ConsultasSQL();
     EstudianteControlador estudianteControlador = new EstudianteControlador();
     EntradaSalidaControlador entradaSalidaControlador = new EntradaSalidaControlador();
     BotellonesControlador botellonesControlador = new BotellonesControlador();
@@ -38,7 +36,6 @@ public class VerEstudiantes extends javax.swing.JFrame {
         setLocationRelativeTo(null); 
     }
     
-    ConsultasSQL modelo = new ConsultasSQL();
 
     private Timer timer;
     private String lastQuery = ""; 

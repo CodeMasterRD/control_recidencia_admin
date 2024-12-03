@@ -1,6 +1,5 @@
 package GUI;
 
-import control_servidor_admin.ConsultasSQL;
 import java.awt.Color;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -22,7 +21,6 @@ public class NotificacionesBotellones extends javax.swing.JFrame {
     public NotificacionesBotellones() {
         initComponents();
     }
-    ConsultasSQL logica = new ConsultasSQL();
     EstudianteControlador estudianteControlador = new EstudianteControlador();
     EntradaSalidaControlador entradaSalidaControlador = new EntradaSalidaControlador();
     BotellonesControlador botellonesControlador = new BotellonesControlador();
@@ -476,13 +474,11 @@ public class NotificacionesBotellones extends javax.swing.JFrame {
 
         System.out.println("Matrícula seleccionada: " + matricula);
         System.out.println("Tipo de solicitud: " + tipoSolicitud);
-
-        ConsultasSQL consultasSQL = new ConsultasSQL();
-
+        
         if ("Solicitar Botellon".equalsIgnoreCase(tipoSolicitud)) {
             estudiantesDAO.ejecutarInsertarAsignacionBotellon(matricula);
         } else if ("Depositar Botellon".equalsIgnoreCase(tipoSolicitud)) {
-            consultasSQL.ejecutarDepositarBotellon(matricula);
+            botellonesControlador.ejecutarDepositarBotellon(matricula);
         } else {
             JOptionPane.showMessageDialog(null, "Tipo de solicitud desconocido.", "Error", JOptionPane.ERROR_MESSAGE);
         }

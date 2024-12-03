@@ -7,7 +7,6 @@ package DAO;
 import GUI.RetirarEstudiante;
 import GUI.VerEstudiantes;
 import Percistencia.DBConexion;
-import control_servidor_admin.ConsultasSQL;
 import java.io.FileNotFoundException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -60,7 +59,6 @@ public class EstudiantesDAO {
             
             System.out.println(retirarEstudiante.BuscarMatriculaRetirar.getText());
             
-            ConsultasSQL logica = new ConsultasSQL();
             DefaultTableModel modelo = (DefaultTableModel) retirarEstudiante.TablaEstudiantesRetirar.getModel();
             estudianteControlador.MostrarEstudiante(modelo);
             
@@ -76,13 +74,13 @@ public class EstudiantesDAO {
 
     int respuesta = JOptionPane.showConfirmDialog(null, 
         "¿Estás seguro de que deseas asignar el botellón para la matrícula: " + matricula + "?", 
-        "Confirmar operación", 
+        "Confirmar operación", //ventana de conformacion 
         JOptionPane.YES_NO_OPTION, 
         JOptionPane.QUESTION_MESSAGE);
 
     if (respuesta == JOptionPane.YES_OPTION) {
         try {
-            Connection conexion = DBConexion.getConexion();
+            Connection conexion = DBConexion.getConexion(); //conexion a la base de datos
 
             if (conexion != null) {
                 try (CallableStatement stmt = (CallableStatement) conexion.prepareCall(procedimiento)) {

@@ -1,10 +1,8 @@
 
 package GUI;
 
-import control_servidor_admin.ConsultasSQL;
 import java.awt.Color;
 import javax.swing.table.DefaultTableModel;
-import control_servidor_admin.ConsultasSQL;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
@@ -19,24 +17,15 @@ import Controlador.CocinaControlador;
 import DAO.EstudiantesDAO;
 
 
-
-
-
-
-
 public class RetirarEstudiante extends javax.swing.JFrame {
 
     
-    ConsultasSQL logica = new ConsultasSQL();
-    ConsultasSQL modelo = new ConsultasSQL();
+
     EstudianteControlador estudianteControlador = new EstudianteControlador();
     EntradaSalidaControlador entradaSalidaControlador = new EntradaSalidaControlador();
     BotellonesControlador botellonesControlador = new BotellonesControlador();
     CocinaControlador cocinaControlador = new CocinaControlador();
     EstudiantesDAO estudiantesDAO = new EstudiantesDAO();
-
-
-
     
     VerEstudiantes verEstudiantes = new VerEstudiantes();
     private Timer timer;
@@ -447,7 +436,7 @@ public class RetirarEstudiante extends javax.swing.JFrame {
     private void RegistrarEstudianteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistrarEstudianteBtnActionPerformed
         RegistrarEstudiante registrarEstudiante = new RegistrarEstudiante();
         registrarEstudiante.setVisible(true);
-        this.dispose();
+        this.dispose(); //quitar la ventana
         registrarEstudiante.setLocationRelativeTo(null);
     }//GEN-LAST:event_RegistrarEstudianteBtnActionPerformed
 

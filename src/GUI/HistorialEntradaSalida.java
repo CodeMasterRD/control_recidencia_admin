@@ -4,7 +4,6 @@
  */
 package GUI;
 
-import control_servidor_admin.ConsultasSQL;
 import java.awt.Color;
 import java.io.FileNotFoundException;
 import java.util.logging.Level;
@@ -24,7 +23,6 @@ import GUI.HistorialEntradaSalida;
  */
 public class HistorialEntradaSalida extends javax.swing.JFrame {
 
-    ConsultasSQL logica = new ConsultasSQL();
     EstudianteControlador estudianteControlador = new EstudianteControlador();
     BotellonesControlador botellonesControlador = new BotellonesControlador();
     CocinaControlador cocinaControlador = new CocinaControlador();

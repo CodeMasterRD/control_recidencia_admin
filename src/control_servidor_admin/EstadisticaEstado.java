@@ -37,7 +37,7 @@ public class EstadisticaEstado {
             conet = con1.getConexion();
             st = conet.createStatement();
             rs = st.executeQuery(sql);
-
+            //iniciamos en 0
             n1 = 0;
             n2 = 0;
             n3 = 0;
@@ -45,7 +45,7 @@ public class EstadisticaEstado {
             while (rs.next()) {
                 String estado = rs.getString("Estado_estudiante");
                 int cantidad = rs.getInt("Cantidad");
-
+                    //damos valores dependiendo el dato
                 if (estado.equals("Dentro")) {
                     n1 = cantidad;
                 } else if (estado.equals("Fuera")) {
@@ -56,7 +56,7 @@ public class EstadisticaEstado {
             }
                 mostrarResultadosEnConsola();
 
-        } catch (Exception e) {
+        } catch (Exception e) { //captar error
             e.printStackTrace(); 
         }
     } 

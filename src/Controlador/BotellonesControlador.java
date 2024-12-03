@@ -7,10 +7,13 @@ package Controlador;
 import GUI.RetirarEstudiante;
 import GUI.VerEstudiantes;
 import Percistencia.DBConexion;
+import com.mysql.cj.jdbc.CallableStatement;
+import java.io.FileNotFoundException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 
@@ -23,15 +26,53 @@ public class BotellonesControlador {
     DefaultTableModel modelo;
     private static Statement st;
     private static ResultSet rs;
+    
+    public void ejecutarDepositarBotellon(String matricula) {
+        String procedimiento = "{call confirmacionDepositoBotellon(?)};"; 
 
-    
-    
+        // confirmación antes de ejecutar la operación
+        int respuesta = JOptionPane.showConfirmDialog(null, 
+            "¿Estás seguro de que deseas registrar el depósito del botellón para la matrícula: " + matricula + "?", 
+            "Confirmar operación", 
+            JOptionPane.YES_NO_OPTION, 
+            JOptionPane.QUESTION_MESSAGE);
+
+        if (respuesta == JOptionPane.YES_OPTION) { //validando la ventana emergente
+            try {
+                Connection conexion = DBConexion.getConexion();
+
+                if (conexion != null) {
+                    try (CallableStatement stmt = (CallableStatement) conexion.prepareCall(procedimiento)) {
+                        stmt.setString(1, matricula);
+
+                        stmt.execute();
+
+                        JOptionPane.showMessageDialog(null, "Depósito registrado con éxito para matrícula: " + matricula);
+                    } catch (SQLException ex) {
+                        JOptionPane.showMessageDialog(null, "Error al ejecutar el procedimiento almacenado: " + ex.getMessage());
+                    }
+                } else {
+                    // mensaje si no se pudo obtener la conexión
+                    JOptionPane.showMessageDialog(null, "Error: No se pudo obtener la conexión a la base de datos.");
+                }
+            } catch (SQLException | FileNotFoundException ex) {
+                // mensaje en caso de error al obtener la conexión
+                JOptionPane.showMessageDialog(null, "Error al obtener la conexión: " + ex.getMessage());
+            }
+        } else {
+            // mensaje si el usuario cancela la operación
+            JOptionPane.showMessageDialog(null, "Operación cancelada.");
+        }
+}
+
+        
     
     public void historialBotellones(DefaultTableModel modelo) {
         
         String sql = "call historialBotellones();";
 
     try {
+        //conexion a base de datps
         conet = con1.getConexion();
         st = conet.createStatement();
         rs = st.executeQuery(sql);
@@ -49,7 +90,7 @@ public class BotellonesControlador {
             Botellones[5] = rs.getString("Fecha de deposito");
             Botellones[6] = rs.getString("estado");
 
-            modelo.addRow(Botellones);
+            modelo.addRow(Botellones); // agg tados a la tabla
         }
     } catch (SQLException e) {
         System.err.println("Error al ejecutar la consulta: " + e.getMessage());
@@ -57,9 +98,11 @@ public class BotellonesControlador {
         System.err.println("Error general: " + e.getMessage());
     } finally {
         try {
+            //si el objeto ResultSet (rs) no es nulo antes de intentar cerrarlo
             if (rs != null) rs.close();
-            if (conet != null) conet.close();
+            if (conet != null) conet.close();// Cierra la conexión a la base de datos
         } catch (SQLException e) {
+            // Captura y muestra cualquier error que ocurra al intentar cerrar los recursos
             System.err.println("Error al cerrar los recursos: " + e.getMessage());
         }
     }
@@ -105,7 +148,7 @@ public class BotellonesControlador {
     
     
     
-    
+
     
     
     

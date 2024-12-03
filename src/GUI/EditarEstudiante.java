@@ -4,7 +4,6 @@
  */
 package GUI;
 
-import control_servidor_admin.ConsultasSQL;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -29,7 +28,6 @@ public class EditarEstudiante extends javax.swing.JFrame {
     public EditarEstudiante() {
         initComponents();
     }
-    ConsultasSQL logica = new ConsultasSQL();
     private Timer timer;
     private String lastQuery = "";
     private int FiaSeleccionada;
@@ -826,7 +824,7 @@ public class EditarEstudiante extends javax.swing.JFrame {
         String habitacion = HabitacionRegistroEditar.getSelectedItem().toString().trim();
 
         try {
-            logica.actualizarEstudiante(matricula, nombres, apellidos, telefono, modulo, habitacion);
+            estudianteControlador.actualizarEstudiante(matricula, nombres, apellidos, telefono, modulo, habitacion);
         } catch (FileNotFoundException ex) {
             Logger.getLogger(EditarEstudiante.class.getName()).log(Level.SEVERE, null, ex);
         }

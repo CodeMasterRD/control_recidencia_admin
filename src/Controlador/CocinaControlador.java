@@ -23,12 +23,8 @@ public class CocinaControlador {
     
     private static DBConexion con1 = new DBConexion();  // Hacer con1 estática
     private static Connection conet;
-    DefaultTableModel modelo;
     private static Statement st;
     private static ResultSet rs;
-    int idc;
-    private static VerEstudiantes vista;
-    private RetirarEstudiante vista1;
     
     
     
@@ -39,6 +35,7 @@ public class CocinaControlador {
         String sql = "call MostrarTodosEstudiantes();";
 
     try {
+        //conexion a base de datos
         conet = con1.getConexion();
         st = conet.createStatement();
         rs = st.executeQuery(sql);
@@ -53,9 +50,10 @@ public class CocinaControlador {
             Botellones[2] = rs.getString("Entrada");
             Botellones[3] = rs.getString("Salida");
             Botellones[4] = rs.getString("Estado_uso");
-
+            //agregamos datos a la tabla
             modelo.addRow(Botellones);
         }
+        //mostrar error
     } catch (SQLException e) {
         System.err.println("Error al ejecutar la consulta: " + e.getMessage());
     } catch (Exception e) {

@@ -5,7 +5,6 @@
 package GUI;
 import control_servidor_admin.LoginRegistrar;
 import javax.swing.table.DefaultTableModel;
-import control_servidor_admin.ConsultasSQL;
 
 public class LoginAdmin extends javax.swing.JFrame {
 
@@ -14,7 +13,6 @@ public class LoginAdmin extends javax.swing.JFrame {
     }
 
     VerEstudiantes verEstudiantes = new VerEstudiantes(); 
-    ConsultasSQL logica = new ConsultasSQL();
 
     public javax.swing.JTextField getUsuarioSesion() {
         return UsuarioSesion;
@@ -47,7 +45,7 @@ public class LoginAdmin extends javax.swing.JFrame {
         background1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/background.jpg"))); // NOI18N
-        background1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 0, 390, 650));
+        background1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 0, 450, 650));
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(0, 0, 0));

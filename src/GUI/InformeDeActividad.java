@@ -14,7 +14,6 @@ import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.data.general.DefaultPieDataset;
 import control_servidor_admin.EstadisticaEstado;
-import control_servidor_admin.ConsultasSQL;
 import java.awt.Color;
 import javax.swing.table.DefaultTableModel;
 import VentanasEmegentes.IngresarBotellonesConfirmar;
@@ -39,7 +38,6 @@ public class InformeDeActividad extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }
     
-    ConsultasSQL logica = new ConsultasSQL();
     VerEstudiantes verEstudiantes = new VerEstudiantes(); 
     EstudianteControlador estudianteControlador = new EstudianteControlador();
     EntradaSalidaControlador entradaSalidaControlador = new EntradaSalidaControlador();

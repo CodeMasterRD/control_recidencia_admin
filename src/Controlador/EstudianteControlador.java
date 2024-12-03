@@ -7,7 +7,7 @@ package Controlador;
 import GUI.RetirarEstudiante;
 import GUI.VerEstudiantes;
 import Percistencia.DBConexion;
-import control_servidor_admin.ConsultasSQL;
+import com.mysql.cj.jdbc.CallableStatement;
 import java.io.FileNotFoundException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -253,14 +253,55 @@ public class EstudianteControlador {
                 JOptionPane.showMessageDialog(null, "Error SQL (Código " + errorCode + "): " + ex.getMessage());
             }
         }   catch (FileNotFoundException ex) {
-                Logger.getLogger(ConsultasSQL.class.getName()).log(Level.SEVERE, null, ex);
             }
         return false; 
 }
         
         
         
+        public void actualizarEstudiante(
+        int matricula, 
+        String nombres, 
+        String apellidos, 
+        String telefono, 
+        String modulo, 
+        String habitacion
+    ) throws FileNotFoundException {
+    String sql = "{CALL ActualizarEstudiante(?, ?, ?, ?, ?, ?, ?)}";
+    Connection con = null;
+    CallableStatement cs = null;
+
+    try {
+
+        con = con1.getConexion();
+        cs = (CallableStatement) con.prepareCall(sql);
+
+        cs.setInt(1, matricula);
+        cs.setInt(2, matricula);
+        cs.setString(3, nombres);
+        cs.setString(4, apellidos);
+        cs.setString(5, telefono);
+        cs.setString(6, modulo);
+        cs.setString(7, habitacion);
+
+        // ejecutar el procedimiento almacenado.
+        cs.execute();
+        System.out.println("Estudiante actualizado exitosamente.");
+        JOptionPane.showMessageDialog(null, "Estudiante actualizado exitosamente.");
+
+
         
+    } catch (SQLException e) {
+        System.err.println("Error al actualizar el estudiante: " + e.getMessage());
+    } finally {
+        try {
+            if (cs != null) cs.close();
+            if (con != null) con.close();
+        } catch (SQLException e) {
+            System.err.println("Error al cerrar los recursos: " + e.getMessage());
+        }
+    }
+}
         
         
         
